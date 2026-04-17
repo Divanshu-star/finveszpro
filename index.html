@@ -650,28 +650,54 @@ var eId=null,eDept=null;
 function uid(){return'_'+Math.random().toString(36).slice(2,9);}
 var PORTAL='https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/';
 
-/* ─── LOCAL STORAGE SAVE / LOAD ─── */
-var LS_KEY_D='finveszpro_D_v1';
-var LS_KEY_V='finveszpro_V_v1';
+/* ─── JSONBIN CLOUD SYNC ─── */
+var BIN_ID='69e22b9caaba8821970c8fb3';
+var API_KEY='$2a$10$placeholder'; /* will be set below */
+var BIN_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
+var JSONBIN_KEY='$2a$10$JPGIIjtZKmCFrDEi1bChcenfJ5wmsOrkQivFdeHVxHSTykY111ZhW';
+
 function saveData(){
-  try{
-    localStorage.setItem(LS_KEY_D,JSON.stringify(D));
-    localStorage.setItem(LS_KEY_V,JSON.stringify(VIDEOS));
-  }catch(e){console.warn('Save failed',e);}
+  var payload={processes:D,videos:VIDEOS};
+  fetch(BIN_URL,{
+    method:'PUT',
+    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Versioning':'false'},
+    body:JSON.stringify(payload)
+  }).then(function(){showToast('✅ Saved to cloud!');}).catch(function(){
+    /* fallback to localStorage */
+    try{localStorage.setItem('finveszpro_backup',JSON.stringify(payload));}catch(e){}
+    showToast('⚠️ Cloud save failed, saved locally');
+  });
 }
+
 function loadData(){
-  try{
-    var sd=localStorage.getItem(LS_KEY_D);
-    var sv=localStorage.getItem(LS_KEY_V);
-    if(sd) D=JSON.parse(sd);
-    if(sv) VIDEOS=JSON.parse(sv);
-  }catch(e){console.warn('Load failed',e);}
+  /* show loading indicator */
+  document.getElementById('content').innerHTML='<div style="text-align:center;padding:60px;color:#185FA5;font-size:15px;font-weight:700;">☁️ Loading from cloud...</div>';
+  fetch(BIN_URL+'/latest',{
+    headers:{'X-Master-Key':JSONBIN_KEY}
+  }).then(function(r){return r.json();}).then(function(data){
+    var rec=data.record;
+    if(rec&&rec.processes) D=rec.processes;
+    if(rec&&rec.videos) VIDEOS=rec.videos;
+    render();
+  }).catch(function(){
+    /* fallback to localStorage */
+    try{
+      var backup=localStorage.getItem('finveszpro_backup');
+      if(backup){var b=JSON.parse(backup);if(b.processes)D=b.processes;if(b.videos)VIDEOS=b.videos;}
+    }catch(e){}
+    showToast('⚠️ Cloud load failed, using local data');
+    render();
+  });
 }
+
 function resetToDefault(){
   if(!confirm('⚠️ Sab data reset ho jayega — aapke daale huye saare links & processes hat jayenge. Confirm?')) return;
-  localStorage.removeItem(LS_KEY_D);
-  localStorage.removeItem(LS_KEY_V);
-  location.reload();
+  var payload={processes:{office:[],admin:[],wealth:[],trials:[]},videos:[]};
+  fetch(BIN_URL,{
+    method:'PUT',
+    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Versioning':'false'},
+    body:JSON.stringify(payload)
+  }).then(function(){location.reload();}).catch(function(){showToast('Reset failed!');});
 }
 var D={
   office:[
@@ -730,8 +756,8 @@ var VIDEOS=[
   {id:uid(),title:'General Module',url:PORTAL+'general-module',cat:'Other',desc:'General processes, accounting & miscellaneous'},
 ];
 
-/* ─── LOAD SAVED DATA (overwrites defaults if saved data exists) ─── */
-loadData();
+/* ─── LOAD SAVED DATA FROM CLOUD ─── */
+/* loadData() called in initApp */
 
 /* ─── SECTION FILTER ─── */
 var activeSec='all';
@@ -843,7 +869,7 @@ function render(){
   html+='<div style="font-size:52px;line-height:1">📊</div>';
   html+='<div style="text-align:center;">';
   html+='<div style="font-size:17px;font-weight:800;color:#0F6E56;margin-bottom:6px;">System Master Sheet</div>';
-  html+='<div style="font-size:13px;color:#555;margin-bottom:20px;line-height:1.6;">Google Sheets cannot be embedded here.<br>Click below to open the full live sheet.</div>';
+  html+='<div style="font-size:13px;color:#555;margin-bottom:20px;line-height:1.6;">Click below to open the full live sheet in a new tab.</div>';
   html+='<a href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit?gid=0#gid=0" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0F6E56,#1D9E75);color:#fff;text-decoration:none;padding:13px 32px;border-radius:10px;font-size:14px;font-weight:800;font-family:Figtree,sans-serif;box-shadow:0 4px 14px rgba(15,110,86,.3);">&#8599; Open System Master Sheet</a>';
   html+='</div>';
   html+='</div></div></div>';
@@ -968,7 +994,7 @@ function tick(){
   var dg=document.getElementById('dash-greeting');
   if(dg) dg.textContent=g.title;
 }
-function initApp(){buildTicker();render();tick();setInterval(tick,30000);}
+function initApp(){buildTicker();tick();setInterval(tick,30000);loadData();}
 </script>
 </body>
 </html>
