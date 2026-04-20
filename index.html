@@ -7,15 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;}
+body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overflow-x:hidden;}
 
+/* ── ANIMATIONS ── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeOut{from{opacity:1}to{opacity:0;pointer-events:none}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(0.3)}to{opacity:1;transform:scale(1)}}
-@keyframes spinFull{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes spinRev{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
-@keyframes spinRing{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.2)}to{opacity:1;transform:scale(1)}}
 @keyframes chartPop{0%{transform:scaleY(0);transform-origin:bottom}100%{transform:scaleY(1);transform-origin:bottom}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes orbitA{from{transform:rotate(0deg) translateX(44px) rotate(0deg)}to{transform:rotate(360deg) translateX(44px) rotate(-360deg)}}
@@ -25,31 +23,31 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;}
 @keyframes orbitB2{from{transform:rotate(120deg) translateX(48px) rotate(-120deg)}to{transform:rotate(480deg) translateX(48px) rotate(-480deg)}}
 @keyframes orbitC2{from{transform:rotate(240deg) translateX(28px) rotate(-240deg)}to{transform:rotate(600deg) translateX(28px) rotate(-600deg)}}
 @keyframes particleFloat{0%{transform:translate(0,0);opacity:0}20%{opacity:1}80%{opacity:.5}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.7}}
-@keyframes numUp{0%{transform:scale(1)}50%{transform:scale(1.2);color:#2563eb}100%{transform:scale(1)}}
 @keyframes shimmerBtn{0%{left:-60%}100%{left:140%}}
 @keyframes errShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-@keyframes deptIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes mIn{from{transform:translateY(18px) scale(.96);opacity:0}to{opacity:1;transform:none}}
-@keyframes appIn{from{opacity:0}to{opacity:1}}
+@keyframes mIn{from{transform:translateY(20px) scale(.97);opacity:0}to{opacity:1;transform:none}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes cardPop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
+@keyframes numCount{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
 
 /* ── SPLASH ── */
-#splash{position:fixed;top:0;left:0;width:100%;height:100%;background:#042C53;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;overflow:hidden;}
-.grid-bg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.06;pointer-events:none;}
-#particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+#splash{position:fixed;inset:0;background:#042C53;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;opacity:.05;pointer-events:none;}
+#particles{position:absolute;inset:0;pointer-events:none;}
 .particle{position:absolute;width:5px;height:5px;border-radius:50%;animation:particleFloat 3.5s ease-out infinite;}
-.splash-inner{display:flex;flex-direction:column;align-items:center;gap:22px;z-index:2;position:relative;}
+.splash-inner{display:flex;flex-direction:column;align-items:center;gap:20px;z-index:2;}
 .logo-stage{position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center;animation:scaleIn .9s cubic-bezier(.34,1.56,.64,1) both;}
 .logo-stage svg{position:absolute;top:0;left:0;}
-.orb-wrap{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.orb-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
 .od{position:absolute;width:12px;height:12px;border-radius:50%;top:50%;left:50%;margin:-6px 0 0 -6px;}
-.od1{background:#85B7EB;animation:orbitA 2.6s linear infinite;animation-delay:.3s;}
+.od1{background:#85B7EB;animation:orbitA 2.6s linear infinite;}
 .od2{background:#5DCAA5;animation:orbitB 3.9s linear infinite;}
-.od3{background:#EF9F27;animation:orbitC 3.2s linear infinite;animation-delay:.15s;}
-.splash-name{font-size:32px;font-weight:800;letter-spacing:.5px;animation:fadeUp .7s .6s ease both;}
+.od3{background:#EF9F27;animation:orbitC 3.2s linear infinite;}
+.splash-name{font-size:34px;font-weight:800;animation:fadeUp .7s .6s ease both;opacity:0;}
 .splash-name .fin{color:#85B7EB;}.splash-name .pro{color:#EF9F27;}.splash-name .sol{color:#5DCAA5;}
-.splash-tag{font-size:12px;color:#B5D4F4;letter-spacing:2.5px;text-transform:uppercase;animation:fadeUp .7s .8s ease both;}
-.splash-bars{display:flex;gap:9px;align-items:flex-end;animation:fadeUp .7s 1s ease both;}
+.splash-tag{font-size:11px;color:#B5D4F4;letter-spacing:3px;text-transform:uppercase;animation:fadeUp .7s .8s ease both;opacity:0;}
+.splash-bars{display:flex;gap:9px;align-items:flex-end;animation:fadeUp .6s 1s ease both;opacity:0;}
 .sb{width:11px;border-radius:3px 3px 0 0;transform-origin:bottom;animation:chartPop .5s ease both;}
 .sb:nth-child(1){height:28px;background:#378ADD;animation-delay:1.1s}
 .sb:nth-child(2){height:46px;background:#185FA5;animation-delay:1.2s}
@@ -58,560 +56,605 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;}
 .sb:nth-child(5){height:44px;background:#0F6E56;animation-delay:1.5s}
 .sb:nth-child(6){height:68px;background:#1D9E75;animation-delay:1.6s}
 .sb:nth-child(7){height:50px;background:#378ADD;animation-delay:1.7s}
-.load-wrap{width:200px;height:4px;background:rgba(133,183,235,.2);border-radius:2px;overflow:hidden;animation:fadeIn .5s 1s both;}
-.load-fill{height:100%;background:#378ADD;border-radius:2px;width:0%;transition:width .06s linear;}
-.load-label{font-size:11px;color:rgba(181,212,244,.55);letter-spacing:1px;text-align:center;animation:fadeIn .5s 1.1s both;}
-.ticker-wrap{position:absolute;bottom:0;width:100%;overflow:hidden;border-top:1px solid rgba(133,183,235,.15);padding:9px 0;animation:fadeIn .5s 1.5s both;}
-.ticker-inner{display:flex;gap:48px;white-space:nowrap;animation:ticker 22s linear infinite;font-size:11px;color:#B5D4F4;letter-spacing:.5px;}
-.ti{display:flex;align-items:center;gap:6px;}
+.load-wrap{width:220px;height:4px;background:rgba(133,183,235,.15);border-radius:2px;overflow:hidden;animation:fadeIn .5s 1s both;}
+.load-fill{height:100%;background:linear-gradient(90deg,#185FA5,#1D9E75);border-radius:2px;width:0%;}
+.load-label{font-size:11px;color:rgba(181,212,244,.5);letter-spacing:1px;text-align:center;animation:fadeIn .5s 1.1s both;}
+.splash-ticker{position:absolute;bottom:0;width:100%;overflow:hidden;border-top:1px solid rgba(133,183,235,.1);padding:8px 0;animation:fadeIn .5s 1.5s both;}
+.sticker-inner{display:flex;gap:40px;white-space:nowrap;animation:ticker 25s linear infinite;font-size:11px;color:#B5D4F4;}
+.sti{display:inline-flex;align-items:center;gap:6px;padding:0 12px;}
 .up{color:#5DCAA5;font-weight:700;}.dn{color:#F09595;font-weight:700;}
 
-/* ── LOGIN PAGE ── */
-#loginPage{
-  display:none;min-height:100vh;width:100%;
-  background:#f0f4f8;
-  flex-direction:column;align-items:center;justify-content:center;
-  padding:2rem 1rem;gap:1.5rem;
-  animation:fadeIn .6s ease;
-}
-.logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;animation:fadeUp .7s ease both;}
-.logo-ring{position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;}
-.logo-ring svg{position:absolute;top:0;left:0;}
+/* ── LOGIN ── */
+#loginPage{display:none;min-height:100vh;background:#f0f4f8;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:24px;animation:fadeIn .5s ease;}
+.logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.logo-ring{position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center;}
+.logo-ring svg{position:absolute;inset:0;}
 .mod{position:absolute;border-radius:50%;top:50%;left:50%;}
 .mod1{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#185FA5;animation:orbitA2 2.8s linear infinite;}
 .mod2{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#1D9E75;animation:orbitB2 4s linear infinite;}
 .mod3{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#BA7517;animation:orbitC2 3.4s linear infinite;}
-.main-name{font-size:22px;font-weight:800;letter-spacing:.4px;}
+.main-name{font-size:22px;font-weight:800;}
 .main-name .fin{color:#185FA5;}.main-name .pro{color:#BA7517;}.main-name .sol{color:#1D9E75;}
 .main-tag{font-size:11px;color:#888;letter-spacing:1.5px;text-transform:uppercase;}
-.login-card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:2rem;width:100%;max-width:400px;box-shadow:0 6px 30px rgba(4,44,83,.1);animation:fadeUp .8s .2s ease both;}
-.lc-greeting{font-size:20px;font-weight:800;color:#1a202c;margin-bottom:3px;line-height:1.3;}
-.lc-sub{font-size:13px;color:#718096;margin-bottom:1.5rem;}
-.lc-field{margin-bottom:1rem;}
-.lc-field label{display:block;font-size:12px;color:#4a5568;margin-bottom:5px;font-weight:700;letter-spacing:.3px;}
-.lc-field input{width:100%;height:46px;padding:0 46px 0 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;color:#1a202c;background:#f7fafc;outline:none;font-family:'Figtree',sans-serif;transition:border-color .2s,box-shadow .2s;}
-.lc-field input:focus{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.12);background:#fff;}
+.login-card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:32px;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(4,44,83,.1);animation:fadeUp .7s .2s ease both;opacity:0;}
+.lc-greeting{font-size:19px;font-weight:800;color:#1a202c;margin-bottom:4px;}
+.lc-sub{font-size:13px;color:#718096;margin-bottom:20px;}
+.role-toggle{display:flex;background:#f7f6f3;border:1px solid #e4e2db;border-radius:12px;padding:4px;margin-bottom:20px;gap:4px;}
+.rt-btn{flex:1;padding:9px;border:none;border-radius:9px;background:transparent;font-size:13px;font-weight:700;font-family:'Figtree',sans-serif;cursor:pointer;color:#6b6b6b;transition:all .2s;}
+.rt-btn.active{background:#fff;color:#185FA5;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.lc-field{margin-bottom:14px;}
+.lc-field label{display:block;font-size:11px;font-weight:700;color:#4a5568;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;}
+.lc-field input{width:100%;height:46px;padding:0 44px 0 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:'Figtree',sans-serif;color:#1a202c;background:#f7fafc;outline:none;transition:border-color .2s,box-shadow .2s;}
+.lc-field input:focus{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.1);background:#fff;}
 .pwd-wrap{position:relative;}
-.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#718096;font-size:17px;}
-.lc-btn{width:100%;height:48px;border:none;border-radius:10px;background:linear-gradient(135deg,#185FA5,#1D9E75);color:#fff;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;letter-spacing:.3px;font-family:'Figtree',sans-serif;transition:opacity .2s,transform .1s;position:relative;overflow:hidden;}
-.lc-btn::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shimmerBtn 2.5s 1s ease-in-out infinite;}
-.lc-btn:hover{opacity:.9;transform:translateY(-1px);}
+.eye-btn{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#a0aec0;font-size:16px;line-height:1;}
+.lc-btn{width:100%;height:48px;border:none;border-radius:12px;background:linear-gradient(135deg,#185FA5,#1D9E75);color:#fff;font-size:15px;font-weight:800;cursor:pointer;margin-top:6px;font-family:'Figtree',sans-serif;position:relative;overflow:hidden;transition:transform .1s,opacity .2s;}
+.lc-btn::after{content:'';position:absolute;inset:0 -60%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmerBtn 2.5s 1.2s ease-in-out infinite;}
+.lc-btn:hover{opacity:.92;transform:translateY(-1px);}
+.lc-hint{font-size:11px;color:#a0aec0;text-align:center;margin-top:10px;}
 .lc-err{font-size:12px;color:#c53030;background:#fff5f5;border:1px solid #fed7d7;border-radius:8px;padding:9px 13px;margin-top:10px;display:none;}
-.lc-err.show{display:block;animation:errShake .35s ease;}
+.lc-err.show{display:block;animation:errShake .3s ease;}
 
 /* ── SUCCESS ── */
-#successOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#042C53;z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
-.suc-icon{width:80px;height:80px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;animation:scaleIn .5s cubic-bezier(.34,1.56,.64,1) both;}
-.suc-title{font-size:24px;font-weight:800;color:#fff;font-family:'Figtree',sans-serif;animation:fadeUp .5s .2s ease both;}
-.suc-name{font-size:15px;color:#9FE1CB;font-family:'Figtree',sans-serif;animation:fadeUp .5s .3s ease both;letter-spacing:.3px;}
+#successOverlay{display:none;position:fixed;inset:0;background:#042C53;z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.suc-icon{width:76px;height:76px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;animation:scaleIn .5s cubic-bezier(.34,1.56,.64,1) both;}
+.suc-title{font-size:22px;font-weight:800;color:#fff;animation:fadeUp .5s .2s ease both;}
+.suc-sub{font-size:14px;color:#9FE1CB;animation:fadeUp .5s .35s ease both;}
 
-/* ── APP ── */
-#appPage{display:none;flex-direction:column;min-height:100vh;background:#f7f6f3;}
-#appPage.show{display:flex;animation:appIn .5s ease both;}
+/* ══════════════════════════════════════
+   APP LAYOUT
+══════════════════════════════════════ */
+#appPage{display:none;min-height:100vh;background:#f0f2f5;flex-direction:column;}
+#appPage.show{display:flex;}
 
-/* TICKER */
-.app-ticker{background:#185FA5;overflow:hidden;position:relative;flex-shrink:0;}
-.app-ticker::before,.app-ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;}
-.app-ticker::before{left:0;background:linear-gradient(90deg,#185FA5,transparent);}
-.app-ticker::after{right:0;background:linear-gradient(-90deg,#185FA5,transparent);}
-.ticker-track{display:flex;width:max-content;animation:ticker 45s linear infinite;padding:8px 0;}
-.ticker-track:hover{animation-play-state:paused;}
-.t-item{display:inline-flex;align-items:center;gap:7px;padding:0 28px;white-space:nowrap;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);}
-.t-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0;}
-
-/* ── TOPBAR ── */
-.topbar{background:#fff;border-bottom:1px solid #e4e2db;position:sticky;top:0;z-index:50;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.07);}
-.tb-row1{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:62px;gap:12px;}
-.tb-brand{display:flex;align-items:center;gap:12px;}
-.tb-logo{width:40px;height:40px;background:linear-gradient(135deg,#185FA5,#1D9E75);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;transition:transform .2s;letter-spacing:-.3px;}
-.tb-logo:hover{transform:rotate(-5deg) scale(1.08);}
-.tb-name{font-size:15px;font-weight:800;color:#1a1a1a;letter-spacing:-.3px;}
-.tb-sub{font-size:10px;color:#6b6b6b;margin-top:1px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
-.tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.tb-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b6b6b;background:#f7f6f3;padding:5px 12px;border-radius:20px;border:1px solid #e4e2db;white-space:nowrap;}
-.tb-add{background:#185FA5;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;font-family:'Figtree',sans-serif;cursor:pointer;transition:all .15s;box-shadow:0 2px 8px rgba(24,95,165,.25);white-space:nowrap;}
-.tb-add:hover{background:#0C447C;transform:translateY(-1px);}
-.tb-sheet{background:#1D9E75;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;font-family:'Figtree',sans-serif;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.tb-sheet:hover{background:#0F6E56;transform:translateY(-1px);}
-.tb-logout{background:transparent;color:#6b6b6b;border:1px solid #e4e2db;border-radius:8px;padding:8px 13px;font-size:12px;font-weight:600;font-family:'Figtree',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap;}
+/* TOPBAR */
+.topbar{background:#fff;border-bottom:1px solid #e4e2db;height:58px;display:flex;align-items:center;padding:0 20px;gap:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);position:sticky;top:0;z-index:50;flex-shrink:0;}
+.tb-logo{width:36px;height:36px;background:linear-gradient(135deg,#185FA5,#1D9E75);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;cursor:default;transition:transform .2s;}
+.tb-logo:hover{transform:rotate(-8deg) scale(1.1);}
+.tb-name{font-size:14px;font-weight:800;color:#1a1a1a;}
+.tb-sub{font-size:10px;color:#888;font-weight:500;text-transform:uppercase;letter-spacing:.04em;}
+.tb-spacer{flex:1;}
+.tb-time{font-family:'JetBrains Mono',monospace;font-size:12px;color:#185FA5;background:#eff6ff;border:1px solid #bfdbfe;padding:5px 12px;border-radius:20px;white-space:nowrap;}
+.tb-greeting{font-size:13px;font-weight:600;color:#555;white-space:nowrap;}
+.tb-role{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.tb-role.user{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
+.tb-role.admin{background:#eff6ff;color:#185FA5;border:1px solid #bfdbfe;}
+.tb-logout{background:transparent;border:1px solid #e4e2db;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;font-family:'Figtree',sans-serif;cursor:pointer;color:#888;transition:all .15s;}
 .tb-logout:hover{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
 
-/* ── NAV BAR ── */
-.tb-nav{display:flex;align-items:center;gap:0;border-top:1px solid #f0ede6;padding:0 28px;overflow-x:auto;scrollbar-width:none;background:#fff;}
-.tb-nav::-webkit-scrollbar{display:none;}
-.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;font-size:12px;font-weight:600;color:#6b6b6b;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s,background .15s;font-family:'Figtree',sans-serif;flex-shrink:0;margin-bottom:-1px;}
-.nav-lnk:hover{color:#185FA5;background:#f5f9ff;}
-.nav-lnk.active{color:#185FA5;border-bottom-color:#185FA5;}
-.nav-ico{font-size:13px;}
-.nav-cnt{background:#e8edf5;color:#555;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;font-family:'JetBrains Mono',monospace;}
-.nav-lnk.active .nav-cnt{background:#185FA5;color:#fff;}
-.nav-lnk.vid-nav.active{color:#c2410c;border-bottom-color:#c2410c;}
-.nav-lnk.vid-nav.active .nav-cnt{background:#c2410c;}
-.nav-lnk.sheet-nav{color:#1D9E75;}
-.nav-lnk.sheet-nav.active{color:#0F6E56;border-bottom-color:#0F6E56;}
-.nav-sep-v{width:1px;height:20px;background:#e4e2db;flex-shrink:0;margin:0 6px;align-self:center;}
+/* APP TICKER */
+.app-ticker{background:#185FA5;overflow:hidden;flex-shrink:0;position:relative;}
+.app-ticker::before,.app-ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;}
+.app-ticker::before{left:0;background:linear-gradient(90deg,#185FA5,transparent);}
+.app-ticker::after{right:0;background:linear-gradient(-90deg,#185FA5,transparent);}
+.tick-track{display:flex;width:max-content;animation:ticker 40s linear infinite;padding:7px 0;}
+.tick-track:hover{animation-play-state:paused;}
+.t-item{display:inline-flex;align-items:center;gap:6px;padding:0 24px;font-size:12px;font-weight:500;color:rgba(255,255,255,.92);white-space:nowrap;}
+.t-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4);}
 
-/* ── HERO ── */
-.hero{background:#fff;border-bottom:1px solid #e4e2db;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;flex-shrink:0;}
-.hero-bc{font-size:11px;color:#a8a8a8;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
-.hero-bc strong{color:#185FA5;}
-.hero-greeting{font-size:20px;font-weight:800;color:#185FA5;margin-bottom:2px;letter-spacing:-.3px;}
-.hero-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:1px;}
-.hero-sub{font-size:11px;color:#6b6b6b;text-transform:uppercase;letter-spacing:.05em;}
-.hero-stats{display:flex;gap:10px;flex-wrap:wrap;}
-.h-stat{background:#f7f6f3;border:1px solid #e4e2db;border-radius:10px;padding:10px 18px;text-align:center;min-width:84px;transition:transform .2s,box-shadow .2s;cursor:default;}
-.h-stat:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08);}
-.h-stat-n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#1a1a1a;line-height:1;}
-.h-stat-l{font-size:9px;color:#6b6b6b;margin-top:3px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+/* ── BODY LAYOUT: sidebar + main ── */
+.app-body{display:flex;flex:1;min-height:0;}
 
-/* ── SEARCH ── */
-.search-wrap{padding:16px 28px 0;background:#f7f6f3;}
-.search-box{max-width:460px;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #ccc9c0;border-radius:30px;padding:0 14px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:border-color .2s,box-shadow .2s;}
-.search-box:focus-within{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.08);}
-.s-ico{color:#a8a8a8;font-size:14px;flex-shrink:0;}
-.s-input{flex:1;background:transparent;border:none;outline:none;font-family:'Figtree',sans-serif;font-size:13px;color:#1a1a1a;padding:11px 0;}
-.s-input::placeholder{color:#a8a8a8;}
-.s-clear{background:#f7f6f3;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;color:#6b6b6b;font-size:10px;display:none;align-items:center;justify-content:center;}
-.s-clear.show{display:flex;}
+/* ══════════════
+   LEFT SIDEBAR
+══════════════ */
+.sidebar{width:68px;background:#fff;border-right:1px solid #e4e2db;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:6px;flex-shrink:0;transition:width .25s ease;overflow:hidden;position:relative;}
+.sidebar:hover{width:200px;}
+.sidebar:hover .sb-label{opacity:1;width:auto;}
+.sb-item{display:flex;align-items:center;gap:10px;width:100%;padding:10px 18px;cursor:pointer;border-radius:0;transition:background .15s;position:relative;white-space:nowrap;}
+.sb-item:hover{background:#f5f9ff;}
+.sb-item.active{background:#eff6ff;}
+.sb-item.active .sb-ico{background:#185FA5;color:#fff;}
+.sb-item.active .sb-label{color:#185FA5;font-weight:700;}
+.sb-ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:#f7f6f3;transition:all .15s;}
+.sb-label{font-size:12px;font-weight:600;color:#555;opacity:0;transition:opacity .2s;overflow:hidden;}
+.sidebar:hover .sb-label{opacity:1;}
+.sb-divider{width:40px;height:1px;background:#e4e2db;margin:6px 0;transition:width .25s;}
+.sidebar:hover .sb-divider{width:170px;}
 
-/* ── CONTENT ── */
-.content{flex:1;padding:20px 28px 50px;background:#f7f6f3;}
+/* Utility section label */
+.sb-section{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;padding:8px 18px 4px;white-space:nowrap;opacity:0;transition:opacity .2s;width:200px;}
+.sidebar:hover .sb-section{opacity:1;}
 
-/* ── DEPT ── */
-.dept{margin-bottom:28px;opacity:0;animation:deptIn .4s ease both;}
-.dept-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.dept-lbl{display:flex;align-items:center;gap:8px;}
-.dept-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
-.dept-nm{font-size:13px;font-weight:800;letter-spacing:-.1px;text-transform:uppercase;}
-.dept-cnt{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b6b6b;background:#fff;border:1px solid #e4e2db;padding:2px 9px;border-radius:9px;}
-.dept-hd-r{display:flex;align-items:center;gap:8px;}
-.dept-add{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:7px;padding:5px 13px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .15s;}
-.dept-add:hover{background:#dcfce7;transform:translateY(-1px);}
+/* ══════════════
+   MAIN CONTENT
+══════════════ */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
 
-/* ── TABLE ── */
-.tbl-wrap{background:#fff;border:1px solid #e4e2db;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+/* GREETING HERO */
+.greeting-hero{background:#fff;border-bottom:1px solid #e4e2db;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.gh-left{}
+.gh-bc{font-size:11px;color:#aaa;margin-bottom:5px;}
+.gh-bc strong{color:#185FA5;}
+.gh-title{font-size:22px;font-weight:800;color:#185FA5;letter-spacing:-.3px;}
+.gh-sub{font-size:12px;color:#888;margin-top:2px;font-weight:500;}
+.gh-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.gh-stat{background:#f7f6f3;border:1px solid #e4e2db;border-radius:12px;padding:10px 18px;text-align:center;min-width:80px;transition:transform .2s,box-shadow .2s;cursor:default;}
+.gh-stat:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.07);}
+.gh-stat-n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#1a1a1a;line-height:1;}
+.gh-stat-l{font-size:9px;color:#888;margin-top:3px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+
+/* TAB CARDS AREA */
+.tab-area{flex:1;padding:24px 28px;overflow-y:auto;}
+
+/* BIG 4 DEPT CARDS */
+.dept-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:28px;}
+.dept-card{background:#fff;border:1.5px solid #e4e2db;border-radius:18px;padding:24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;animation:cardPop .4s ease both;}
+.dept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0;}
+.dept-card.office::before{background:linear-gradient(90deg,#185FA5,#378ADD);}
+.dept-card.admin::before{background:linear-gradient(90deg,#15803d,#1D9E75);}
+.dept-card.wealth::before{background:linear-gradient(90deg,#a16207,#EF9F27);}
+.dept-card.trials::before{background:linear-gradient(90deg,#6d28d9,#8B5CF6);}
+.dept-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1);border-color:transparent;}
+.dept-card.office:hover{box-shadow:0 12px 32px rgba(24,95,165,.18);}
+.dept-card.admin:hover{box-shadow:0 12px 32px rgba(21,128,61,.18);}
+.dept-card.wealth:hover{box-shadow:0 12px 32px rgba(161,98,7,.18);}
+.dept-card.trials:hover{box-shadow:0 12px 32px rgba(109,40,217,.18);}
+.dc-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.dc-ico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.dc-ico.office{background:#eff6ff;}.dc-ico.admin{background:#f0fdf4;}.dc-ico.wealth{background:#fefce8;}.dc-ico.trials{background:#f5f3ff;}
+.dc-name{font-size:17px;font-weight:800;color:#1a1a1a;}
+.dc-sub{font-size:11px;color:#888;font-weight:500;margin-top:2px;}
+.dc-count{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;line-height:1;margin-bottom:4px;}
+.dc-count.office{color:#185FA5;}.dc-count.admin{color:#15803d;}.dc-count.wealth{color:#a16207;}.dc-count.trials{color:#6d28d9;}
+.dc-count-l{font-size:10px;color:#888;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.dc-arrow{position:absolute;bottom:18px;right:18px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:#f7f6f3;color:#aaa;transition:all .2s;}
+.dept-card:hover .dc-arrow{background:#185FA5;color:#fff;transform:translateX(3px);}
+.dept-card.admin:hover .dc-arrow{background:#15803d;}
+.dept-card.wealth:hover .dc-arrow{background:#a16207;}
+.dept-card.trials:hover .dc-arrow{background:#6d28d9;}
+.dc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+.dc-tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:#f7f6f3;border:1px solid #e4e2db;color:#888;}
+
+/* PROCESS VIEW (when dept is open) */
+.proc-view{display:none;}
+.proc-view.open{display:block;animation:fadeUp .3s ease;}
+.pv-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.pv-back{background:#f7f6f3;border:1px solid #e4e2db;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;font-family:'Figtree',sans-serif;cursor:pointer;color:#555;transition:all .15s;display:flex;align-items:center;gap:5px;}
+.pv-back:hover{background:#fff;border-color:#ccc;color:#185FA5;}
+.pv-title{font-size:18px;font-weight:800;color:#1a1a1a;}
+.pv-dept-tag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;}
+.pv-dept-tag.office{background:#eff6ff;color:#185FA5;}
+.pv-dept-tag.admin{background:#f0fdf4;color:#15803d;}
+.pv-dept-tag.wealth{background:#fefce8;color:#a16207;}
+.pv-dept-tag.trials{background:#f5f3ff;color:#6d28d9;}
+
+/* PROCESS TABLE */
+.tbl-wrap{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);}
 table{width:100%;border-collapse:collapse;}
 thead tr{background:#f7f6f3;border-bottom:1px solid #e4e2db;}
-thead th{padding:10px 14px;font-size:10px;font-weight:700;color:#6b6b6b;text-align:left;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;}
-tbody tr{border-bottom:1px solid #e4e2db;transition:background .1s;}
+thead th{padding:11px 15px;font-size:10px;font-weight:700;color:#888;text-align:left;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;}
+tbody tr{border-bottom:1px solid #f0f0f0;transition:background .1s;}
 tbody tr:last-child{border-bottom:none;}
 tbody tr:hover{background:#fafaf8;}
-tbody td{padding:11px 14px;font-size:13px;color:#1a1a1a;vertical-align:middle;}
+tbody td{padding:12px 15px;font-size:13px;color:#1a1a1a;vertical-align:middle;}
 .p-name{font-weight:700;color:#1a1a1a;}
 .chip{display:inline-flex;background:#f7f6f3;border:1px solid #e4e2db;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;color:#6b6b6b;white-space:nowrap;}
 .links-wrap{display:flex;flex-wrap:wrap;gap:5px;}
 .lbtn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:7px;font-size:11px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s;white-space:nowrap;}
-.lbtn:hover{transform:translateY(-2px);box-shadow:0 3px 8px rgba(0,0,0,.12);}
+.lbtn:hover{transform:translateY(-2px);box-shadow:0 3px 8px rgba(0,0,0,.1);}
 .lb-f{background:#eff6ff;color:#185FA5;border-color:#bfdbfe;}
+.lb-c{background:#fff1f2;color:#be123c;border-color:#fecdd3;}
 .lb-g{background:#f0fdf4;color:#15803d;border-color:#bbf7d0;}
 .lb-d{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe;}
 .lb-v{background:#fffbeb;color:#b45309;border-color:#fde68a;}
 .lb-o{background:#f7f6f3;color:#6b6b6b;border-color:#e4e2db;}
-.no-link{color:#a8a8a8;font-size:12px;font-style:italic;}
+.no-link{color:#ccc;font-size:12px;font-style:italic;}
 .row-acts{display:flex;gap:4px;opacity:0;transition:opacity .15s;}
 tr:hover .row-acts{opacity:1;}
 .btn-e{background:#eff6ff;color:#185FA5;border:1px solid #bfdbfe;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .15s;}
 .btn-r{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .15s;}
-.btn-e:hover{background:#dbeafe;transform:translateY(-1px);}
-.btn-r:hover{background:#fee2e2;transform:translateY(-1px);}
-.empty-row{text-align:center;padding:24px;color:#a8a8a8;font-size:13px;font-style:italic;}
+.btn-e:hover,.btn-r:hover{transform:translateY(-1px);}
+.empty-row{text-align:center;padding:32px;color:#ccc;font-size:13px;font-style:italic;}
 
-/* ── SYSTEM SHEET SECTION ── */
-.sheet-section{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;margin-bottom:28px;}
-.sheet-header{background:linear-gradient(135deg,#0F6E56,#1D9E75);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;}
-.sheet-title{font-size:15px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;}
-.sheet-sub{font-size:11px;color:rgba(255,255,255,.75);margin-top:2px;}
-.sheet-open-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;font-family:'Figtree',sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;white-space:nowrap;}
-.sheet-open-btn:hover{background:rgba(255,255,255,.25);}
-.sheet-frame-wrap{position:relative;width:100%;background:#f7f6f3;}
-.sheet-frame{width:100%;height:580px;border:none;display:block;}
-.sheet-overlay{display:none;}
+/* SEARCH BAR */
+.pv-search{margin-bottom:16px;}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #e4e2db;border-radius:30px;padding:0 14px;max-width:400px;transition:border-color .2s,box-shadow .2s;}
+.search-box:focus-within{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.08);}
+.s-ico{color:#ccc;font-size:13px;}
+.s-input{flex:1;background:transparent;border:none;outline:none;font-family:'Figtree',sans-serif;font-size:13px;color:#1a1a1a;padding:10px 0;}
+.s-input::placeholder{color:#ccc;}
 
-/* ── VIDEOS ── */
-.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
-.vid-card{background:#fff;border:1px solid #e4e2db;border-radius:12px;padding:16px;cursor:pointer;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:transform .18s,box-shadow .18s;position:relative;overflow:hidden;}
-.vid-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c2410c,#ea580c);border-radius:12px 12px 0 0;}
-.vid-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
-.vid-thumb{width:100%;height:110px;background:linear-gradient(135deg,#0C447C,#1D9E75);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;}
-.vid-play{width:42px;height:42px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .15s;}
-.vid-card:hover .vid-play{transform:scale(1.12);}
-.vid-title{font-size:13px;font-weight:700;color:#1a1a1a;line-height:1.4;}
-.vid-meta{font-size:11px;color:#6b6b6b;display:flex;align-items:center;gap:6px;}
-.vid-badge{display:inline-block;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;}
-.vid-add-card{background:transparent;border:1.5px dashed #e4e2db;border-radius:12px;padding:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:160px;transition:border-color .15s,background .15s;font-family:'Figtree',sans-serif;}
-.vid-add-card:hover{border-color:#c2410c;background:#fff7ed;}
-.vid-add-icon{font-size:28px;}
-.vid-add-text{font-size:12px;color:#6b6b6b;font-weight:600;}
+/* ══════════════
+   RIGHT PANEL
+══════════════ */
+.right-panel{width:270px;background:#fff;border-left:1px solid #e4e2db;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.rp-section{padding:16px 16px 12px;border-bottom:1px solid #f0ede6;}
+.rp-section:last-child{border-bottom:none;}
+.rp-title{font-size:10px;font-weight:700;color:#aaa;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
 
-/* ── NO RESULT ── */
-.no-res{display:none;text-align:center;padding:40px;color:#6b6b6b;font-size:14px;background:#f7f6f3;}
-.no-res.show{display:block;}
+/* Notifications */
+.notif-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #f7f6f3;cursor:pointer;transition:background .1s;border-radius:8px;padding:8px;}
+.notif-item:hover{background:#fafaf8;}
+.notif-item:last-child{border-bottom:none;}
+.notif-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.notif-dot.gold{background:#EF9F27;}
+.notif-dot.blue{background:#185FA5;}
+.notif-dot.green{background:#1D9E75;}
+.notif-dot.red{background:#dc2626;}
+.notif-title{font-size:12px;font-weight:600;color:#1a1a1a;line-height:1.4;}
+.notif-time{font-size:10px;color:#aaa;margin-top:2px;}
 
-/* ── MODALS ── */
-.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
-.ov.open{display:flex;animation:fadeIn .2s ease;}
-.modal{background:#fff;border:1px solid #e4e2db;border-radius:16px;padding:28px;width:100%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,.12);animation:mIn .25s cubic-bezier(.34,1.56,.64,1) both;max-height:90vh;overflow-y:auto;}
-.m-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.m-hd h3{font-size:17px;font-weight:800;color:#1a1a1a;letter-spacing:-.3px;}
-.m-x{background:#f7f6f3;border:1px solid #e4e2db;border-radius:50%;width:30px;height:30px;cursor:pointer;color:#6b6b6b;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
-.m-x:hover{background:#e4e2db;transform:rotate(90deg);}
-.fg{margin-bottom:14px;}
-.fg label{display:block;font-size:11px;font-weight:700;color:#6b6b6b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
-.fg input,.fg select{width:100%;padding:10px 13px;border:1.5px solid #ccc9c0;border-radius:8px;font-family:'Figtree',sans-serif;font-size:13px;color:#1a1a1a;background:#f7f6f3;outline:none;transition:border-color .15s;}
-.fg input:focus,.fg select:focus{border-color:#185FA5;background:#fff;box-shadow:0 0 0 3px rgba(24,95,165,.08);}
-.fg input::placeholder{color:#a8a8a8;}
-.lf-box{background:#f7f6f3;border:1px solid #e4e2db;border-radius:10px;padding:14px;margin-bottom:14px;}
-.lf-title{font-size:10px;font-weight:700;color:#6b6b6b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
-.lf-row{display:grid;grid-template-columns:130px 1fr;gap:8px;align-items:center;margin-bottom:8px;}
+/* Quick links */
+.ql-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;text-decoration:none;}
+.ql-item:hover{background:#f5f9ff;}
+.ql-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.ql-name{font-size:12px;font-weight:600;color:#1a1a1a;}
+.ql-sub{font-size:10px;color:#aaa;}
+
+/* Admin utility */
+.util-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:1px solid #e4e2db;border-radius:10px;background:#fff;cursor:pointer;font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;color:#555;transition:all .15s;margin-bottom:7px;text-align:left;}
+.util-btn:last-child{margin-bottom:0;}
+.util-btn:hover{background:#f5f9ff;border-color:#bfdbfe;color:#185FA5;}
+.util-btn.danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626;}
+.util-ico{font-size:15px;flex-shrink:0;}
+
+/* Stats */
+.stat-mini{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0ede6;}
+.stat-mini:last-child{border-bottom:none;}
+.stat-mini-l{font-size:12px;color:#555;font-weight:500;}
+.stat-mini-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#185FA5;}
+
+/* Clock widget */
+.clock-widget{text-align:center;padding:8px 0;}
+.cw-time{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;color:#1a1a1a;letter-spacing:2px;}
+.cw-date{font-size:11px;color:#888;margin-top:3px;}
+
+/* ── MODAL ── */
+.ov{display:none;position:fixed;inset:0;background:rgba(4,44,83,.5);backdrop-filter:blur(4px);z-index:300;align-items:center;justify-content:center;padding:20px;}
+.ov.open{display:flex;}
+.modal{background:#fff;border-radius:18px;width:100%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:mIn .22s ease both;max-height:90vh;overflow-y:auto;}
+.m-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;border-bottom:1px solid #f0ede6;}
+.m-hd h3{font-size:16px;font-weight:800;color:#1a1a1a;}
+.m-x{background:none;border:none;font-size:18px;cursor:pointer;color:#aaa;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.m-x:hover{background:#f7f6f3;color:#555;}
+.fg{padding:12px 22px 0;}
+.fg label{display:block;font-size:11px;font-weight:700;color:#4a5568;margin-bottom:5px;letter-spacing:.4px;text-transform:uppercase;}
+.fg input,.fg select{width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:'Figtree',sans-serif;color:#1a1a1a;background:#f7fafc;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus{border-color:#185FA5;background:#fff;}
+.lf-box{margin:12px 22px 0;background:#f7f6f3;border:1px solid #e4e2db;border-radius:10px;padding:14px;}
+.lf-title{font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.lf-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
 .lf-row:last-child{margin-bottom:0;}
-.lf-lbl{font-size:12px;color:#1a1a1a;font-weight:600;}
-.lf-row input{margin:0;padding:8px 11px;font-size:12px;}
-.m-btns{display:flex;gap:10px;margin-top:20px;}
-.m-save{flex:1;background:#185FA5;color:#fff;border:none;border-radius:8px;padding:11px;font-family:'Figtree',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;}
-.m-save:hover{background:#0C447C;transform:translateY(-1px);}
-.m-cancel{flex:1;background:#f7f6f3;color:#1a1a1a;border:1.5px solid #ccc9c0;border-radius:8px;padding:11px;font-family:'Figtree',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;}
+.lf-lbl{font-size:11px;font-weight:600;color:#555;white-space:nowrap;min-width:105px;}
+.lf-row input{flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;color:#1a1a1a;background:#fff;outline:none;transition:border-color .2s;}
+.lf-row input:focus{border-color:#185FA5;}
+.m-btns{display:flex;gap:10px;padding:16px 22px;border-top:1px solid #f0ede6;justify-content:flex-end;}
+.m-cancel{background:#f7f6f3;color:#555;border:1px solid #e4e2db;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;transition:background .15s;}
 .m-cancel:hover{background:#e4e2db;}
-.conf{background:#fff;border:1px solid #e4e2db;border-radius:16px;padding:28px;width:100%;max-width:360px;box-shadow:0 8px 32px rgba(0,0,0,.12);animation:mIn .25s cubic-bezier(.34,1.56,.64,1) both;text-align:center;}
-.conf-ico{font-size:40px;margin-bottom:12px;}
-.conf h3{font-size:17px;font-weight:800;color:#1a1a1a;margin-bottom:8px;}
-.conf p{font-size:13px;color:#6b6b6b;margin-bottom:22px;line-height:1.6;}
-.conf-btns{display:flex;gap:10px;}
-.btn-del{flex:1;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:11px;font-family:'Figtree',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
-.btn-del:hover{opacity:.88;}
-.vid-modal{background:#fff;border:1px solid #e4e2db;border-radius:16px;padding:28px;width:100%;max-width:440px;box-shadow:0 8px 32px rgba(0,0,0,.12);animation:mIn .25s cubic-bezier(.34,1.56,.64,1) both;}
-.vid-modal h3{font-size:17px;font-weight:800;color:#1a1a1a;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
+.m-save{background:linear-gradient(135deg,#185FA5,#1D9E75);color:#fff;border:none;border-radius:8px;padding:8px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Figtree',sans-serif;transition:opacity .2s;}
+.m-save:hover{opacity:.9;}
+.conf{background:#fff;border-radius:16px;padding:28px;max-width:340px;width:100%;text-align:center;animation:mIn .22s ease both;}
+.conf-ico{font-size:36px;margin-bottom:10px;}
+.conf h3{font-size:16px;font-weight:800;margin-bottom:7px;}
+.conf p{font-size:13px;color:#888;margin-bottom:18px;}
+.conf-btns{display:flex;gap:10px;justify-content:center;}
+.btn-del{background:#dc2626;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Figtree',sans-serif;}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(14px);background:#1a1a1a;color:#fff;padding:11px 24px;border-radius:40px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;z-index:400;pointer-events:none;white-space:nowrap;}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a202c;color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:600;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap;}
+.toast.show{opacity:1;}
 
-/* ── FOOTER ── */
-.app-footer{padding:16px 28px;border-top:2px solid #e4e2db;background:#fff;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#a8a8a8;flex-shrink:0;flex-wrap:wrap;gap:10px;}
-.footer-brand{font-weight:800;color:#185FA5;font-size:12px;letter-spacing:-.2px;}
-.footer-links{display:flex;gap:18px;align-items:center;}
-.footer-links a{color:#a8a8a8;text-decoration:none;font-size:11px;transition:color .15s;}
-.footer-links a:hover{color:#185FA5;}
-.footer-copy{font-size:10px;color:#c8c5be;}
-
-.pulse{animation:numUp .4s ease;}
-
-@media(max-width:768px){
-  .tb-row1,.tb-nav,.hero,.search-wrap,.content,.app-footer{padding-left:14px;padding-right:14px;}
-  thead th:nth-child(3),tbody td:nth-child(3){display:none;}
-  .row-acts{opacity:1;}
-  .vid-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
-  .sheet-frame{height:400px;}
-}
+/* RESPONSIVE */
+@media(max-width:900px){.right-panel{display:none;}}
+@media(max-width:640px){.sidebar{display:none;}.dept-cards{grid-template-columns:1fr;}.tab-area{padding:16px;}.greeting-hero{padding:14px 16px;}}
 </style>
 </head>
 <body>
 
 <!-- ══ SPLASH ══ -->
 <div id="splash">
-  <svg class="grid-bg" xmlns="http://www.w3.org/2000/svg">
-    <defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#85B7EB" stroke-width=".5"/></pattern></defs>
-    <rect width="100%" height="100%" fill="url(#g)"/>
-  </svg>
+  <svg class="grid-bg" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0v44" fill="none" stroke="#85B7EB" stroke-width=".4"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
   <div id="particles"></div>
   <div class="splash-inner">
     <div class="logo-stage">
-      <svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="75" cy="75" r="68" fill="none" stroke="#185FA5" stroke-width="1" stroke-dasharray="6 4" style="animation:spinFull 22s linear infinite;transform-origin:75px 75px;"/>
-        <circle cx="75" cy="75" r="50" fill="none" stroke="#1D9E75" stroke-width="2" stroke-dasharray="300" stroke-dashoffset="300" style="animation:spinRing 1.8s .3s ease forwards;transform-origin:75px 75px;"/>
-        <circle cx="75" cy="75" r="34" fill="none" stroke="#EF9F27" stroke-width="1" stroke-dasharray="4 3" style="animation:spinRev 14s linear infinite;transform-origin:75px 75px;"/>
-        <circle cx="75" cy="75" r="22" fill="#0C447C" stroke="#378ADD" stroke-width="2"/>
-        <text x="75" y="83" text-anchor="middle" font-size="26" font-weight="800" fill="#85B7EB" font-family="sans-serif">F</text>
-      </svg>
+      <svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75" cy="75" r="60" stroke="#85B7EB" stroke-width=".8" fill="none" stroke-dasharray="5 4" opacity=".3"/><circle cx="75" cy="75" r="42" stroke="#5DCAA5" stroke-width=".6" fill="none" stroke-dasharray="3 5" opacity=".25"/><text x="75" y="82" text-anchor="middle" font-size="22" font-weight="800" fill="#fff" font-family="Figtree,sans-serif">FP</text></svg>
       <div class="orb-wrap"><div class="od od1"></div><div class="od od2"></div><div class="od od3"></div></div>
     </div>
-    <div class="splash-name"><span class="fin">Finvesz</span><span class="pro">pro</span> <span class="sol">Solutionz</span></div>
-    <div class="splash-tag">Smart Finance &bull; Smarter Future</div>
+    <div class="splash-name"><span class="fin">Finveszpro</span><span class="pro">solutions</span><span class="sol">z</span></div>
+    <div class="splash-tag">You Prosper · We Work</div>
     <div class="splash-bars"><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div></div>
     <div class="load-wrap"><div class="load-fill" id="lbar"></div></div>
-    <div class="load-label" id="llabel">Initializing...</div>
+    <div class="load-label" id="llabel">Initializing System Master...</div>
   </div>
-  <div class="ticker-wrap">
-    <div class="ticker-inner">
-      <span class="ti">NIFTY 50 <span class="up">+1.24%</span></span>
-      <span class="ti">SENSEX <span class="up">+0.87%</span></span>
-      <span class="ti">GOLD <span class="up">+0.43%</span></span>
-      <span class="ti">USD/INR <span class="dn">-0.12%</span></span>
-      <span class="ti">RELIANCE <span class="up">+2.10%</span></span>
-      <span class="ti">HDFC BANK <span class="dn">-0.55%</span></span>
-      <span class="ti">TCS <span class="up">+1.30%</span></span>
-      <span class="ti">INFOSYS <span class="up">+0.90%</span></span>
-      <span class="ti">BAJAJ FIN <span class="up">+1.75%</span></span>
-      <span class="ti">NIFTY 50 <span class="up">+1.24%</span></span>
-      <span class="ti">SENSEX <span class="up">+0.87%</span></span>
-      <span class="ti">GOLD <span class="up">+0.43%</span></span>
-      <span class="ti">USD/INR <span class="dn">-0.12%</span></span>
-      <span class="ti">RELIANCE <span class="up">+2.10%</span></span>
-      <span class="ti">HDFC BANK <span class="dn">-0.55%</span></span>
-    </div>
-  </div>
+  <div class="splash-ticker"><div class="sticker-inner" id="splashTick"></div></div>
 </div>
 
 <!-- ══ LOGIN ══ -->
 <div id="loginPage">
   <div class="logo-wrap">
     <div class="logo-ring">
-      <svg width="92" height="92" viewBox="0 0 92 92" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="46" cy="46" r="41" fill="none" stroke="#E6F1FB" stroke-width="1.5"/>
-        <circle cx="46" cy="46" r="28" fill="none" stroke="#EAF3DE" stroke-width="1"/>
-        <path d="M46 7 A39 39 0 0 1 85 46" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M85 46 A39 39 0 0 1 46 85" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M46 85 A39 39 0 0 1 7 46" fill="none" stroke="#BA7517" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M7 46 A39 39 0 0 1 46 7" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round"/>
-        <text x="46" y="53" text-anchor="middle" font-size="20" font-weight="800" fill="#185FA5" font-family="sans-serif">F</text>
-      </svg>
+      <svg viewBox="0 0 90 90" width="90" height="90"><circle cx="45" cy="45" r="40" stroke="#185FA5" stroke-width=".8" fill="none" stroke-dasharray="4 3" opacity=".35"/><text x="45" y="51" text-anchor="middle" font-size="17" font-weight="800" fill="#185FA5" font-family="Figtree,sans-serif">FP</text></svg>
       <div class="mod mod1"></div><div class="mod mod2"></div><div class="mod mod3"></div>
     </div>
-    <div class="main-name"><span class="fin">Finvesz</span><span class="pro">pro</span> <span class="sol">Solutionz</span></div>
-    <div class="main-tag">System Master Portal</div>
+    <div class="main-name"><span class="fin">Finveszpro</span><span class="pro">solutions</span><span class="sol">z</span></div>
+    <div class="main-tag">System Master · Process Control Centre</div>
   </div>
   <div class="login-card">
-    <div class="lc-greeting" id="lc-greeting">Welcome back</div>
+    <div class="lc-greeting" id="lc-greeting">Good Morning! ☀️</div>
     <div class="lc-sub" id="lc-sub">Sign in to access System Master</div>
-    <div class="lc-field">
-      <label>Login ID</label>
-      <input type="text" id="loginId" placeholder="Enter your Login ID" autocomplete="off"/>
+    <div class="role-toggle">
+      <button class="rt-btn active" id="rtUser" onclick="setRole('user')">👤 User</button>
+      <button class="rt-btn" id="rtAdmin" onclick="setRole('admin')">⚙️ Admin</button>
     </div>
-    <div class="lc-field">
-      <label>Password</label>
-      <div class="pwd-wrap">
-        <input type="password" id="password" placeholder="Enter your password" autocomplete="off"/>
-        <button class="eye-btn" onclick="togglePwd()" id="eyeBtn">&#128065;</button>
-      </div>
+    <div class="lc-field"><label>Login ID</label><input id="loginId" type="text" placeholder="Enter your login ID" autocomplete="off"/></div>
+    <div class="lc-field"><label>Password</label>
+      <div class="pwd-wrap"><input id="password" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="togglePwd()">👁</button></div>
     </div>
-    <button class="lc-btn" onclick="handleLogin()">Sign In &rarr;</button>
-    <div class="lc-err" id="errMsg">&#9888; Incorrect Login ID or Password.</div>
+    <button class="lc-btn" onclick="handleLogin()">Sign In →</button>
+    <div class="lc-hint" id="lc-hint">User: Div_12 / 1234 &nbsp;·&nbsp; Admin: 1234 / 5678</div>
+    <div class="lc-err" id="errMsg">❌ Invalid credentials. Please try again.</div>
   </div>
 </div>
 
 <!-- ══ SUCCESS ══ -->
 <div id="successOverlay">
-  <div class="suc-icon">
-    <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-      <path d="M8 20 L16 28 L32 12" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <div class="suc-title">Login Successful!</div>
-  <div class="suc-name" id="suc-name">Welcome, Divanshu</div>
+  <div class="suc-icon"><svg viewBox="0 0 40 40" fill="none" width="36" height="36"><path d="M8 20L16 28L32 12" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="suc-title">Welcome back! 🎉</div>
+  <div class="suc-sub" id="suc-sub">Logging you in...</div>
 </div>
 
 <!-- ══ APP ══ -->
 <div id="appPage">
 
-  <!-- Ticker -->
-  <div class="app-ticker"><div class="ticker-track" id="app-ticker"></div></div>
-
   <!-- Topbar -->
   <div class="topbar">
-    <div class="tb-row1">
-      <div class="tb-brand">
-        <div class="tb-logo">FP</div>
-        <div>
-          <div class="tb-name">Finveszprosolutionz</div>
-          <div class="tb-sub">System Master &nbsp;·&nbsp; Process Control Centre</div>
+    <div class="tb-logo">FP</div>
+    <div><div class="tb-name">Finveszprosolutionz</div><div class="tb-sub">System Master · Process Control Centre</div></div>
+    <div class="tb-spacer"></div>
+    <div class="tb-greeting" id="tb-greeting">Good Morning, Divanshu!</div>
+    <div class="tb-time" id="live-time">00:00</div>
+    <div class="tb-role" id="tb-role">User</div>
+    <button class="tb-logout" onclick="doLogout()">→ Logout</button>
+  </div>
+
+  <!-- Ticker -->
+  <div class="app-ticker"><div class="tick-track" id="appTick"></div></div>
+
+  <!-- Body -->
+  <div class="app-body">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+      <div class="sb-item active" data-sec="home" onclick="navTo('home',this)" title="Home">
+        <div class="sb-ico">🏠</div><span class="sb-label">Home</span>
+      </div>
+      <div class="sb-item" data-sec="office" onclick="navTo('office',this)" title="Office">
+        <div class="sb-ico">🏢</div><span class="sb-label">Office</span>
+      </div>
+      <div class="sb-item" data-sec="admin" onclick="navTo('admin',this)" title="Admin">
+        <div class="sb-ico">⚙️</div><span class="sb-label">Admin</span>
+      </div>
+      <div class="sb-item" data-sec="wealth" onclick="navTo('wealth',this)" title="Wealth Advisors">
+        <div class="sb-ico">💰</div><span class="sb-label">Wealth</span>
+      </div>
+      <div class="sb-item" data-sec="trials" onclick="navTo('trials',this)" title="Trials & MIS">
+        <div class="sb-ico">🔬</div><span class="sb-label">Trials</span>
+      </div>
+      <div class="sb-divider"></div>
+      <div class="sb-section">Quick</div>
+      <div class="sb-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')" title="System Sheet">
+        <div class="sb-ico">📊</div><span class="sb-label">System Sheet</span>
+      </div>
+      <div class="sb-item" id="sb-add" onclick="openAdd(null)" title="Add Process" style="display:none">
+        <div class="sb-ico">➕</div><span class="sb-label">Add Process</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- Greeting hero -->
+      <div class="greeting-hero">
+        <div class="gh-left">
+          <div class="gh-bc">Finveszprosolutionz › <strong id="bc-label">All Departments</strong></div>
+          <div class="gh-title" id="gh-title">Good Morning, Divanshu! ☀️</div>
+          <div class="gh-sub">Internal Operations Directory · System Master · Confidential</div>
+        </div>
+        <div class="gh-stats">
+          <div class="gh-stat"><div class="gh-stat-n" id="st-proc">0</div><div class="gh-stat-l">Processes</div></div>
+          <div class="gh-stat"><div class="gh-stat-n">4</div><div class="gh-stat-l">Depts</div></div>
+          <div class="gh-stat"><div class="gh-stat-n" id="st-links">0</div><div class="gh-stat-l">Links</div></div>
         </div>
       </div>
-      <div class="tb-right">
-        <div class="tb-date" id="live-date"></div>
-        <a class="tb-sheet" href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit?gid=0#gid=0" target="_blank">&#128202; System Sheet</a>
-        <button class="tb-add" onclick="openAdd(null)">&#65291; Add Process</button>
-        <button class="tb-logout" onclick="doLogout()">&#8594; Logout</button>
-        <button class="tb-logout" onclick="resetToDefault()" title="Sab data default pe reset karo" style="color:#b45309;border-color:#fde68a;">↺ Reset</button>
+
+      <!-- TAB AREA -->
+      <div class="tab-area" id="tabArea">
+
+        <!-- HOME: 4 dept cards -->
+        <div id="viewHome">
+          <div class="dept-cards" id="deptCards"></div>
+        </div>
+
+        <!-- PROCESS VIEW -->
+        <div class="proc-view" id="viewProc">
+          <div class="pv-header">
+            <button class="pv-back" onclick="goHome()">← Back</button>
+            <div class="pv-title" id="pvTitle">Office</div>
+            <div class="pv-dept-tag" id="pvTag">office</div>
+            <div style="flex:1"></div>
+            <button class="pv-add hide" id="pvAdd" onclick="openAdd(null)">＋ Add Process</button>
+          </div>
+          <div class="pv-search">
+            <div class="search-box">
+              <span class="s-ico">🔍</span>
+              <input class="s-input" id="s-in" placeholder="Search process..." oninput="doSearch(this.value)"/>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table>
+            <thead><tr>
+              <th>Process Name</th><th>P.C.</th><th>Problem Solver</th><th>Links</th>
+              <th class="admin-col" style="width:95px">Actions</th>
+            </tr></thead>
+            <tbody id="procTbody"></tbody>
+          </table></div>
+        </div>
+
+      </div><!-- /tab-area -->
+    </div><!-- /main -->
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+      <!-- Clock -->
+      <div class="rp-section">
+        <div class="clock-widget">
+          <div class="cw-time" id="rp-clock">00:00:00</div>
+          <div class="cw-date" id="rp-date">Saturday, 18 Apr 2025</div>
+        </div>
       </div>
-    </div>
-    <!-- NAV -->
-    <nav class="tb-nav">
-      <span class="nav-lnk active" data-sec="all" onclick="filterSec('all',this)"><span class="nav-ico">🏠</span> All <span class="nav-cnt" id="nc-all">0</span></span>
-      <div class="nav-sep-v"></div>
-      <span class="nav-lnk" data-sec="office" onclick="filterSec('office',this)"><span class="nav-ico">🏢</span> Office <span class="nav-cnt" id="nc-office">0</span></span>
-      <span class="nav-lnk" data-sec="admin" onclick="filterSec('admin',this)"><span class="nav-ico">⚙️</span> Admin <span class="nav-cnt" id="nc-admin">0</span></span>
-      <span class="nav-lnk" data-sec="wealth" onclick="filterSec('wealth',this)"><span class="nav-ico">💰</span> Wealth Advisory <span class="nav-cnt" id="nc-wealth">0</span></span>
-      <span class="nav-lnk" data-sec="trials" onclick="filterSec('trials',this)"><span class="nav-ico">🔬</span> Trials &amp; MIS <span class="nav-cnt" id="nc-trials">0</span></span>
-      <div class="nav-sep-v"></div>
-      <span class="nav-lnk vid-nav" data-sec="videos" onclick="filterSec('videos',this)"><span class="nav-ico">🎬</span> Training Videos <span class="nav-cnt" id="nc-videos">0</span></span>
-      <div class="nav-sep-v"></div>
-      <span class="nav-lnk sheet-nav" data-sec="sheet" onclick="filterSec('sheet',this)"><span class="nav-ico">📊</span> System Sheet</span>
-    </nav>
-  </div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div>
-      <div class="hero-bc">Finveszprosolutionz &rsaquo; <strong id="bc-label">All Departments</strong></div>
-      <div class="hero-greeting" id="dash-greeting">Good Morning, Divanshu! &#9728;&#65039;</div>
-      <div class="hero-title">Internal Operations Directory</div>
-      <div class="hero-sub">All FMS &nbsp;&middot;&nbsp; Checklists &nbsp;&middot;&nbsp; Dashboards &nbsp;&middot;&nbsp; Forms &nbsp;&middot;&nbsp; Training</div>
-    </div>
-    <div class="hero-stats">
-      <div class="h-stat"><div class="h-stat-n" id="s-proc">0</div><div class="h-stat-l">Processes</div></div>
-      <div class="h-stat"><div class="h-stat-n">4</div><div class="h-stat-l">Depts</div></div>
-      <div class="h-stat"><div class="h-stat-n" id="s-links">0</div><div class="h-stat-l">Links</div></div>
-      <div class="h-stat"><div class="h-stat-n" id="live-time" style="font-size:14px;padding-top:4px"></div><div class="h-stat-l">Time</div></div>
-    </div>
-  </div>
+      <!-- Notifications -->
+      <div class="rp-section">
+        <div class="rp-title">🔔 Notifications</div>
+        <div class="notif-item"><div class="notif-dot gold"></div><div><div class="notif-title">Delegation Sheet Updated</div><div class="notif-time">Divanshu · 2 hrs ago</div></div></div>
+        <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-title">Client Registration Submitted</div><div class="notif-time">Vani · 4 hrs ago</div></div></div>
+        <div class="notif-item"><div class="notif-dot red"></div><div><div class="notif-title">GSTR1 Checklist Pending</div><div class="notif-time">System · 6 hrs ago</div></div></div>
+        <div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-title">ITR FMS Completed</div><div class="notif-time">Snigdha · 1 day ago</div></div></div>
+        <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-title">Staff KYC Ready for Review</div><div class="notif-time">Vani · 1 day ago</div></div></div>
+      </div>
 
-  <!-- Search -->
-  <div class="search-wrap">
-    <div class="search-box">
-      <span class="s-ico">&#128269;</span>
-      <input class="s-input" id="s-in" placeholder="Search any process, person or department..." oninput="doSearch(this.value)"/>
-      <button class="s-clear" id="s-clear" onclick="clearSearch()">&#10005;</button>
-    </div>
-  </div>
+      <!-- Quick Links -->
+      <div class="rp-section">
+        <div class="rp-title">⚡ Quick Links</div>
+        <a class="ql-item" href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit" target="_blank">
+          <div class="ql-ico" style="background:#f0fdf4">📊</div>
+          <div><div class="ql-name">System Master Sheet</div><div class="ql-sub">Google Sheets · Live</div></div>
+        </a>
+        <a class="ql-item" onclick="navTo('office',document.querySelector('[data-sec=office]'))">
+          <div class="ql-ico" style="background:#eff6ff">🏢</div>
+          <div><div class="ql-name">Office Processes</div><div class="ql-sub" id="ql-off-cnt">— processes</div></div>
+        </a>
+        <a class="ql-item" onclick="navTo('wealth',document.querySelector('[data-sec=wealth]'))">
+          <div class="ql-ico" style="background:#fefce8">💰</div>
+          <div><div class="ql-name">Wealth Advisors</div><div class="ql-sub" id="ql-wlt-cnt">— processes</div></div>
+        </a>
+      </div>
 
-  <div class="content" id="content"></div>
-  <div class="no-res" id="no-res">Nothing found for &ldquo;<span id="s-term"></span>&rdquo;</div>
+      <!-- Stats -->
+      <div class="rp-section">
+        <div class="rp-title">📈 Overview</div>
+        <div class="stat-mini"><span class="stat-mini-l">🏢 Office</span><span class="stat-mini-v" id="rp-office">—</span></div>
+        <div class="stat-mini"><span class="stat-mini-l">⚙️ Admin</span><span class="stat-mini-v" id="rp-admin">—</span></div>
+        <div class="stat-mini"><span class="stat-mini-l">💰 Wealth</span><span class="stat-mini-v" id="rp-wealth">—</span></div>
+        <div class="stat-mini"><span class="stat-mini-l">🔬 Trials</span><span class="stat-mini-v" id="rp-trials">—</span></div>
+      </div>
 
-  <div class="app-footer">
-    <div class="footer-brand">FINVESZPROSOLUTIONZ</div>
-    <div class="footer-links">
-      <a onclick="filterSec('all',document.querySelector('[data-sec=all]'))">All Processes</a>
-      <a onclick="filterSec('videos',document.querySelector('[data-sec=videos]'))">Training Videos</a>
-      <a href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit?gid=0#gid=0" target="_blank">System Sheet &#8599;</a>
-      <a onclick="openAdd(null)">+ Add Process</a>
-    </div>
-    <div class="footer-copy">System Master &nbsp;&middot;&nbsp; You Prosper, We Work &nbsp;&middot;&nbsp; Confidential &copy; 2025</div>
-  </div>
-</div>
+      <!-- Admin Utility (admin only) -->
+      <div class="rp-section admin-only" style="display:none" id="adminUtil">
+        <div class="rp-title">🛡️ Admin Utility</div>
+        <button class="util-btn" onclick="openAdd(null)"><span class="util-ico">➕</span> Add New Process</button>
+        <button class="util-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')"><span class="util-ico">📊</span> Open System Sheet</button>
+        <button class="util-btn" onclick="exportData()"><span class="util-ico">📤</span> Export Data (JSON)</button>
+        <button class="util-btn danger" onclick="resetToDefault()"><span class="util-ico">↺</span> Reset All Data</button>
+      </div>
+
+    </div><!-- /right-panel -->
+
+  </div><!-- /app-body -->
+</div><!-- /appPage -->
 
 <!-- ADD/EDIT MODAL -->
 <div class="ov" id="m-ov" onclick="if(event.target===this)closeModal()">
   <div class="modal">
-    <div class="m-hd"><h3 id="m-ttl">Add New Process</h3><button class="m-x" onclick="closeModal()">&#10005;</button></div>
+    <div class="m-hd"><h3 id="m-ttl">Add New Process</h3><button class="m-x" onclick="closeModal()">✕</button></div>
     <div class="fg"><label>Department</label>
-      <select id="f-dept">
-        <option value="office">🏢 Office</option>
-        <option value="admin">⚙️ Admin</option>
-        <option value="wealth">💰 Wealth Advisory</option>
-        <option value="trials">🔬 Trials &amp; MIS</option>
-      </select>
+      <select id="f-dept"><option value="office">🏢 Office</option><option value="admin">⚙️ Admin</option><option value="wealth">💰 Wealth Advisors</option><option value="trials">🔬 Trials & MIS</option></select>
     </div>
     <div class="fg"><label>Process Name *</label><input id="f-name" type="text" placeholder="e.g. GSTR-1, Delegation Sheet"/></div>
     <div class="fg"><label>Person in Charge (P.C.)</label><input id="f-pc" type="text" placeholder="e.g. Vani, Divanshu"/></div>
     <div class="fg"><label>Problem Solver</label><input id="f-ps" type="text" placeholder="e.g. Yash Dani · Vinita"/></div>
     <div class="lf-box">
-      <div class="lf-title">Links &mdash; Paste your actual URLs</div>
-      <div class="lf-row"><span class="lf-lbl">&#128194; FMS Link</span><input id="f-fms" type="url" placeholder="https://..."/></div>
-      <div class="lf-row"><span class="lf-lbl">&#128221; Google Form</span><input id="f-form" type="url" placeholder="https://..."/></div>
-      <div class="lf-row"><span class="lf-lbl">&#128202; Dashboard</span><input id="f-dash" type="url" placeholder="https://..."/></div>
-      <div class="lf-row"><span class="lf-lbl">&#127909; Training Video</span><input id="f-vid" type="url" placeholder="https://..."/></div>
-      <div class="lf-row"><span class="lf-lbl">&#128279; Other Link</span><input id="f-oth" type="url" placeholder="https://..."/></div>
-      <div class="fg" style="margin-top:10px;margin-bottom:0"><label>Other Link Label</label><input id="f-othl" type="text" placeholder="e.g. Client Master"/></div>
+      <div class="lf-title">Links — Paste actual URLs</div>
+      <div class="lf-row"><span class="lf-lbl">📂 FMS Link</span><input id="f-fms" type="url" placeholder="https://..."/></div>
+      <div class="lf-row"><span class="lf-lbl">✅ Checklist</span><input id="f-chk" type="url" placeholder="https://..."/></div>
+      <div class="lf-row"><span class="lf-lbl">📝 Google Form</span><input id="f-form" type="url" placeholder="https://..."/></div>
+      <div class="lf-row"><span class="lf-lbl">📊 Dashboard</span><input id="f-dash" type="url" placeholder="https://..."/></div>
+      <div class="lf-row"><span class="lf-lbl">🎬 Training Video</span><input id="f-vid" type="url" placeholder="https://..."/></div>
+      <div class="lf-row"><span class="lf-lbl">🔗 Other Link</span><input id="f-oth" type="url" placeholder="https://..."/></div>
+      <div class="fg" style="padding:10px 0 0;"><label>Other Link Label</label><input id="f-othl" type="text" placeholder="e.g. Client Master"/></div>
     </div>
     <div class="m-btns"><button class="m-cancel" onclick="closeModal()">Cancel</button><button class="m-save" onclick="saveProc()">Save Process</button></div>
   </div>
 </div>
 
-<!-- CONFIRM DELETE -->
+<!-- CONFIRM -->
 <div class="ov" id="c-ov" onclick="if(event.target===this)document.getElementById('c-ov').classList.remove('open')">
-  <div class="conf">
-    <div class="conf-ico">&#128465;</div>
-    <h3>Remove Process?</h3>
-    <p id="c-msg">This cannot be undone.</p>
-    <div class="conf-btns">
-      <button class="m-cancel" onclick="document.getElementById('c-ov').classList.remove('open')">Cancel</button>
-      <button class="btn-del" id="c-yes">Yes, Remove</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADD VIDEO MODAL -->
-<div class="ov" id="v-ov" onclick="if(event.target===this)closeVidModal()">
-  <div class="vid-modal">
-    <h3>Add Training Video <button class="m-x" onclick="closeVidModal()" style="font-size:13px">&#10005;</button></h3>
-    <div class="fg"><label>Video Title *</label><input id="v-title" type="text" placeholder="e.g. GST Filing Process"/></div>
-    <div class="fg"><label>YouTube / Drive URL *</label><input id="v-url" type="url" placeholder="https://youtube.com/..."/></div>
-    <div class="fg"><label>Category</label>
-      <select id="v-cat">
-        <option value="GST">GST</option><option value="ITR">ITR</option>
-        <option value="TDS">TDS</option><option value="CRM">CRM</option>
-        <option value="Admin">Admin</option><option value="Wealth">Wealth Advisory</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-    <div class="fg"><label>Description</label><input id="v-desc" type="text" placeholder="Short description..."/></div>
-    <div class="m-btns"><button class="m-cancel" onclick="closeVidModal()">Cancel</button><button class="m-save" onclick="saveVid()">Add Video</button></div>
-  </div>
+  <div class="conf"><div class="conf-ico">🗑️</div><h3>Remove Process?</h3><p id="c-msg"></p><div class="conf-btns"><button class="m-cancel" onclick="document.getElementById('c-ov').classList.remove('open')">Cancel</button><button class="btn-del" id="c-yes">Remove</button></div></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 /* ─── GREETING ─── */
-function getGreeting(){
-  var h=new Date().getHours();
-  if(h>=5&&h<12) return{title:'Good Morning, Divanshu! ☀️',sub:'Have a productive day — System Master'};
-  if(h>=12&&h<17) return{title:'Good Afternoon, Divanshu! 🌤️',sub:'Keep up the great work — System Master'};
-  if(h>=17&&h<21) return{title:'Good Evening, Divanshu! 🌆',sub:'System Master is here for you'};
-  return{title:'Good Night, Divanshu! 🌙',sub:'Working late? System Master has you covered'};
+function getGreeting(name){
+  var h=new Date().getHours(),n=name||'Divanshu';
+  if(h>=5&&h<12)  return 'Good Morning, '+n+'! ☀️';
+  if(h>=12&&h<17) return 'Good Afternoon, '+n+'! 🌤️';
+  if(h>=17&&h<21) return 'Good Evening, '+n+'! 🌆';
+  return 'Good Night, '+n+'! 🌙';
 }
 
 /* ─── SPLASH ─── */
 (function(){
-  var colors=['#85B7EB','#5DCAA5','#EF9F27','#378ADD','#9FE1CB','#FAC775'];
+  var cols=['#85B7EB','#5DCAA5','#EF9F27','#378ADD','#9FE1CB'];
   var pc=document.getElementById('particles');
-  for(var i=0;i<24;i++){
+  for(var i=0;i<22;i++){
     var p=document.createElement('div');p.className='particle';
-    var dx=(Math.random()-.5)*240,dy=-(Math.random()*170+60);
-    p.style.cssText='left:'+(6+Math.random()*88)+'%;top:'+(20+Math.random()*60)+'%;background:'+colors[i%colors.length]+';--dx:'+dx+'px;--dy:'+dy+'px;animation-delay:'+(Math.random()*3)+'s;animation-duration:'+(2.5+Math.random()*2)+'s;';
+    var dx=(Math.random()-.5)*220,dy=-(Math.random()*160+50);
+    p.style.cssText='left:'+(5+Math.random()*90)+'%;top:'+(20+Math.random()*60)+'%;background:'+cols[i%cols.length]+';--dx:'+dx+'px;--dy:'+dy+'px;animation-delay:'+(Math.random()*3)+'s;animation-duration:'+(2.5+Math.random()*2)+'s;';
     pc.appendChild(p);
   }
-  var lbar=document.getElementById('lbar'),llabel=document.getElementById('llabel');
-  var pct=0,labels=['Initializing...','Loading modules...','Connecting securely...','Almost ready...','Welcome!'],li=0;
+  /* Splash stocks ticker */
+  var stocks=['SENSEX 75,432 ▲+312','NIFTY 22,908 ▲+89','RELIANCE ₹2,912 ▲+38','TCS ₹3,541 ▼-12','HDFC BANK ₹1,622 ▲+22','INFOSYS ₹1,398 ▲+15','BAJAJ FIN ₹6,748 ▼-95','SBI ₹824 ▲+11','ICICI ₹1,142 ▲+8','WIPRO ₹456 ▲+6'];
+  var st=document.getElementById('splashTick');
+  var html=stocks.concat(stocks).map(function(s){return'<span class="sti">'+s+'</span>';}).join('<span style="color:rgba(181,212,244,.2);padding:0 8px">·</span>');
+  st.innerHTML=html;
+  /* Load bar */
+  var lbar=document.getElementById('lbar'),ll=document.getElementById('llabel');
+  var pct=0,labels=['Initializing...','Loading modules...','Connecting...','Almost ready...','Welcome!'],li=0;
   var iv=setInterval(function(){
-    pct+=Math.random()*4+1.5;
-    if(pct>=100){pct=100;clearInterval(iv);}
+    pct+=Math.random()*4+1.8;if(pct>=100){pct=100;clearInterval(iv);}
     lbar.style.width=Math.min(Math.round(pct),100)+'%';
-    var ni=Math.min(Math.floor(pct/25),labels.length-1);
-    if(ni!==li){li=ni;llabel.textContent=labels[li];}
+    var ni=Math.min(Math.floor(pct/25),4);if(ni!==li){li=ni;ll.textContent=labels[ni];}
   },70);
   setTimeout(function(){
-    var s=document.getElementById('splash');
-    s.style.animation='fadeOut .7s ease forwards';
+    document.getElementById('splash').style.animation='fadeOut .7s ease forwards';
     setTimeout(function(){
-      s.style.display='none';
-      var lp=document.getElementById('loginPage');
-      lp.style.display='flex';
-      var g=getGreeting();
-      document.getElementById('lc-greeting').textContent=g.title;
-      document.getElementById('lc-sub').textContent=g.sub;
+      document.getElementById('splash').style.display='none';
+      var lp=document.getElementById('loginPage');lp.style.display='flex';
+      document.getElementById('lc-greeting').textContent=getGreeting('Divanshu');
     },700);
-  },4200);
+  },4000);
 })();
 
-/* ─── LOGIN ─── */
-var CREDS={id:'divanshu_12',pw:'Divanshu@123'};
-function togglePwd(){
-  var i=document.getElementById('password'),b=document.getElementById('eyeBtn');
-  if(i.type==='password'){i.type='text';b.innerHTML='&#128064;';}
-  else{i.type='password';b.innerHTML='&#128065;';}
+/* ─── ROLE/LOGIN ─── */
+var currentRole='user',loggedRole='user',loggedName='Divanshu';
+var CREDS={user:{id:'Div_12',pw:'1234',name:'Divanshu'},admin:{id:'1234',pw:'5678',name:'Admin'}};
+function setRole(r){
+  currentRole=r;
+  document.getElementById('rtUser').classList.toggle('active',r==='user');
+  document.getElementById('rtAdmin').classList.toggle('active',r==='admin');
+  document.getElementById('loginId').value='';document.getElementById('password').value='';
+  document.getElementById('errMsg').classList.remove('show');
+  document.getElementById('lc-hint').textContent=r==='user'?'User: Div_12 / 1234':'Admin: 1234 / 5678';
 }
+function togglePwd(){var i=document.getElementById('password');i.type=i.type==='password'?'text':'password';}
 function handleLogin(){
   var id=document.getElementById('loginId').value.trim();
   var pw=document.getElementById('password').value;
-  var err=document.getElementById('errMsg');
-  if(id===CREDS.id&&pw===CREDS.pw){
-    err.classList.remove('show');
+  var c=CREDS[currentRole];
+  if(id===c.id&&pw===c.pw){
+    loggedRole=currentRole;loggedName=c.name;
     document.getElementById('loginPage').style.display='none';
-    var ov=document.getElementById('successOverlay');
-    ov.style.display='flex';
-    var g=getGreeting();
-    document.getElementById('suc-name').textContent=g.title.replace(' ☀️','').replace(' 🌤️','').replace(' 🌆','').replace(' 🌙','')+' — System Master';
-    setTimeout(function(){
-      ov.style.display='none';
-      document.getElementById('appPage').classList.add('show');
-      initApp();
-    },1200);
+    var ov=document.getElementById('successOverlay');ov.style.display='flex';
+    document.getElementById('suc-sub').textContent=getGreeting(c.name);
+    setTimeout(function(){ov.style.display='none';document.getElementById('appPage').classList.add('show');initApp();},1300);
   }else{
-    err.classList.remove('show');void err.offsetWidth;err.classList.add('show');
-    document.getElementById('loginId').style.borderColor='#FC8181';
+    document.getElementById('errMsg').classList.remove('show');
+    void document.getElementById('errMsg').offsetWidth;
+    document.getElementById('errMsg').classList.add('show');
     document.getElementById('password').value='';
-    document.getElementById('password').style.borderColor='#FC8181';
-    setTimeout(function(){document.getElementById('loginId').style.borderColor='';document.getElementById('password').style.borderColor='';},2000);
   }
 }
 function doLogout(){
@@ -619,296 +662,245 @@ function doLogout(){
   var lp=document.getElementById('loginPage');lp.style.display='flex';
   document.getElementById('loginId').value='';document.getElementById('password').value='';
   document.getElementById('errMsg').classList.remove('show');
-  var g=getGreeting();
-  document.getElementById('lc-greeting').textContent=g.title;
-  document.getElementById('lc-sub').textContent=g.sub;
+  setRole('user');document.getElementById('lc-greeting').textContent=getGreeting('Divanshu');
   showToast('Logged out successfully');
 }
 document.addEventListener('keydown',function(e){
-  if(e.key==='Enter'){
-    var a=document.activeElement;
-    if(a&&a.id==='loginId') document.getElementById('password').focus();
-    else if(a&&a.id==='password') handleLogin();
-  }
+  if(e.key==='Enter'){var a=document.activeElement;if(a.id==='loginId')document.getElementById('password').focus();else if(a.id==='password')handleLogin();}
 });
 
 /* ─── TICKER ─── */
-var TICKS=['Daily Checklist — Stay on track every day','Delegation Sheet — Clear tasks, better output','GST Returns — Filed on time, every time','Wealth Advisory — Growing client wealth','MIS Reports — Data-driven decisions','Client Master — All clients, one system','TDS Returns — Accurate and timely filing','Staff Onboarding — Smooth and efficient','Incentive Calculator — Rewarding performance','Order to Billing — Seamless workflow','Risk Profiling — Know your client well','Training Videos — Knowledge is power','Fixed Assets — Tracked and managed always','Final CRM FMS — Relationships organized','Finveszprosolutionz — You Prosper, We Work'];
+var TICKS=['Daily Checklist — Stay on track','Delegation Sheet — Clear tasks','GST Returns — Filed on time','Wealth Advisory — Growing wealth','MIS Reports — Data decisions','Client Master — All clients','TDS Returns — Accurate filing','Staff Onboarding — Smooth flow','Incentive Calculator — Rewarding','Order to Billing — Seamless','Risk Profiling — Know your client','Fixed Assets — Always tracked','CRM FMS — Relationships organized','Finveszprosolutionz — You Prosper'];
 function buildTicker(){
-  var t=document.getElementById('app-ticker');
+  var t=document.getElementById('appTick');
   t.innerHTML=TICKS.concat(TICKS).map(function(m){return'<span class="t-item"><span class="t-dot"></span>'+m+'</span>';}).join('');
 }
 
 /* ─── DATA ─── */
 var DEPTS=[
-  {id:'office',ico:'🏢',nm:'Office',color:'#185FA5',ibg:'#eff6ff'},
-  {id:'admin',ico:'⚙️',nm:'Admin',color:'#15803d',ibg:'#f0fdf4'},
-  {id:'wealth',ico:'💰',nm:'Wealth Advisory',color:'#a16207',ibg:'#fefce8'},
-  {id:'trials',ico:'🔬',nm:'Trials & MIS',color:'#6d28d9',ibg:'#f5f3ff'},
+  {id:'office', ico:'🏢', nm:'Office',         color:'#185FA5', ibg:'#eff6ff', tags:['GST','TDS','ITR','Billing']},
+  {id:'admin',  ico:'⚙️', nm:'Admin',          color:'#15803d', ibg:'#f0fdf4', tags:['Checklist','CRM','Staff','Assets']},
+  {id:'wealth', ico:'💰', nm:'Wealth Advisors', color:'#a16207', ibg:'#fefce8', tags:['MF','SIP','Risk','KYC']},
+  {id:'trials', ico:'🔬', nm:'Trials & MIS',   color:'#6d28d9', ibg:'#f5f3ff', tags:['MIS','Reports','Onboarding']},
 ];
-var eId=null,eDept=null;
+var eId=null,eDept=null,activeDept=null;
 function uid(){return'_'+Math.random().toString(36).slice(2,9);}
-var PORTAL='https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/';
-
 /* ─── JSONBIN CLOUD SYNC ─── */
 var BIN_ID='69e22b9caaba8821970c8fb3';
-var API_KEY='$2a$10$placeholder'; /* will be set below */
+var JKEY='$2a$10$JPGIIjtZKmCFrDEi1bChcenfJ5wmsOrkQivFdeHVxHSTykY111ZhW';
 var BIN_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
-var JSONBIN_KEY='$2a$10$JPGIIjtZKmCFrDEi1bChcenfJ5wmsOrkQivFdeHVxHSTykY111ZhW';
 
 function saveData(){
-  var payload={processes:D,videos:VIDEOS};
   fetch(BIN_URL,{
     method:'PUT',
-    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Versioning':'false'},
-    body:JSON.stringify(payload)
-  }).then(function(){showToast('✅ Saved to cloud!');}).catch(function(){
-    /* fallback to localStorage */
-    try{localStorage.setItem('finveszpro_backup',JSON.stringify(payload));}catch(e){}
-    showToast('⚠️ Cloud save failed, saved locally');
+    headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Versioning':'false'},
+    body:JSON.stringify(D)
+  }).then(function(){showToast('✅ Cloud mein save ho gaya!');})
+  .catch(function(){
+    try{localStorage.setItem('finveszpro_v3_bk',JSON.stringify(D));}catch(e){}
+    showToast('⚠️ Cloud save failed!');
   });
 }
 
-function loadData(){
-  /* show loading indicator */
-  document.getElementById('content').innerHTML='<div style="text-align:center;padding:60px;color:#185FA5;font-size:15px;font-weight:700;">☁️ Loading from cloud...</div>';
-  fetch(BIN_URL+'/latest',{
-    headers:{'X-Master-Key':JSONBIN_KEY}
-  }).then(function(r){return r.json();}).then(function(data){
-    var rec=data.record;
-    if(rec&&rec.processes) D=rec.processes;
-    if(rec&&rec.videos) VIDEOS=rec.videos;
-    render();
-  }).catch(function(){
-    /* fallback to localStorage */
-    try{
-      var backup=localStorage.getItem('finveszpro_backup');
-      if(backup){var b=JSON.parse(backup);if(b.processes)D=b.processes;if(b.videos)VIDEOS=b.videos;}
-    }catch(e){}
-    showToast('⚠️ Cloud load failed, using local data');
-    render();
+function loadData(cb){
+  fetch(BIN_URL+'/latest',{headers:{'X-Master-Key':JKEY}})
+  .then(function(r){return r.json();})
+  .then(function(data){
+    if(data&&data.record&&typeof data.record==='object'&&data.record.office){
+      D=data.record;
+    }
+    if(cb) cb();
+  })
+  .catch(function(){
+    try{var bk=localStorage.getItem('finveszpro_v3_bk');if(bk)D=JSON.parse(bk);}catch(e){}
+    if(cb) cb();
+    showToast('⚠️ Cloud load failed, local data use ho raha hai');
   });
 }
 
 function resetToDefault(){
-  if(!confirm('⚠️ Sab data reset ho jayega — aapke daale huye saare links & processes hat jayenge. Confirm?')) return;
-  var payload={processes:{office:[],admin:[],wealth:[],trials:[]},videos:[]};
-  fetch(BIN_URL,{
-    method:'PUT',
-    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Versioning':'false'},
-    body:JSON.stringify(payload)
-  }).then(function(){location.reload();}).catch(function(){showToast('Reset failed!');});
+  if(!confirm('Reset sab data? Sab links hat jayenge.'))return;
+  var empty={office:[],admin:[],wealth:[],trials:[]};
+  fetch(BIN_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Versioning':'false'},body:JSON.stringify(empty)})
+  .then(function(){location.reload();}).catch(function(){showToast('Reset failed!');});
 }
+function exportData(){var blob=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='finveszpro-data.json';a.click();showToast('Data exported!');}
+
 var D={
   office:[
-    {id:uid(),n:'Client Database',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'GSTR-1',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',form:'',dash:'',vid:PORTAL+'gst-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'GST-3B',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',form:'',dash:'',vid:PORTAL+'gst-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'GSTR-9',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',form:'',dash:'',vid:PORTAL+'gst-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'TDS Return',pc:'Vani',ps:'Yash Dani · Snigdha',fms:'',form:'',dash:'',vid:PORTAL+'tds-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'ITR Filing',pc:'Vani',ps:'Yash Dani · Snigdha',fms:'',form:'',dash:'',vid:PORTAL+'itr-complete-training-module',oth:PORTAL+'itr-fms-workflow',othl:'ITR FMS Workflow'},
-    {id:uid(),n:'Order to Billing',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'order-to-billing-fms-video',oth:'',othl:''},
-    {id:uid(),n:'Accounting Tracker',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
+    {id:uid(),n:'Client Database',     pc:'—',      ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GSTR-1',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GST-3B',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GSTR-9',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'TDS Return',          pc:'Vani',   ps:'Yash Dani · Snigdha', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'ITR Filing',          pc:'Vani',   ps:'Yash Dani · Snigdha', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Order to Billing',    pc:'Vani',   ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Accounting Tracker',  pc:'—',      ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   admin:[
-    {id:uid(),n:'Fixed Asset Purchase',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'fixed-asset-purchase-training-module',oth:'',othl:''},
-    {id:uid(),n:'Checklist',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'checklist-workflow-process',oth:'',othl:''},
-    {id:uid(),n:'Checklist (PC Sheet)',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'checklist-workflow-process',oth:'',othl:''},
-    {id:uid(),n:'Staff Recruitment',pc:'Vani',ps:'Yash Dani · Vani',fms:'',form:'',dash:'',vid:PORTAL+'staff-recruitment-onboarding-module',oth:'',othl:''},
-    {id:uid(),n:'Staff Onboarding / KYC',pc:'Vani',ps:'Staff Onboarding',fms:'',form:'',dash:'',vid:PORTAL+'staff-recruitment-onboarding-module',oth:'',othl:''},
-    {id:uid(),n:'Delegation Sheet',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'delegation-sheet-workflow',oth:'',othl:''},
-    {id:uid(),n:'Full Kitting Sheet',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'Final CRM FMS',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'crm-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'Utility Bills (Electricity)',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'Rental Invoice Management',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'Budget & Cost Control',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
+    {id:uid(),n:'Fixed Asset Purchase',     pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Checklist',                pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Checklist (PC Sheet)',     pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Staff Recruitment',        pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Staff Onboarding / KYC',   pc:'Vani',     ps:'Staff Onboarding',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Delegation Sheet',         pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Full Kitting Sheet',       pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Final CRM FMS',            pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Utility Bills (Elec.)',    pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Rental Invoice Mgmt',      pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Budget & Cost Control',    pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   wealth:[
-    {id:uid(),n:'Client Registrations',pc:'Vani',ps:'Yash Dani · Vani',fms:'',form:'',dash:'',vid:PORTAL+'msme-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'Client Investments',pc:'—',ps:'—',fms:'',form:'',dash:'',vid:PORTAL+'mutual-funds-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'Tele-Calling',pc:'Priya',ps:'Yash Dani · Priya',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'Risk Profiling Sheet',pc:'Vani',ps:'Yash Dani · Vani',fms:'',form:'',dash:'',vid:PORTAL+'mutual-funds-complete-training-module',oth:'',othl:''},
-    {id:uid(),n:'Incentive Calculator',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'incentive-calculator-training-module',oth:'',othl:''},
-    {id:uid(),n:'Client Onboarding MGMT',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'crm-complete-training-module',oth:'',othl:''},
+    {id:uid(),n:'Client Registrations',     pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Investments',        pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Tele-Calling',              pc:'Priya',    ps:'Yash Dani · Priya',   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Risk Profiling Sheet',      pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Incentive Calculator',      pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Onboarding MGMT',    pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   trials:[
-    {id:uid(),n:'Executive MIS Summary',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
-    {id:uid(),n:'Office Reports',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',form:'',dash:'',vid:PORTAL+'general-module',oth:'',othl:''},
+    {id:uid(),n:'Executive MIS Summary',         pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Onboarding Mgmt System', pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Training Videos',               pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Office Reports',                 pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
 };
-var VIDEOS=[
-  {id:uid(),title:'GST - Complete Training Module',url:PORTAL+'gst-complete-training-module',cat:'GST',desc:'GSTR-1, GST-3B, GSTR-9 — Complete GST filing process'},
-  {id:uid(),title:'TDS - Complete Training Module',url:PORTAL+'tds-complete-training-module',cat:'TDS',desc:'TDS returns, filing & compliance — full guide'},
-  {id:uid(),title:'TDS Module',url:PORTAL+'tds-module',cat:'TDS',desc:'TDS module overview & quick reference'},
-  {id:uid(),title:'ITR - Complete Training Module',url:PORTAL+'itr-complete-training-module',cat:'ITR',desc:'Income tax return — complete filing process'},
-  {id:uid(),title:'ITR FMS Workflow',url:PORTAL+'itr-fms-workflow',cat:'ITR',desc:'ITR FMS step-by-step workflow guide'},
-  {id:uid(),title:'Order to Billing FMS Video',url:PORTAL+'order-to-billing-fms-video',cat:'Admin',desc:'Order to billing workflow — full FMS process'},
-  {id:uid(),title:'Delegation Sheet Workflow',url:PORTAL+'delegation-sheet-workflow',cat:'Admin',desc:'How to use the delegation sheet effectively'},
-  {id:uid(),title:'Checklist Workflow Process',url:PORTAL+'checklist-workflow-process',cat:'Admin',desc:'Daily & operational checklist process guide'},
-  {id:uid(),title:'Fixed Asset Purchase Module',url:PORTAL+'fixed-asset-purchase-training-module',cat:'Admin',desc:'Fixed asset purchase process & tracking'},
-  {id:uid(),title:'Staff Recruitment & Onboarding',url:PORTAL+'staff-recruitment-onboarding-module',cat:'Admin',desc:'Recruitment, KYC & staff onboarding process'},
-  {id:uid(),title:'CRM - Complete Training Module',url:PORTAL+'crm-complete-training-module',cat:'CRM',desc:'CRM entry, client management & Final CRM FMS'},
-  {id:uid(),title:'Mutual Funds - Complete Training',url:PORTAL+'mutual-funds-complete-training-module',cat:'Wealth',desc:'Mutual funds, client investments & risk profiling'},
-  {id:uid(),title:'Incentive Calculator Module',url:PORTAL+'incentive-calculator-training-module',cat:'Wealth',desc:'Incentive calculator usage & workflow'},
-  {id:uid(),title:'MSME - Complete Training Module',url:PORTAL+'msme-complete-training-module',cat:'Admin',desc:'MSME registrations & compliance module'},
-  {id:uid(),title:'ROC - Complete Training Module',url:PORTAL+'roc-complete-training-module',cat:'Admin',desc:'ROC filings — complete training module'},
-  {id:uid(),title:'Tech Training Videos',url:PORTAL+'tech-training-videos',cat:'Other',desc:'Technology tools & software training videos'},
-  {id:uid(),title:'General Module',url:PORTAL+'general-module',cat:'Other',desc:'General processes, accounting & miscellaneous'},
-];
+/* loadData called in initApp with callback */
 
-/* ─── LOAD SAVED DATA FROM CLOUD ─── */
-/* loadData() called in initApp */
-
-/* ─── SECTION FILTER ─── */
-var activeSec='all';
-var secLabels={all:'All Departments',office:'Office',admin:'Admin',wealth:'Wealth Advisory',trials:'Trials & MIS',videos:'Training Videos',sheet:'System Sheet'};
-function filterSec(sec,el){
-  activeSec=sec;
-  document.querySelectorAll('.nav-lnk').forEach(function(n){n.classList.remove('active');});
+/* ─── NAVIGATION ─── */
+function navTo(sec,el){
+  document.querySelectorAll('.sb-item').forEach(function(s){s.classList.remove('active');});
   if(el) el.classList.add('active');
-  var bl=document.getElementById('bc-label');
-  if(bl) bl.textContent=secLabels[sec]||sec;
-  document.querySelectorAll('.dept-blk').forEach(function(b){
-    if(sec==='all') b.style.display='';
-    else if(sec==='videos') b.style.display=b.dataset.dept==='videos'?'':'none';
-    else if(sec==='sheet') b.style.display=b.dataset.dept==='sheet'?'':'none';
-    else b.style.display=b.dataset.dept===sec?'':'none';
-  });
+  if(sec==='home'){goHome();return;}
+  openDept(sec);
+}
+function goHome(){
+  activeDept=null;
+  document.getElementById('viewHome').style.display='block';
+  document.getElementById('viewProc').classList.remove('open');
+  document.getElementById('bc-label').textContent='All Departments';
+  document.querySelector('[data-sec="home"]').classList.add('active');
+  document.querySelectorAll('.sb-item:not([data-sec="home"])').forEach(function(s){s.classList.remove('active');});
+}
+function openDept(dId){
+  activeDept=dId;
+  var d=DEPTS.find(function(x){return x.id===dId;});
+  document.getElementById('viewHome').style.display='none';
+  document.getElementById('viewProc').classList.add('open');
+  document.getElementById('pvTitle').textContent=d?d.nm:dId;
+  var tag=document.getElementById('pvTag');tag.textContent=d?d.nm:dId;tag.className='pv-dept-tag '+dId;
+  document.getElementById('bc-label').textContent=d?d.nm:dId;
+  var pvAdd=document.getElementById('pvAdd');
+  pvAdd.className='pv-back'+(loggedRole==='admin'?' ':'  hide')+' ';
+  if(loggedRole==='admin'){pvAdd.style.display='';pvAdd.className='pv-add';pvAdd.onclick=function(){openAdd(dId);};}
+  else pvAdd.style.display='none';
+  renderProc(dId);
+  var sbItem=document.querySelector('[data-sec="'+dId+'"]');
+  if(sbItem){document.querySelectorAll('.sb-item').forEach(function(s){s.classList.remove('active');});sbItem.classList.add('active');}
+  document.getElementById('s-in').value='';doSearch('');
 }
 
-/* ─── RENDER ─── */
-function lb(href,cls,ico,lbl){if(!href)return'';return'<a class="lbtn '+cls+'" href="'+href+'" target="_blank">'+ico+' '+lbl+'</a>';}
+/* ─── RENDER HOME CARDS ─── */
+function renderCards(){
+  var html='';
+  DEPTS.forEach(function(d,i){
+    var cnt=(D[d.id]||[]).length;
+    var links=0;(D[d.id]||[]).forEach(function(p){links+=cntLinks(p);});
+    html+='<div class="dept-card '+d.id+'" onclick="openDept(\''+d.id+'\')" style="animation-delay:'+(i*.08)+'s">';
+    html+='<div class="dc-top"><div class="dc-ico '+d.id+'">'+d.ico+'</div>';
+    html+='<div><div class="dc-name">'+d.nm+'</div><div class="dc-sub">'+cnt+' process'+(cnt!==1?'es':'')+'</div></div></div>';
+    html+='<div class="dc-count '+d.id+'">'+cnt+'</div>';
+    html+='<div class="dc-count-l">Processes &nbsp;·&nbsp; '+links+' links</div>';
+    html+='<div class="dc-tags">'+d.tags.map(function(t){return'<span class="dc-tag">'+t+'</span>';}).join('')+'</div>';
+    html+='<div class="dc-arrow">→</div></div>';
+  });
+  document.getElementById('deptCards').innerHTML=html;
+}
+
+/* ─── RENDER PROCESS TABLE ─── */
+function lb(href,cls,ico,lbl){if(!href)return'';return'<a class="lbtn '+cls+'" href="'+href+'" target="_blank" rel="noopener">'+ico+' '+lbl+'</a>';}
 function renderLinks(p){
   var h='';
-  if(p.fms)  h+=lb(p.fms,'lb-f','📂','FMS');
-  if(p.form) h+=lb(p.form,'lb-g','📝','Google Form');
+  if(p.fms)  h+=lb(p.fms, 'lb-f','📂','FMS');
+  if(p.chk)  h+=lb(p.chk, 'lb-c','✅','Checklist');
+  if(p.form) h+=lb(p.form,'lb-g','📝','Form');
   if(p.dash) h+=lb(p.dash,'lb-d','📊','Dashboard');
-  if(p.vid)  h+=lb(p.vid,'lb-v','🎬','Video');
-  if(p.oth)  h+=lb(p.oth,'lb-o','🔗',p.othl||'Link');
-  return h||'<span class="no-link">No links — click Edit to add</span>';
+  if(p.vid)  h+=lb(p.vid, 'lb-v','🎬','Video');
+  if(p.oth)  h+=lb(p.oth, 'lb-o','🔗',p.othl||'Link');
+  return h||'<span class="no-link">No links — admin can add</span>';
 }
-function cntLinks(p){return[p.fms,p.form,p.dash,p.vid,p.oth].filter(Boolean).length;}
+function cntLinks(p){return[p.fms,p.chk,p.form,p.dash,p.vid,p.oth].filter(Boolean).length;}
+
+function renderProc(dId){
+  var rows=D[dId]||[],isAdmin=loggedRole==='admin',html='';
+  /* Admin col visibility */
+  document.querySelectorAll('.admin-col').forEach(function(el){el.style.display=isAdmin?'':'none';});
+  if(!rows.length){
+    html='<tr><td colspan="5"><div class="empty-row">No processes yet'+(isAdmin?' — click "+ Add Process" to begin':'')+'</div></td></tr>';
+  }else{
+    rows.forEach(function(p){
+      html+='<tr data-id="'+p.id+'">';
+      html+='<td><span class="p-name">'+p.n+'</span></td>';
+      html+='<td><span class="chip">'+(p.pc||'—')+'</span></td>';
+      html+='<td><span class="chip">'+(p.ps||'—')+'</span></td>';
+      html+='<td><div class="links-wrap">'+renderLinks(p)+'</div></td>';
+      if(isAdmin){
+        html+='<td><div class="row-acts">';
+        html+='<button class="btn-e" onclick="openEdit(\''+dId+'\',\''+p.id+'\')">Edit</button>';
+        html+='<button class="btn-r" onclick="confirmDel(\''+dId+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >Del</button>';
+        html+='</div></td>';
+      }
+      html+='</tr>';
+    });
+  }
+  document.getElementById('procTbody').innerHTML=html;
+}
+
+/* ─── SEARCH ─── */
+function doSearch(q){
+  var qr=q.toLowerCase();
+  document.querySelectorAll('#procTbody tr[data-id]').forEach(function(r){
+    r.style.display=!qr||r.textContent.toLowerCase().includes(qr)?'':'none';
+  });
+}
+
+/* ─── STATS ─── */
+function updateStats(){
+  var total=0,totalLinks=0;
+  DEPTS.forEach(function(d){
+    var cnt=(D[d.id]||[]).length,links=0;
+    (D[d.id]||[]).forEach(function(p){links+=cntLinks(p);});
+    total+=cnt;totalLinks+=links;
+    var el=document.getElementById('rp-'+d.id);if(el)el.textContent=cnt+' proc';
+  });
+  animNum('st-proc',total);animNum('st-links',totalLinks);
+  var oc=document.getElementById('ql-off-cnt');if(oc)oc.textContent=(D.office||[]).length+' processes';
+  var wc=document.getElementById('ql-wlt-cnt');if(wc)wc.textContent=(D.wealth||[]).length+' processes';
+}
 function animNum(id,target){
   var el=document.getElementById(id);if(!el)return;
-  var start=parseInt(el.textContent)||0,diff=target-start,steps=20,i=0;
-  var t=setInterval(function(){i++;el.textContent=Math.round(start+diff*(i/steps));if(i>=steps){el.textContent=target;clearInterval(t);el.classList.add('pulse');setTimeout(function(){el.classList.remove('pulse');},400);}},16);
+  var s=parseInt(el.textContent)||0,diff=target-s,steps=16,i=0;
+  var t=setInterval(function(){i++;el.textContent=Math.round(s+diff*(i/steps));if(i>=steps){el.textContent=target;clearInterval(t);}},20);
 }
 
-function render(){
-  var procs=0,links=0,html='';
-  DEPTS.forEach(function(d,idx){
-    var rows=D[d.id]||[];
-    procs+=rows.length;
-    rows.forEach(function(p){links+=cntLinks(p);});
-    html+='<div class="dept dept-blk" data-dept="'+d.id+'" style="animation-delay:'+(idx*.08)+'s">';
-    html+='<div class="dept-hd"><div class="dept-lbl">';
-    html+='<div class="dept-ico" style="background:'+d.ibg+'">'+d.ico+'</div>';
-    html+='<div class="dept-nm" style="color:'+d.color+'">'+d.nm+'</div>';
-    html+='</div><div class="dept-hd-r">';
-    html+='<span class="dept-cnt">'+rows.length+' process'+(rows.length!==1?'es':'')+'</span>';
-    html+='<button class="dept-add" onclick="openAdd(\''+d.id+'\')">+ Add</button>';
-    html+='</div></div>';
-    html+='<div class="tbl-wrap"><table>';
-    html+='<thead><tr><th>Process Name</th><th>Person (P.C.)</th><th>Problem Solver</th><th>Links</th><th style="width:95px">Actions</th></tr></thead>';
-    html+='<tbody>';
-    if(rows.length===0){
-      html+='<tr><td colspan="5"><div class="empty-row">No processes yet — click "+ Add" to begin</div></td></tr>';
-    }else{
-      rows.forEach(function(p){
-        html+='<tr data-id="'+p.id+'" data-dept="'+d.id+'">';
-        html+='<td><span class="p-name">'+p.n+'</span></td>';
-        html+='<td><span class="chip">'+(p.pc||'—')+'</span></td>';
-        html+='<td><span class="chip">'+(p.ps||'—')+'</span></td>';
-        html+='<td><div class="links-wrap">'+renderLinks(p)+'</div></td>';
-        html+='<td><div class="row-acts">';
-        html+='<button class="btn-e" onclick="openEdit(\''+d.id+'\',\''+p.id+'\')">Edit</button>';
-        html+='<button class="btn-r" onclick="confirmDel(\''+d.id+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >Remove</button>';
-        html+='</div></td></tr>';
-      });
-    }
-    html+='</tbody></table></div></div>';
-  });
-
-  /* Training Videos */
-  html+='<div class="dept dept-blk" data-dept="videos" style="animation-delay:0.32s">';
-  html+='<div class="dept-hd"><div class="dept-lbl">';
-  html+='<div class="dept-ico" style="background:#fff7ed">🎬</div>';
-  html+='<div class="dept-nm" style="color:#c2410c">Training Videos</div>';
-  html+='</div><div class="dept-hd-r">';
-  html+='<span class="dept-cnt">'+VIDEOS.length+' videos</span>';
-  html+='<button class="dept-add" style="background:#fff7ed;color:#c2410c;border-color:#fed7aa" onclick="openVidModal()">+ Add Video</button>';
-  html+='</div></div>';
-  html+='<div class="vid-grid">';
-  VIDEOS.forEach(function(v){
-    var catColors={GST:'#185FA5',ITR:'#15803d',TDS:'#b45309',CRM:'#6d28d9',Admin:'#374151',Wealth:'#a16207',Other:'#6b6b6b'};
-    var color=catColors[v.cat]||'#185FA5';
-    var target=v.url?' href="'+v.url+'" target="_blank"':'';
-    html+='<a class="vid-card"'+target+' onclick="'+(v.url?'':'event.preventDefault();showToast(\'Click Edit to add video URL\')')+'">';
-    html+='<div class="vid-thumb" style="background:linear-gradient(135deg,'+color+',#1D9E75)">';
-    html+='<div class="vid-play">▶</div></div>';
-    html+='<div class="vid-title">'+v.title+'</div>';
-    html+='<div class="vid-meta"><span class="vid-badge">'+v.cat+'</span>'+(v.desc?'· '+v.desc:'')+'</div>';
-    html+='<div style="display:flex;gap:5px;margin-top:4px">';
-    if(v.url) html+='<a class="lbtn lb-v" href="'+v.url+'" target="_blank" onclick="event.stopPropagation()">▶ Watch</a>';
-    html+='<button class="btn-e" onclick="event.preventDefault();event.stopPropagation();editVid(\''+v.id+'\')">Edit</button>';
-    html+='<button class="btn-r" onclick="event.preventDefault();event.stopPropagation();removeVid(\''+v.id+'\')">Remove</button>';
-    html+='</div></a>';
-  });
-  html+='<button class="vid-add-card" onclick="openVidModal()"><div class="vid-add-icon">+</div><div class="vid-add-text">Add Training Video</div></button>';
-  html+='</div></div>';
-
-  /* System Sheet section */
-  html+='<div class="dept-blk" data-dept="sheet" style="animation-delay:0.4s">';
-  html+='<div class="sheet-section">';
-  html+='<div class="sheet-header">';
-  html+='<div><div class="sheet-title">📊 System Master Sheet <span style="font-size:11px;font-weight:500;opacity:.8;margin-left:8px">Google Sheets — Live</span></div>';
-  html+='<div class="sheet-sub">All company processes, FMS, checklists in one master sheet · Click to open full screen</div></div>';
-  html+='<a class="sheet-open-btn" href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit?gid=0#gid=0" target="_blank">&#8599; Open Full Screen</a>';
-  html+='</div>';
-  html+='<div class="sheet-frame-wrap" style="padding:40px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#f0fdf4;min-height:200px;">';
-  html+='<div style="font-size:52px;line-height:1">📊</div>';
-  html+='<div style="text-align:center;">';
-  html+='<div style="font-size:17px;font-weight:800;color:#0F6E56;margin-bottom:6px;">System Master Sheet</div>';
-  html+='<div style="font-size:13px;color:#555;margin-bottom:20px;line-height:1.6;">Click below to open the full live sheet in a new tab.</div>';
-  html+='<a href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit?gid=0#gid=0" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0F6E56,#1D9E75);color:#fff;text-decoration:none;padding:13px 32px;border-radius:10px;font-size:14px;font-weight:800;font-family:Figtree,sans-serif;box-shadow:0 4px 14px rgba(15,110,86,.3);">&#8599; Open System Master Sheet</a>';
-  html+='</div>';
-  html+='</div></div></div>';
-
-  document.getElementById('content').innerHTML=html;
-  animNum('s-proc',procs);
-  animNum('s-links',links+VIDEOS.filter(function(v){return v.url;}).length);
-
-  /* update nav counts */
-  var total=0;
-  DEPTS.forEach(function(d){
-    var c=(D[d.id]||[]).length;total+=c;
-    var el=document.getElementById('nc-'+d.id);if(el) el.textContent=c;
-  });
-  var na=document.getElementById('nc-all');if(na) na.textContent=total;
-  var nv=document.getElementById('nc-videos');if(nv) nv.textContent=VIDEOS.length;
-
-  /* re-apply filter */
-  var el=document.querySelector('[data-sec="'+activeSec+'"]');
-  filterSec(activeSec,el);
-}
-
-/* ─── ADD / EDIT PROCESS ─── */
+/* ─── ADD/EDIT ─── */
 function openAdd(dId){
-  eId=null;eDept=dId;
+  eId=null;eDept=dId||activeDept||'office';
   document.getElementById('m-ttl').textContent='Add New Process';
-  document.getElementById('f-dept').value=dId||'office';
-  ['f-name','f-pc','f-ps','f-fms','f-form','f-dash','f-vid','f-oth','f-othl'].forEach(function(x){document.getElementById(x).value='';});
+  document.getElementById('f-dept').value=eDept;
+  ['f-name','f-pc','f-ps','f-fms','f-chk','f-form','f-dash','f-vid','f-oth','f-othl'].forEach(function(x){document.getElementById(x).value='';});
   document.getElementById('m-ov').classList.add('open');
 }
 function openEdit(dId,pId){
-  var p=D[dId].find(function(x){return x.id===pId;});if(!p)return;
+  var p=(D[dId]||[]).find(function(x){return x.id===pId;});if(!p)return;
   eId=pId;eDept=dId;
-  document.getElementById('m-ttl').textContent='Edit Process';
+  document.getElementById('m-ttl').textContent='Edit: '+p.n;
   document.getElementById('f-dept').value=dId;
   document.getElementById('f-name').value=p.n||'';
   document.getElementById('f-pc').value=p.pc||'';
   document.getElementById('f-ps').value=p.ps||'';
   document.getElementById('f-fms').value=p.fms||'';
+  document.getElementById('f-chk').value=p.chk||'';
   document.getElementById('f-form').value=p.form||'';
   document.getElementById('f-dash').value=p.dash||'';
   document.getElementById('f-vid').value=p.vid||'';
@@ -918,83 +910,60 @@ function openEdit(dId,pId){
 }
 function saveProc(){
   var n=document.getElementById('f-name').value.trim();
-  if(!n){showToast('Process name is required!');return;}
+  if(!n){showToast('Process name required!');return;}
   var dId=document.getElementById('f-dept').value;
-  var p={id:eId||uid(),n:n,pc:document.getElementById('f-pc').value.trim()||'—',ps:document.getElementById('f-ps').value.trim()||'—',fms:document.getElementById('f-fms').value.trim(),form:document.getElementById('f-form').value.trim(),dash:document.getElementById('f-dash').value.trim(),vid:document.getElementById('f-vid').value.trim(),oth:document.getElementById('f-oth').value.trim(),othl:document.getElementById('f-othl').value.trim()};
-  if(eId){
-    if(eDept!==dId){D[eDept]=D[eDept].filter(function(x){return x.id!==eId;});D[dId].push(p);}
-    else{var i=D[dId].findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}
-    showToast('Process updated! ✅ Saved');
-  }else{D[dId].push(p);showToast('Process added! ✅ Saved');}
-  closeModal();saveData();render();
+  var p={id:eId||uid(),n:n,pc:document.getElementById('f-pc').value.trim()||'—',ps:document.getElementById('f-ps').value.trim()||'—',fms:document.getElementById('f-fms').value.trim(),chk:document.getElementById('f-chk').value.trim(),form:document.getElementById('f-form').value.trim(),dash:document.getElementById('f-dash').value.trim(),vid:document.getElementById('f-vid').value.trim(),oth:document.getElementById('f-oth').value.trim(),othl:document.getElementById('f-othl').value.trim()};
+  if(eId){if(eDept!==dId){D[eDept]=(D[eDept]||[]).filter(function(x){return x.id!==eId;});if(!D[dId])D[dId]=[];D[dId].push(p);}else{var i=(D[dId]||[]).findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}showToast('Process updated ✅');}
+  else{if(!D[dId])D[dId]=[];D[dId].push(p);showToast('Process added ✅');}
+  closeModal();saveData();
+  renderCards();updateStats();
+  if(activeDept)renderProc(activeDept);
 }
 function confirmDel(dId,pId,nm){
-  document.getElementById('c-msg').textContent='Remove "'+nm+'"? This cannot be undone.';
+  document.getElementById('c-msg').textContent='Remove "'+nm+'"?';
   document.getElementById('c-ov').classList.add('open');
   document.getElementById('c-yes').onclick=function(){
-    D[dId]=D[dId].filter(function(x){return x.id!==pId;});
+    D[dId]=(D[dId]||[]).filter(function(x){return x.id!==pId;});
     document.getElementById('c-ov').classList.remove('open');
-    saveData();render();showToast('Process removed!');
+    saveData();renderCards();updateStats();if(activeDept)renderProc(activeDept);showToast('Removed!');
   };
 }
 function closeModal(){document.getElementById('m-ov').classList.remove('open');}
 
-/* ─── VIDEO MGMT ─── */
-var editVidId=null;
-function openVidModal(){
-  editVidId=null;
-  ['v-title','v-url','v-desc'].forEach(function(x){document.getElementById(x).value='';});
-  document.getElementById('v-cat').value='GST';
-  document.getElementById('v-ov').classList.add('open');
-}
-function editVid(vid){
-  var v=VIDEOS.find(function(x){return x.id===vid;});if(!v)return;
-  editVidId=vid;
-  document.getElementById('v-title').value=v.title||'';
-  document.getElementById('v-url').value=v.url||'';
-  document.getElementById('v-cat').value=v.cat||'GST';
-  document.getElementById('v-desc').value=v.desc||'';
-  document.getElementById('v-ov').classList.add('open');
-}
-function saveVid(){
-  var title=document.getElementById('v-title').value.trim();
-  var url=document.getElementById('v-url').value.trim();
-  if(!title){showToast('Video title is required!');return;}
-  var v={id:editVidId||uid(),title:title,url:url,cat:document.getElementById('v-cat').value,desc:document.getElementById('v-desc').value.trim()};
-  if(editVidId){var i=VIDEOS.findIndex(function(x){return x.id===editVidId;});if(i>-1)VIDEOS[i]=v;showToast('Video updated! ✅ Saved');}
-  else{VIDEOS.push(v);showToast('Video added! ✅ Saved');}
-  closeVidModal();saveData();render();
-}
-function removeVid(vid){VIDEOS=VIDEOS.filter(function(x){return x.id!==vid;});saveData();render();showToast('Video removed!');}
-function closeVidModal(){document.getElementById('v-ov').classList.remove('open');}
-
-/* ─── SEARCH ─── */
-function doSearch(q){
-  var qr=q.toLowerCase().trim();
-  document.getElementById('s-clear').classList.toggle('show',q.length>0);
-  var found=0;
-  document.querySelectorAll('[data-id]').forEach(function(r){
-    var show=!qr||r.textContent.toLowerCase().includes(qr);
-    r.style.display=show?'':'none';if(show)found++;
-  });
-  document.getElementById('s-term').textContent=q;
-  document.getElementById('no-res').classList.toggle('show',q.length>0&&found===0);
-}
-function clearSearch(){document.getElementById('s-in').value='';doSearch('');}
-
-/* ─── UTILS ─── */
-function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+/* ─── CLOCK ─── */
 function tick(){
   var n=new Date();
-  var d=document.getElementById('live-date');
-  if(d) d.textContent=n.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
-  var t=document.getElementById('live-time');
-  if(t) t.textContent=n.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-  var g=getGreeting();
-  var dg=document.getElementById('dash-greeting');
-  if(dg) dg.textContent=g.title;
+  var h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0'),s=String(n.getSeconds()).padStart(2,'0');
+  var rc=document.getElementById('rp-clock');if(rc)rc.textContent=h+':'+m+':'+s;
+  var lt=document.getElementById('live-time');if(lt)lt.textContent=h+':'+m;
+  var rd=document.getElementById('rp-date');if(rd)rd.textContent=n.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'short',year:'numeric'});
+  var ld=document.getElementById('live-time');
+  var g=getGreeting(loggedName);
+  var gh=document.getElementById('gh-title');if(gh)gh.textContent=g;
+  var tg=document.getElementById('tb-greeting');if(tg)tg.textContent=g;
 }
-function initApp(){buildTicker();tick();setInterval(tick,30000);loadData();}
+
+/* ─── TOAST ─── */
+function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+
+/* ─── INIT ─── */
+function initApp(){
+  var isAdmin=loggedRole==='admin';
+  var rb=document.getElementById('tb-role');
+  rb.textContent=isAdmin?'Admin':'User';rb.className='tb-role '+(isAdmin?'admin':'user');
+  var au=document.getElementById('adminUtil');if(au)au.style.display=isAdmin?'':'none';
+  var sba=document.getElementById('sb-add');if(sba)sba.style.display=isAdmin?'flex':'none';
+  var g=getGreeting(loggedName);
+  var gh=document.getElementById('gh-title');if(gh)gh.textContent=g;
+  var tg=document.getElementById('tb-greeting');if(tg)tg.textContent=g;
+  buildTicker();tick();setInterval(tick,1000);
+  /* Load from cloud then render */
+  var content=document.getElementById('dept-content')||document.getElementById('home-view');
+  if(content) content.innerHTML='<div style="text-align:center;padding:60px;color:#185FA5;font-size:15px;font-weight:700;">☁️ Cloud se load ho raha hai...</div>';
+  loadData(function(){
+    renderCards();updateStats();goHome();
+  });
+}
 </script>
 </body>
 </html>
