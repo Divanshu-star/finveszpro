@@ -65,7 +65,7 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .up{color:#5DCAA5;font-weight:700;}.dn{color:#F09595;font-weight:700;}
 
 /* ── LOGIN ── */
-#loginPage{display:none;min-height:100vh;background:#f0f4f8;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:24px;animation:fadeIn .5s ease;}
+#loginPage{display:none;min-height:100vh;width:100%;position:fixed;inset:0;background:#f0f4f8;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:24px;animation:fadeIn .5s ease;z-index:150;overflow-y:auto;}
 .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
 .logo-ring{position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center;}
 .logo-ring svg{position:absolute;inset:0;}
@@ -119,8 +119,25 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .tb-role{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap;}
 .tb-role.user{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
 .tb-role.admin{background:#eff6ff;color:#185FA5;border:1px solid #bfdbfe;}
+.tb-settings{background:linear-gradient(135deg,#185FA5,#1D9E75);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:15px;cursor:pointer;transition:all .15s;}
+.tb-settings:hover{opacity:.85;transform:rotate(45deg);}
 .tb-logout{background:transparent;border:1px solid #e4e2db;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;font-family:'Figtree',sans-serif;cursor:pointer;color:#888;transition:all .15s;}
 .tb-logout:hover{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
+/* Settings modal buttons */
+.set-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#f7f6f3;border:1px solid #e4e2db;border-radius:14px;padding:16px 10px;font-size:22px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .15s;text-align:center;}
+.set-btn span{font-size:11px;font-weight:700;color:#555;}
+.set-btn:hover{background:#eff6ff;border-color:#bfdbfe;transform:translateY(-2px);box-shadow:0 4px 12px rgba(24,95,165,.1);}
+.set-btn.danger:hover{background:#fef2f2;border-color:#fecaca;}
+/* Social links */
+.social-link{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;transition:background .15s;margin-bottom:4px;}
+.social-link:hover{background:#f5f9ff;}
+.social-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.social-name{font-size:12px;font-weight:700;color:#1a1a1a;}
+/* Notif delete */
+.notif-item{display:flex;gap:8px;padding:8px;border-bottom:1px solid #f7f6f3;cursor:pointer;transition:background .1s;border-radius:8px;align-items:flex-start;}
+.notif-item:hover{background:#fafaf8;}
+.notif-del{background:none;border:none;color:#ccc;cursor:pointer;font-size:13px;padding:0 2px;flex-shrink:0;transition:color .15s;}
+.notif-del:hover{color:#dc2626;}
 
 /* APP TICKER */
 .app-ticker{background:#185FA5;overflow:hidden;flex-shrink:0;position:relative;}
@@ -335,9 +352,78 @@ tr:hover .row-acts{opacity:1;}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a202c;color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:600;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap;}
 .toast.show{opacity:1;}
 
+/* ── PROCESS CARDS (horizontal) ── */
+.proc-cards-wrap{display:flex;flex-direction:column;gap:12px;padding:4px 0 40px;}
+.proc-card{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);animation:cardPop .3s ease both;transition:box-shadow .2s;}
+.proc-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);}
+.proc-card-top{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px;gap:12px;}
+.proc-card-left{flex:1;min-width:0;}
+.proc-card-name{font-size:14px;font-weight:800;color:#1a1a1a;margin-bottom:8px;}
+.proc-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.proc-chip{display:inline-flex;align-items:center;gap:4px;background:#f7f6f3;border:1px solid #e4e2db;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;color:#555;white-space:nowrap;}
+.proc-links{margin-top:4px;}
+.proc-card-acts{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
+.proc-empty{text-align:center;padding:48px;color:#ccc;font-size:13px;font-style:italic;}
+
+/* ── PHOTO BANNER ── */
+#photoBanner{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+#photoBanner.show{display:flex;}
+.pb-wrap{position:relative;max-width:580px;width:92%;}
+.pb-img{width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:pointer;display:block;max-height:78vh;object-fit:cover;}
+.pb-close{position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#fff;border:none;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3);font-weight:800;color:#333;z-index:1;}
+.pb-caption{font-size:13px;color:rgba(255,255,255,.8);text-align:center;max-width:380px;line-height:1.5;}
+.pb-insta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;text-decoration:none;}
+
+/* ── PHOTO MANAGE MODAL ── */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 22px;}
+.photo-thumb{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#f7f6f3;border:1px solid #e4e2db;}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-del{position:absolute;top:4px;right:4px;background:rgba(220,38,38,.9);color:#fff;border:none;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;cursor:pointer;}
+.photo-add-box{border:2px dashed #e4e2db;border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:26px;color:#ccc;transition:all .2s;}
+.photo-add-box:hover{border-color:#185FA5;color:#185FA5;background:#f5f9ff;}
+.photo-settings{padding:0 22px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-top:1px solid #f0ede6;padding-top:14px;}
+.photo-settings label{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.3px;}
+.photo-settings input{padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;width:90px;outline:none;}
+.photo-settings input:focus{border-color:#185FA5;}
+.photo-link-row{padding:0 22px 14px;display:flex;gap:10px;align-items:center;}
+.photo-link-row label{font-size:11px;font-weight:700;color:#555;white-space:nowrap;text-transform:uppercase;}
+.photo-link-row input{flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;outline:none;}
+.photo-link-row input:focus{border-color:#185FA5;}
+
+/* ── TRAINING VIDEOS ── */
+.vid-section{padding:20px 24px 40px;}
+.vid-section-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.vid-section-title{font-size:16px;font-weight:800;color:#1a1a1a;}
+.vid-add-btn{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;display:none;}
+.vid-add-btn.show{display:inline-flex;align-items:center;gap:6px;}
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.vid-card{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;text-decoration:none;display:block;}
+.vid-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12);}
+.vid-thumb{height:120px;display:flex;align-items:center;justify-content:center;position:relative;}
+.vid-play{width:44px;height:44px;background:rgba(255,255,255,.25);backdrop-filter:blur(4px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:2px solid rgba(255,255,255,.4);}
+.vid-info{padding:12px 14px;}
+.vid-cat{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.vid-title{font-size:13px;font-weight:700;color:#1a1a1a;line-height:1.4;margin-bottom:4px;}
+.vid-desc{font-size:11px;color:#888;line-height:1.4;}
+.vid-footer{padding:8px 14px 12px;display:flex;gap:6px;border-top:1px solid #f0ede6;}
+.vid-watch-btn{flex:1;background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border:none;border-radius:7px;padding:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:4px;}
+.vid-edit-btn{background:#eff6ff;color:#185FA5;border:1px solid #bfdbfe;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;display:none;}
+.vid-edit-btn.show{display:block;}
+.vid-del-btn{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;display:none;}
+.vid-del-btn.show{display:block;}
+
+/* ── NOTIFICATIONS (live) ── */
+.notif-badge{background:#dc2626;color:#fff;font-size:9px;font-weight:800;border-radius:10px;padding:1px 5px;margin-left:4px;display:none;}
+.notif-badge.show{display:inline;}
+.notif-empty{text-align:center;padding:16px;color:#ccc;font-size:12px;font-style:italic;}
+
+/* ── HEADER EDIT ── */
+.hdr-edit-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:7px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;margin-left:8px;}
+.hdr-modal{background:#fff;border-radius:18px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:mIn .22s ease both;}
+
 /* RESPONSIVE */
 @media(max-width:900px){.right-panel{display:none;}}
-@media(max-width:640px){.sidebar{display:none;}.dept-cards{grid-template-columns:1fr;}.tab-area{padding:16px;}.greeting-hero{padding:14px 16px;}}
+@media(max-width:640px){.sidebar{display:none;}.dept-cards{grid-template-columns:1fr;}.tab-area{padding:16px;}.greeting-hero{padding:14px 16px;}.vid-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}}
 </style>
 </head>
 <body>
@@ -372,17 +458,27 @@ tr:hover .row-acts{opacity:1;}
   </div>
   <div class="login-card">
     <div class="lc-greeting" id="lc-greeting">Good Morning! ☀️</div>
-    <div class="lc-sub" id="lc-sub">Sign in to access System Master</div>
+    <div class="lc-sub">Sign in to access System Master</div>
     <div class="role-toggle">
       <button class="rt-btn active" id="rtUser" onclick="setRole('user')">👤 User</button>
-      <button class="rt-btn" id="rtAdmin" onclick="setRole('admin')">⚙️ Admin</button>
+      <button class="rt-btn" id="rtAdmin" onclick="setRole('admin')">🛡️ Admin</button>
     </div>
-    <div class="lc-field"><label>Login ID</label><input id="loginId" type="text" placeholder="Enter your login ID" autocomplete="off"/></div>
-    <div class="lc-field"><label>Password</label>
-      <div class="pwd-wrap"><input id="password" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="togglePwd()">👁</button></div>
+    <!-- User fields -->
+    <div id="userFields">
+      <div class="lc-field"><label>Your Name</label><input id="userName" type="text" placeholder="Enter your name" autocomplete="off"/></div>
+      <div class="lc-field"><label>Password</label>
+        <div class="pwd-wrap"><input id="password" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="togglePwd()">👁</button></div>
+      </div>
+    </div>
+    <!-- Admin fields -->
+    <div id="adminFields" style="display:none">
+      <div class="lc-field"><label>Admin Password</label>
+        <div class="pwd-wrap"><input id="adminPassword" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="toggleAdminPwd()">👁</button></div>
+      </div>
     </div>
     <button class="lc-btn" onclick="handleLogin()">Sign In →</button>
-    <div class="lc-hint" id="lc-hint">User: Div_12 / 1234 &nbsp;·&nbsp; Admin: 1234 / 5678</div>
+    <!-- Support link -->
+    <a href="https://forms.gle/aDGAYHUC2kiwbmpq8" target="_blank" style="display:block;text-align:center;margin-top:12px;font-size:12px;color:#185FA5;text-decoration:none;font-weight:600;">❓ Need Help? Submit Support Ticket</a>
     <div class="lc-err" id="errMsg">❌ Invalid credentials. Please try again.</div>
   </div>
 </div>
@@ -402,9 +498,10 @@ tr:hover .row-acts{opacity:1;}
     <div class="tb-logo">FP</div>
     <div><div class="tb-name">Finveszprosolutionz</div><div class="tb-sub">System Master · Process Control Centre</div></div>
     <div class="tb-spacer"></div>
-    <div class="tb-greeting" id="tb-greeting">Good Morning, Divanshu!</div>
+    <div class="tb-greeting" id="tb-greeting">Good Morning!</div>
     <div class="tb-time" id="live-time">00:00</div>
     <div class="tb-role" id="tb-role">User</div>
+    <button class="tb-settings admin-only" id="tbSettings" style="display:none" onclick="openSettings()" title="Admin Settings">⚙️</button>
     <button class="tb-logout" onclick="doLogout()">→ Logout</button>
   </div>
 
@@ -431,10 +528,16 @@ tr:hover .row-acts{opacity:1;}
       <div class="sb-item" data-sec="trials" onclick="navTo('trials',this)" title="Trials & MIS">
         <div class="sb-ico">🔬</div><span class="sb-label">Trials</span>
       </div>
+      <div class="sb-item" data-sec="videos" onclick="navTo('videos',this)" title="Training Videos">
+        <div class="sb-ico">🎬</div><span class="sb-label">Videos</span>
+      </div>
       <div class="sb-divider"></div>
       <div class="sb-section">Quick</div>
       <div class="sb-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')" title="System Sheet">
         <div class="sb-ico">📊</div><span class="sb-label">System Sheet</span>
+      </div>
+      <div class="sb-item" onclick="window.open('https://forms.gle/aDGAYHUC2kiwbmpq8','_blank')" title="Support">
+        <div class="sb-ico">🎫</div><span class="sb-label">Support</span>
       </div>
       <div class="sb-item" id="sb-add" onclick="openAdd(null)" title="Add Process" style="display:none">
         <div class="sb-ico">➕</div><span class="sb-label">Add Process</span>
@@ -481,13 +584,20 @@ tr:hover .row-acts{opacity:1;}
               <input class="s-input" id="s-in" placeholder="Search process..." oninput="doSearch(this.value)"/>
             </div>
           </div>
-          <div class="tbl-wrap"><table>
-            <thead><tr>
-              <th>Process Name</th><th>P.C.</th><th>Problem Solver</th><th>Links</th>
-              <th class="admin-col" style="width:95px">Actions</th>
-            </tr></thead>
-            <tbody id="procTbody"></tbody>
-          </table></div>
+          <div id="procTbody"></div>
+        </div>
+
+        <!-- TRAINING VIDEOS VIEW -->
+        <div class="proc-view" id="viewVideos" style="display:none">
+          <div class="pv-header">
+            <button class="pv-back" onclick="goHome()">← Back</button>
+            <div class="pv-title">🎬 Training Videos</div>
+            <div style="flex:1"></div>
+            <button class="vid-add-btn" id="vidAddBtn" onclick="openVidModal()">＋ Add Video</button>
+          </div>
+          <div class="vid-section">
+            <div class="vid-grid" id="vidGrid"></div>
+          </div>
         </div>
 
       </div><!-- /tab-area -->
@@ -500,18 +610,23 @@ tr:hover .row-acts{opacity:1;}
       <div class="rp-section">
         <div class="clock-widget">
           <div class="cw-time" id="rp-clock">00:00:00</div>
-          <div class="cw-date" id="rp-date">Saturday, 18 Apr 2025</div>
+          <div class="cw-date" id="rp-date">Monday, 20 Apr 2026</div>
         </div>
       </div>
 
       <!-- Notifications -->
       <div class="rp-section">
-        <div class="rp-title">🔔 Notifications</div>
-        <div class="notif-item"><div class="notif-dot gold"></div><div><div class="notif-title">Delegation Sheet Updated</div><div class="notif-time">Divanshu · 2 hrs ago</div></div></div>
-        <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-title">Client Registration Submitted</div><div class="notif-time">Vani · 4 hrs ago</div></div></div>
-        <div class="notif-item"><div class="notif-dot red"></div><div><div class="notif-title">GSTR1 Checklist Pending</div><div class="notif-time">System · 6 hrs ago</div></div></div>
-        <div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-title">ITR FMS Completed</div><div class="notif-time">Snigdha · 1 day ago</div></div></div>
-        <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-title">Staff KYC Ready for Review</div><div class="notif-time">Vani · 1 day ago</div></div></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div class="rp-title" style="margin-bottom:0">🔔 Notifications <span class="notif-badge" id="notifBadge">0</span></div>
+          <button onclick="clearAllNotifs()" style="background:none;border:none;font-size:10px;color:#aaa;cursor:pointer;font-family:Figtree,sans-serif;font-weight:600;">Clear All</button>
+        </div>
+        <div id="notifList"><div class="notif-empty">No notifications yet</div></div>
+      </div>
+
+      <!-- Social Links (always visible) -->
+      <div class="rp-section" id="socialLinksPanel">
+        <div class="rp-title">🌐 Follow Us</div>
+        <div id="socialLinksList"></div>
       </div>
 
       <!-- Quick Links -->
@@ -525,9 +640,13 @@ tr:hover .row-acts{opacity:1;}
           <div class="ql-ico" style="background:#eff6ff">🏢</div>
           <div><div class="ql-name">Office Processes</div><div class="ql-sub" id="ql-off-cnt">— processes</div></div>
         </a>
-        <a class="ql-item" onclick="navTo('wealth',document.querySelector('[data-sec=wealth]'))">
-          <div class="ql-ico" style="background:#fefce8">💰</div>
-          <div><div class="ql-name">Wealth Advisors</div><div class="ql-sub" id="ql-wlt-cnt">— processes</div></div>
+        <a class="ql-item" onclick="navTo('videos',document.querySelector('[data-sec=videos]'))">
+          <div class="ql-ico" style="background:#fff7ed">🎬</div>
+          <div><div class="ql-name">Training Videos</div><div class="ql-sub">Watch & Learn</div></div>
+        </a>
+        <a class="ql-item" href="https://forms.gle/aDGAYHUC2kiwbmpq8" target="_blank">
+          <div class="ql-ico" style="background:#fef2f2">🎫</div>
+          <div><div class="ql-name">Support Ticket</div><div class="ql-sub">Submit a query or issue</div></div>
         </a>
       </div>
 
@@ -538,15 +657,6 @@ tr:hover .row-acts{opacity:1;}
         <div class="stat-mini"><span class="stat-mini-l">⚙️ Admin</span><span class="stat-mini-v" id="rp-admin">—</span></div>
         <div class="stat-mini"><span class="stat-mini-l">💰 Wealth</span><span class="stat-mini-v" id="rp-wealth">—</span></div>
         <div class="stat-mini"><span class="stat-mini-l">🔬 Trials</span><span class="stat-mini-v" id="rp-trials">—</span></div>
-      </div>
-
-      <!-- Admin Utility (admin only) -->
-      <div class="rp-section admin-only" style="display:none" id="adminUtil">
-        <div class="rp-title">🛡️ Admin Utility</div>
-        <button class="util-btn" onclick="openAdd(null)"><span class="util-ico">➕</span> Add New Process</button>
-        <button class="util-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')"><span class="util-ico">📊</span> Open System Sheet</button>
-        <button class="util-btn" onclick="exportData()"><span class="util-ico">📤</span> Export Data (JSON)</button>
-        <button class="util-btn danger" onclick="resetToDefault()"><span class="util-ico">↺</span> Reset All Data</button>
       </div>
 
     </div><!-- /right-panel -->
@@ -581,6 +691,127 @@ tr:hover .row-acts{opacity:1;}
 <!-- CONFIRM -->
 <div class="ov" id="c-ov" onclick="if(event.target===this)document.getElementById('c-ov').classList.remove('open')">
   <div class="conf"><div class="conf-ico">🗑️</div><h3>Remove Process?</h3><p id="c-msg"></p><div class="conf-btns"><button class="m-cancel" onclick="document.getElementById('c-ov').classList.remove('open')">Cancel</button><button class="btn-del" id="c-yes">Remove</button></div></div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="ov" id="v-ov" onclick="if(event.target===this)closeVidModal()">
+  <div class="modal">
+    <div class="m-hd"><h3 id="v-ttl">Add Training Video</h3><button class="m-x" onclick="closeVidModal()">✕</button></div>
+    <div class="fg"><label>Video Title *</label><input id="v-title" type="text" placeholder="e.g. GST Complete Training"/></div>
+    <div class="fg"><label>Category</label>
+      <select id="v-cat">
+        <option value="GST">GST</option><option value="ITR">ITR</option><option value="TDS">TDS</option>
+        <option value="CRM">CRM</option><option value="Admin">Admin</option><option value="Wealth">Wealth Advisory</option><option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="fg"><label>Video URL (YouTube / Drive / Google Site) *</label><input id="v-url" type="url" placeholder="https://..."/></div>
+    <div class="fg"><label>Short Description</label><input id="v-desc" type="text" placeholder="e.g. GSTR-1, GST-3B complete process"/></div>
+    <div class="m-btns"><button class="m-cancel" onclick="closeVidModal()">Cancel</button><button class="m-save" onclick="saveVid()">Save Video</button></div>
+  </div>
+</div>
+
+<!-- VIDEO DELETE CONFIRM -->
+<div class="ov" id="vd-ov" onclick="if(event.target===this)document.getElementById('vd-ov').classList.remove('open')">
+  <div class="conf"><div class="conf-ico">🗑️</div><h3>Remove Video?</h3><p>Yeh video hat jayega.</p><div class="conf-btns"><button class="m-cancel" onclick="document.getElementById('vd-ov').classList.remove('open')">Cancel</button><button class="btn-del" id="vd-yes">Remove</button></div></div>
+</div>
+
+<!-- HEADER EDIT MODAL -->
+<div class="ov" id="h-ov" onclick="if(event.target===this)closeHeaderModal()">
+  <div class="modal hdr-modal">
+    <div class="m-hd"><h3>✏️ Edit Header & Ticker</h3><button class="m-x" onclick="closeHeaderModal()">✕</button></div>
+    <div class="fg"><label>Company Name (Topbar)</label><input id="h-name" type="text" placeholder="Finveszprosolutionz"/></div>
+    <div class="fg"><label>Topbar Subtitle</label><input id="h-sub" type="text" placeholder="System Master · Process Control Centre"/></div>
+    <div class="fg"><label>Hero Subtitle (small text under greeting)</label><input id="h-hero" type="text" placeholder="Internal Operations Directory · System Master · Confidential"/></div>
+    <div class="fg" style="padding-bottom:16px"><label>Ticker Messages (comma separated)</label><textarea id="h-ticker" rows="4" style="width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:Figtree,sans-serif;outline:none;resize:vertical;" placeholder="Daily Checklist — Stay on track, GST Returns — Filed on time, ..."></textarea></div>
+    <div class="m-btns"><button class="m-cancel" onclick="closeHeaderModal()">Cancel</button><button class="m-save" onclick="saveHeaderEdit()">Save Changes</button></div>
+  </div>
+</div>
+
+<!-- NOTIFICATION SEND MODAL -->
+<div class="ov" id="n-ov" onclick="if(event.target===this)closeNotifModal()">
+  <div class="modal hdr-modal">
+    <div class="m-hd"><h3>🔔 Send Notification to Users</h3><button class="m-x" onclick="closeNotifModal()">✕</button></div>
+    <div class="fg"><label>Notification Title *</label><input id="n-title" type="text" placeholder="e.g. GSTR-1 process updated"/></div>
+    <div class="fg"><label>Sent By</label><input id="n-by" type="text" placeholder="e.g. Divanshu"/></div>
+    <div class="fg"><label>Type</label>
+      <select id="n-type"><option value="blue">🔵 Info</option><option value="green">🟢 Success</option><option value="gold">🟡 Warning</option><option value="red">🔴 Alert</option></select>
+    </div>
+    <div class="m-btns" style="padding-bottom:18px"><button class="m-cancel" onclick="closeNotifModal()">Cancel</button><button class="m-save" onclick="sendNotif()">Send Now</button></div>
+  </div>
+</div>
+
+<!-- PHOTO BANNER OVERLAY -->
+<div id="photoBanner">
+  <div class="pb-wrap">
+    <button class="pb-close" onclick="closeBanner()">✕</button>
+    <img class="pb-img" id="pbImg" src="" alt="" onclick="bannerClick()"/>
+  </div>
+  <div id="pbSocialBtns" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:380px;"></div>
+</div>
+
+<!-- PHOTO MANAGE MODAL (Admin) -->
+<div class="ov" id="ph-ov" onclick="if(event.target===this)closePhotoModal()">
+  <div class="modal" style="max-width:520px;max-height:90vh;overflow-y:auto;">
+    <div class="m-hd"><h3>📸 Manage Banners & Social Links</h3><button class="m-x" onclick="closePhotoModal()">✕</button></div>
+    <div class="photo-grid" id="photoGrid"></div>
+    <div style="padding:0 22px 10px;border-top:1px solid #f0ede6;padding-top:14px;">
+      <div style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Social Links (click karne par kahan jaye)</div>
+      <div class="photo-link-row"><span style="font-size:18px">📸</span><label>Instagram</label><input id="ph-insta" type="url" placeholder="https://instagram.com/..."/></div>
+      <div class="photo-link-row"><span style="font-size:18px">📘</span><label>Facebook</label><input id="ph-fb" type="url" placeholder="https://facebook.com/..."/></div>
+      <div class="photo-link-row"><span style="font-size:18px">▶️</span><label>YouTube</label><input id="ph-yt" type="url" placeholder="https://youtube.com/..."/></div>
+      <div class="photo-link-row"><span style="font-size:18px">✈️</span><label>Telegram</label><input id="ph-tg" type="url" placeholder="https://t.me/..."/></div>
+      <div class="photo-link-row"><span style="font-size:18px">💬</span><label>WhatsApp</label><input id="ph-wa" type="url" placeholder="https://wa.me/..."/></div>
+    </div>
+    <div class="photo-settings" style="border-top:1px solid #f0ede6;">
+      <label>Auto-show every</label>
+      <input id="ph-interval" type="number" value="30" min="1" max="120"/>
+      <label>minutes</label>
+    </div>
+    <div class="m-btns"><button class="m-cancel" onclick="closePhotoModal()">Cancel</button><button class="m-save" onclick="savePhotoSettings()">Save Settings</button></div>
+  </div>
+</div>
+
+<!-- PASSWORD CHANGE MODAL -->
+<div class="ov" id="pwd-ov" onclick="if(event.target===this)closePwdModal()">
+  <div class="modal" style="max-width:440px;">
+    <div class="m-hd"><h3>🔑 Change Passwords</h3><button class="m-x" onclick="closePwdModal()">✕</button></div>
+    <div style="padding:14px 22px 0;">
+      <div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">👤 User Password</div>
+      <div class="fg" style="padding:0 0 12px;"><label>New User Password</label><input id="pwd-user" type="password" placeholder="New password for users"/></div>
+    </div>
+    <div style="padding:0 22px 0;border-top:1px solid #f0ede6;padding-top:14px;">
+      <div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">🛡️ Admin Password</div>
+      <div class="fg" style="padding:0 0 12px;"><label>New Admin Password</label><input id="pwd-admin" type="password" placeholder="New password for admin"/></div>
+      <div class="fg" style="padding:0 0 16px;"><label>Confirm Admin Password</label><input id="pwd-admin2" type="password" placeholder="Confirm new admin password"/></div>
+    </div>
+    <div class="m-btns"><button class="m-cancel" onclick="closePwdModal()">Cancel</button><button class="m-save" onclick="savePwds()">Update Passwords</button></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL (Admin) -->
+<div class="ov" id="settings-ov" onclick="if(event.target===this)closeSettings()">
+  <div class="modal" style="max-width:520px;max-height:92vh;overflow-y:auto;">
+    <div class="m-hd" style="background:linear-gradient(135deg,#042C53,#185FA5);border-radius:18px 18px 0 0;">
+      <h3 style="color:#fff;font-size:17px;">⚙️ Admin Settings</h3>
+      <button class="m-x" onclick="closeSettings()" style="color:#fff;background:rgba(255,255,255,.15);">✕</button>
+    </div>
+    <!-- Settings grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 18px 8px;">
+      <button class="set-btn" onclick="closeSettings();openAdd(null)">➕<span>Add Process</span></button>
+      <button class="set-btn" onclick="closeSettings();openVidModal()">🎬<span>Add Video</span></button>
+      <button class="set-btn" onclick="closeSettings();openHeaderEdit()">✏️<span>Edit Header</span></button>
+      <button class="set-btn" onclick="closeSettings();openNotifSend()">🔔<span>Send Notif</span></button>
+      <button class="set-btn" onclick="closeSettings();openPhotoModal()">📸<span>Banners</span></button>
+      <button class="set-btn" onclick="closeSettings();openPwdChange()">🔑<span>Passwords</span></button>
+      <button class="set-btn" onclick="window.open('https://forms.gle/aDGAYHUC2kiwbmpq8','_blank')">🎫<span>Support Tickets</span></button>
+      <button class="set-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')">📊<span>System Sheet</span></button>
+      <button class="set-btn" onclick="exportData();closeSettings()">📤<span>Export Data</span></button>
+      <button class="set-btn danger" onclick="closeSettings();resetToDefault()">↺<span>Reset Data</span></button>
+    </div>
+    <div style="padding:8px 18px 18px;text-align:center;">
+      <button class="m-cancel" onclick="closeSettings()" style="width:100%;">Close</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -629,45 +860,94 @@ function getGreeting(name){
 })();
 
 /* ─── ROLE/LOGIN ─── */
-var currentRole='user',loggedRole='user',loggedName='Divanshu';
-var CREDS={user:{id:'Div_12',pw:'1234',name:'Divanshu'},admin:{id:'1234',pw:'5678',name:'Admin'}};
+var currentRole='user',loggedRole='user',loggedName='User';
+var PASSWORDS={user:'1234',admin:'1234'};
+
 function setRole(r){
   currentRole=r;
   document.getElementById('rtUser').classList.toggle('active',r==='user');
   document.getElementById('rtAdmin').classList.toggle('active',r==='admin');
-  document.getElementById('loginId').value='';document.getElementById('password').value='';
+  document.getElementById('userFields').style.display=r==='user'?'':'none';
+  document.getElementById('adminFields').style.display=r==='admin'?'':'none';
   document.getElementById('errMsg').classList.remove('show');
-  document.getElementById('lc-hint').textContent=r==='user'?'User: Div_12 / 1234':'Admin: 1234 / 5678';
+  if(r==='user'){document.getElementById('userName').value='';document.getElementById('password').value='';}
+  else document.getElementById('adminPassword').value='';
 }
 function togglePwd(){var i=document.getElementById('password');i.type=i.type==='password'?'text':'password';}
+function toggleAdminPwd(){var i=document.getElementById('adminPassword');i.type=i.type==='password'?'text':'password';}
+
 function handleLogin(){
-  var id=document.getElementById('loginId').value.trim();
-  var pw=document.getElementById('password').value;
-  var c=CREDS[currentRole];
-  if(id===c.id&&pw===c.pw){
-    loggedRole=currentRole;loggedName=c.name;
-    document.getElementById('loginPage').style.display='none';
-    var ov=document.getElementById('successOverlay');ov.style.display='flex';
-    document.getElementById('suc-sub').textContent=getGreeting(c.name);
-    setTimeout(function(){ov.style.display='none';document.getElementById('appPage').classList.add('show');initApp();},1300);
-  }else{
-    document.getElementById('errMsg').classList.remove('show');
-    void document.getElementById('errMsg').offsetWidth;
-    document.getElementById('errMsg').classList.add('show');
-    document.getElementById('password').value='';
+  var err=document.getElementById('errMsg');
+  err.classList.remove('show');
+  if(currentRole==='user'){
+    var name=document.getElementById('userName').value.trim();
+    var pw=document.getElementById('password').value;
+    if(!name){showErr('Please enter your name!');return;}
+    if(pw!==PASSWORDS.user){showErr('Wrong password!');return;}
+    loggedRole='user';loggedName=name;
+  } else {
+    var apw=document.getElementById('adminPassword').value;
+    if(apw!==PASSWORDS.admin){showErr('Wrong admin password!');return;}
+    loggedRole='admin';loggedName='Admin';
   }
+  document.getElementById('loginPage').style.display='none';
+  var ov=document.getElementById('successOverlay');ov.style.display='flex';
+  document.getElementById('suc-sub').textContent=getGreeting(loggedName);
+  /* Notify admin that user logged in */
+  if(loggedRole==='user'){
+    addNotif(loggedName+' logged into System Master',loggedName,'blue');
+  }
+  setTimeout(function(){
+    ov.style.display='none';
+    document.getElementById('appPage').classList.add('show');
+    initApp();
+  },1300);
+}
+function showErr(msg){
+  var e=document.getElementById('errMsg');e.textContent='❌ '+msg;
+  void e.offsetWidth;e.classList.add('show');
 }
 function doLogout(){
   document.getElementById('appPage').classList.remove('show');
+  /* Do NOT clear pbAutoTimer — banner keeps running across sessions */
   var lp=document.getElementById('loginPage');lp.style.display='flex';
-  document.getElementById('loginId').value='';document.getElementById('password').value='';
+  document.getElementById('userName')&&(document.getElementById('userName').value='');
+  document.getElementById('password').value='';
+  document.getElementById('adminPassword').value='';
   document.getElementById('errMsg').classList.remove('show');
-  setRole('user');document.getElementById('lc-greeting').textContent=getGreeting('Divanshu');
+  setRole('user');
+  document.getElementById('lc-greeting').textContent=getGreeting('');
   showToast('Logged out successfully');
 }
 document.addEventListener('keydown',function(e){
-  if(e.key==='Enter'){var a=document.activeElement;if(a.id==='loginId')document.getElementById('password').focus();else if(a.id==='password')handleLogin();}
+  if(e.key==='Enter'){
+    var a=document.activeElement;
+    if(a.id==='userName') document.getElementById('password').focus();
+    else if(a.id==='password'||a.id==='adminPassword') handleLogin();
+  }
 });
+
+/* ─── PASSWORD CHANGE ─── */
+function openPwdChange(){
+  document.getElementById('pwd-user').value='';
+  document.getElementById('pwd-admin').value='';
+  document.getElementById('pwd-admin2').value='';
+  document.getElementById('pwd-ov').classList.add('open');
+}
+function closePwdModal(){document.getElementById('pwd-ov').classList.remove('open');}
+function savePwds(){
+  var pu=document.getElementById('pwd-user').value.trim();
+  var pa=document.getElementById('pwd-admin').value.trim();
+  var pa2=document.getElementById('pwd-admin2').value.trim();
+  if(!pu&&!pa){showToast('❌ Koi bhi password daalo!');return;}
+  if(pa&&pa!==pa2){showToast('❌ Admin passwords match nahi karte!');return;}
+  if(pu) PASSWORDS.user=pu;
+  if(pa) PASSWORDS.admin=pa;
+  /* Use saveData silently so password toast shows properly */
+  saveData(true);
+  closePwdModal();
+  showToast('✅ Password update ho gaya!');
+}
 
 /* ─── TICKER ─── */
 var TICKS=['Daily Checklist — Stay on track','Delegation Sheet — Clear tasks','GST Returns — Filed on time','Wealth Advisory — Growing wealth','MIS Reports — Data decisions','Client Master — All clients','TDS Returns — Accurate filing','Staff Onboarding — Smooth flow','Incentive Calculator — Rewarding','Order to Billing — Seamless','Risk Profiling — Know your client','Fixed Assets — Always tracked','CRM FMS — Relationships organized','Finveszprosolutionz — You Prosper'];
@@ -685,42 +965,41 @@ var DEPTS=[
 ];
 var eId=null,eDept=null,activeDept=null;
 function uid(){return'_'+Math.random().toString(36).slice(2,9);}
+var LS_KEY='finveszpro_v3';
 /* ─── JSONBIN CLOUD SYNC ─── */
 var BIN_ID='69e22b9caaba8821970c8fb3';
 var JKEY='$2a$10$JPGIIjtZKmCFrDEi1bChcenfJ5wmsOrkQivFdeHVxHSTykY111ZhW';
 var BIN_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
 
-function saveData(){
-  fetch(BIN_URL,{
-    method:'PUT',
-    headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Versioning':'false'},
-    body:JSON.stringify(D)
-  }).then(function(){showToast('✅ Cloud mein save ho gaya!');})
-  .catch(function(){
-    try{localStorage.setItem('finveszpro_v3_bk',JSON.stringify(D));}catch(e){}
-    showToast('⚠️ Cloud save failed!');
-  });
+function saveData(silent){
+  var payload={processes:D,videos:VIDEOS,notifications:NOTIFS,header:HEADER,photos:PHOTOS,passwords:PASSWORDS};
+  fetch(BIN_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Versioning':'false'},body:JSON.stringify(payload)})
+  .then(function(){if(!silent)showToast('✅ Cloud mein save ho gaya!');})
+  .catch(function(){try{localStorage.setItem(LS_KEY,JSON.stringify(payload));}catch(e){}if(!silent)showToast('⚠️ Cloud save failed!');});
 }
 
 function loadData(cb){
   fetch(BIN_URL+'/latest',{headers:{'X-Master-Key':JKEY}})
   .then(function(r){return r.json();})
   .then(function(data){
-    if(data&&data.record&&typeof data.record==='object'&&data.record.office){
-      D=data.record;
-    }
+    var rec=data.record;
+    if(rec&&rec.processes) D=rec.processes;
+    if(rec&&rec.videos) VIDEOS=rec.videos;
+    if(rec&&rec.notifications) NOTIFS=rec.notifications;
+    if(rec&&rec.header) HEADER=rec.header;
+    if(rec&&rec.photos) PHOTOS=rec.photos;
+    if(rec&&rec.passwords) PASSWORDS=rec.passwords;
     if(cb) cb();
   })
   .catch(function(){
-    try{var bk=localStorage.getItem('finveszpro_v3_bk');if(bk)D=JSON.parse(bk);}catch(e){}
+    try{var bk=localStorage.getItem(LS_KEY);if(bk){var b=JSON.parse(bk);if(b.processes)D=b.processes;if(b.videos)VIDEOS=b.videos;if(b.notifications)NOTIFS=b.notifications;if(b.header)HEADER=b.header;if(b.photos)PHOTOS=b.photos;if(b.passwords)PASSWORDS=b.passwords;}}catch(e){}
     if(cb) cb();
-    showToast('⚠️ Cloud load failed, local data use ho raha hai');
   });
 }
 
 function resetToDefault(){
   if(!confirm('Reset sab data? Sab links hat jayenge.'))return;
-  var empty={office:[],admin:[],wealth:[],trials:[]};
+  var empty={processes:{office:[],admin:[],wealth:[],trials:[]},videos:[],notifications:[],header:{name:'Finveszprosolutionz',sub:'System Master · Process Control Centre',hero:'Internal Operations Directory · System Master · Confidential',ticker:''}};
   fetch(BIN_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Versioning':'false'},body:JSON.stringify(empty)})
   .then(function(){location.reload();}).catch(function(){showToast('Reset failed!');});
 }
@@ -765,28 +1044,289 @@ var D={
     {id:uid(),n:'Office Reports',                 pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
 };
-/* loadData called in initApp with callback */
+
+/* ─── VIDEOS DATA ─── */
+var VIDEOS=[
+  {id:uid(),title:'GST - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/gst-complete-training-module',cat:'GST',desc:'GSTR-1, GST-3B, GSTR-9 complete process'},
+  {id:uid(),title:'TDS - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/tds-complete-training-module',cat:'TDS',desc:'TDS returns, filing & compliance'},
+  {id:uid(),title:'ITR - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/itr-complete-training-module',cat:'ITR',desc:'Income tax return complete filing'},
+  {id:uid(),title:'CRM - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/crm-complete-training-module',cat:'CRM',desc:'CRM entry, client management'},
+  {id:uid(),title:'Mutual Funds - Complete Training',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/mutual-funds-complete-training-module',cat:'Wealth',desc:'Mutual funds, client investments & risk profiling'},
+  {id:uid(),title:'Delegation Sheet Workflow',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/delegation-sheet-workflow',cat:'Admin',desc:'How to use the delegation sheet'},
+  {id:uid(),title:'Checklist Workflow Process',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/checklist-workflow-process',cat:'Admin',desc:'Daily & operational checklist process'},
+  {id:uid(),title:'Staff Recruitment & Onboarding',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/staff-recruitment-onboarding-module',cat:'Admin',desc:'Recruitment, KYC & staff onboarding'},
+  {id:uid(),title:'Incentive Calculator Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/incentive-calculator-training-module',cat:'Wealth',desc:'Incentive calculator usage & workflow'},
+  {id:uid(),title:'General Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/general-module',cat:'Other',desc:'General processes & miscellaneous'},
+];
+var NOTIFS=[];
+var HEADER={name:'Finveszprosolutionz',sub:'System Master · Process Control Centre',hero:'Internal Operations Directory · System Master · Confidential',ticker:''};
+
+/* ─── VIDEO FUNCTIONS ─── */
+var eVidId=null;
+var VID_CATS={GST:'#185FA5',ITR:'#15803d',TDS:'#b45309',CRM:'#6d28d9',Admin:'#374151',Wealth:'#a16207',Other:'#6b6b6b'};
+function openVidModal(id){
+  eVidId=id||null;
+  var v=id?VIDEOS.find(function(x){return x.id===id;}):null;
+  document.getElementById('v-ttl').textContent=id?'Edit Training Video':'Add Training Video';
+  document.getElementById('v-title').value=v?v.title:'';
+  document.getElementById('v-url').value=v?v.url:'';
+  document.getElementById('v-cat').value=v?v.cat:'GST';
+  document.getElementById('v-desc').value=v?v.desc:'';
+  document.getElementById('v-ov').classList.add('open');
+}
+function closeVidModal(){document.getElementById('v-ov').classList.remove('open');}
+function saveVid(){
+  var title=document.getElementById('v-title').value.trim();
+  if(!title){showToast('Video title zaroori hai!');return;}
+  var v={id:eVidId||uid(),title:title,url:document.getElementById('v-url').value.trim(),cat:document.getElementById('v-cat').value,desc:document.getElementById('v-desc').value.trim()};
+  if(eVidId){var i=VIDEOS.findIndex(function(x){return x.id===eVidId;});if(i>-1)VIDEOS[i]=v;}
+  else VIDEOS.push(v);
+  closeVidModal();saveData(true);renderVideos();
+  if(loggedRole==='admin') addNotif((eVidId?'Video Updated: ':'Video Added: ')+title,'Admin','blue');
+}
+function renderVideos(){
+  var isAdmin=loggedRole==='admin';
+  var btn=document.getElementById('vidAddBtn');if(btn)btn.className='vid-add-btn'+(isAdmin?' show':'');
+  var grid=document.getElementById('vidGrid');if(!grid)return;
+  if(VIDEOS.length===0){grid.innerHTML='<div style="text-align:center;padding:40px;color:#ccc;font-size:13px;">No videos yet</div>';return;}
+  grid.innerHTML=VIDEOS.map(function(v){
+    var color=VID_CATS[v.cat]||'#185FA5';
+    return '<div class="vid-card">'+
+      '<div class="vid-thumb" style="background:linear-gradient(135deg,'+color+',#1D9E75)"><div class="vid-play">▶</div></div>'+
+      '<div class="vid-info"><div class="vid-cat" style="color:'+color+'">'+v.cat+'</div>'+
+      '<div class="vid-title">'+v.title+'</div><div class="vid-desc">'+v.desc+'</div></div>'+
+      '<div class="vid-footer">'+
+      '<a class="vid-watch-btn" href="'+(v.url||'#')+'" target="_blank">▶ Watch Now</a>'+
+      (isAdmin?'<button class="vid-edit-btn show" onclick="openVidModal(\''+v.id+'\')">Edit</button>':'')+
+      (isAdmin?'<button class="vid-del-btn show" onclick="confirmDelVid(\''+v.id+'\')">Del</button>':'')+
+      '</div></div>';
+  }).join('');
+}
+function confirmDelVid(id){
+  document.getElementById('vd-ov').classList.add('open');
+  document.getElementById('vd-yes').onclick=function(){
+    VIDEOS=VIDEOS.filter(function(x){return x.id!==id;});
+    document.getElementById('vd-ov').classList.remove('open');
+    saveData(true);renderVideos();showToast('Video removed!');
+  };
+}
+
+/* ─── NOTIFICATION FUNCTIONS ─── */
+function addNotif(title,by,type){
+  NOTIFS.unshift({id:uid(),title:title,by:by||'Admin',type:type||'blue',time:new Date().toISOString()});
+  if(NOTIFS.length>20) NOTIFS=NOTIFS.slice(0,20);
+  renderNotifs();saveData(true);
+}
+function renderNotifs(){
+  var list=document.getElementById('notifList');if(!list)return;
+  var badge=document.getElementById('notifBadge');
+  if(NOTIFS.length===0){list.innerHTML='<div class="notif-empty">No notifications yet</div>';if(badge)badge.className='notif-badge';return;}
+  if(badge){badge.textContent=NOTIFS.length;badge.className='notif-badge show';}
+  list.innerHTML=NOTIFS.slice(0,8).map(function(n){
+    var ago=Math.floor((Date.now()-new Date(n.time))/60000);
+    var agoStr=ago<1?'just now':ago<60?ago+' min ago':Math.floor(ago/60)+' hr ago';
+    return '<div class="notif-item">'+
+      '<div class="notif-dot '+n.type+'" style="margin-top:4px;flex-shrink:0"></div>'+
+      '<div style="flex:1"><div class="notif-title">'+n.title+'</div><div class="notif-time">'+n.by+' · '+agoStr+'</div></div>'+
+      '<button class="notif-del" onclick="deleteNotif(\''+n.id+'\')" title="Delete">✕</button>'+
+    '</div>';
+  }).join('');
+}
+function deleteNotif(id){
+  NOTIFS=NOTIFS.filter(function(n){return n.id!==id;});
+  renderNotifs();saveData(true);
+}
+function clearAllNotifs(){
+  if(NOTIFS.length===0) return;
+  NOTIFS=[];renderNotifs();saveData();showToast('Notifications cleared!');
+}
+function renderSocialLinks(){
+  var panel=document.getElementById('socialLinksPanel');
+  var list=document.getElementById('socialLinksList');
+  if(!list) return;
+  var socials=[
+    {key:'insta',ico:'📸',label:'Instagram',bg:'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)',color:'#833ab4'},
+    {key:'fb',ico:'📘',label:'Facebook',bg:'#1877f2',color:'#1877f2'},
+    {key:'yt',ico:'▶️',label:'YouTube',bg:'#ff0000',color:'#ff0000'},
+    {key:'tg',ico:'✈️',label:'Telegram',bg:'#0088cc',color:'#0088cc'},
+    {key:'wa',ico:'💬',label:'WhatsApp',bg:'#25d366',color:'#25d366'},
+  ];
+  var html='';
+  socials.forEach(function(s){
+    if(PHOTOS[s.key]){
+      html+='<a class="social-link" href="'+PHOTOS[s.key]+'" target="_blank">'+
+        '<div class="social-ico" style="background:'+s.bg+'">'+s.ico+'</div>'+
+        '<div class="social-name" style="color:'+s.color+'">'+s.label+'</div>'+
+      '</a>';
+    }
+  });
+  if(html){list.innerHTML=html;panel.style.display='';}
+  else panel.style.display='none';
+}
+
+/* ─── SETTINGS MODAL ─── */
+function openSettings(){document.getElementById('settings-ov').classList.add('open');}
+function closeSettings(){document.getElementById('settings-ov').classList.remove('open');}
+
+function openNotifSend(){document.getElementById('n-title').value='';document.getElementById('n-by').value=loggedName;document.getElementById('n-ov').classList.add('open');}
+function closeNotifModal(){document.getElementById('n-ov').classList.remove('open');}
+function sendNotif(){
+  var title=document.getElementById('n-title').value.trim();
+  if(!title){showToast('Title zaroori hai!');return;}
+  addNotif(title,document.getElementById('n-by').value||loggedName,document.getElementById('n-type').value);
+  closeNotifModal();showToast('✅ Notification sent!');
+}
+
+/* ─── HEADER EDIT FUNCTIONS ─── */
+function openHeaderEdit(){
+  document.getElementById('h-name').value=HEADER.name;
+  document.getElementById('h-sub').value=HEADER.sub;
+  document.getElementById('h-hero').value=HEADER.hero;
+  document.getElementById('h-ticker').value=HEADER.ticker||TICKS.join(', ');
+  document.getElementById('h-ov').classList.add('open');
+}
+function closeHeaderModal(){document.getElementById('h-ov').classList.remove('open');}
+function saveHeaderEdit(){
+  HEADER.name=document.getElementById('h-name').value.trim()||'Finveszprosolutionz';
+  HEADER.sub=document.getElementById('h-sub').value.trim()||'System Master · Process Control Centre';
+  HEADER.hero=document.getElementById('h-hero').value.trim()||'Internal Operations Directory';
+  HEADER.ticker=document.getElementById('h-ticker').value.trim();
+  applyHeader();closeHeaderModal();saveData(true);showToast('✅ Header updated!');
+}
+function applyHeader(){
+  var nm=document.querySelector('.tb-name');if(nm)nm.textContent=HEADER.name;
+  var sb=document.querySelector('.tb-sub');if(sb)sb.textContent=HEADER.sub;
+  var hs=document.querySelector('.gh-sub');if(hs)hs.textContent=HEADER.hero;
+  if(HEADER.ticker){TICKS=HEADER.ticker.split(',').map(function(t){return t.trim();}).filter(Boolean);buildTicker();}
+}
+
+/* ─── PHOTO BANNER SYSTEM ─── */
+var PHOTOS={imgs:[],insta:'',fb:'',yt:'',tg:'',wa:'',interval:30};
+var pbAutoTimer=null;
+
+function loadPhotos(){
+  /* called externally if needed — now handled by startBannerCycle */
+  if(PHOTOS.imgs&&PHOTOS.imgs.length>0) startBannerCycle();
+}
+function startBannerCycle(){
+  /* Only start if not already running */
+  if(pbAutoTimer) return;
+  var ms=(parseInt(PHOTOS.interval)||30)*60*1000;
+  pbAutoTimer=setInterval(function(){
+    if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner();
+  },ms);
+}
+
+function showBanner(){
+  if(!PHOTOS.imgs||PHOTOS.imgs.length===0) return;
+  var idx=parseInt(localStorage.getItem('fpb_idx')||'0');
+  if(isNaN(idx)||idx>=PHOTOS.imgs.length) idx=0;
+  var img=PHOTOS.imgs[idx];
+  localStorage.setItem('fpb_idx',String(idx+1>=PHOTOS.imgs.length?0:idx+1));
+  document.getElementById('pbImg').src=img;
+  /* Build social buttons */
+  var btns='';
+  var socials=[
+    {key:'insta',ico:'📸',label:'Instagram',bg:'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)'},
+    {key:'fb',ico:'📘',label:'Facebook',bg:'#1877f2'},
+    {key:'yt',ico:'▶️',label:'YouTube',bg:'#ff0000'},
+    {key:'tg',ico:'✈️',label:'Telegram',bg:'#0088cc'},
+    {key:'wa',ico:'💬',label:'WhatsApp',bg:'#25d366'},
+  ];
+  socials.forEach(function(s){
+    var url=PHOTOS[s.key];
+    if(url) btns+='<a href="'+url+'" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:'+s.bg+';color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:Figtree,sans-serif;text-decoration:none;">'+s.ico+' '+s.label+'</a>';
+  });
+  document.getElementById('pbSocialBtns').innerHTML=btns;
+  document.getElementById('photoBanner').classList.add('show');
+}
+function closeBanner(){document.getElementById('photoBanner').classList.remove('show');}
+function bannerClick(){
+  var firstLink=PHOTOS.insta||PHOTOS.fb||PHOTOS.yt||PHOTOS.tg||PHOTOS.wa;
+  if(firstLink) window.open(firstLink,'_blank');
+  closeBanner();
+}
+
+/* Admin Photo Modal */
+function openPhotoModal(){
+  document.getElementById('ph-insta').value=PHOTOS.insta||'';
+  document.getElementById('ph-fb').value=PHOTOS.fb||'';
+  document.getElementById('ph-yt').value=PHOTOS.yt||'';
+  document.getElementById('ph-tg').value=PHOTOS.tg||'';
+  document.getElementById('ph-wa').value=PHOTOS.wa||'';
+  document.getElementById('ph-interval').value=PHOTOS.interval||30;
+  renderPhotoGrid();
+  document.getElementById('ph-ov').classList.add('open');
+}
+function closePhotoModal(){document.getElementById('ph-ov').classList.remove('open');}
+function renderPhotoGrid(){
+  var grid=document.getElementById('photoGrid');
+  var html='';
+  (PHOTOS.imgs||[]).forEach(function(img,i){
+    html+='<div class="photo-thumb"><img src="'+img+'"/><button class="photo-del" onclick="deletePhoto('+i+')">✕</button></div>';
+  });
+  html+='<label class="photo-add-box" for="photoUpload"><div>📷</div><div style="font-size:10px;margin-top:4px">Add Photo</div></label>';
+  html+='<input type="file" id="photoUpload" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(this)"/>';
+  grid.innerHTML=html;
+}
+function handlePhotoUpload(input){
+  var files=Array.from(input.files),remaining=files.length;
+  files.forEach(function(file){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      if(!PHOTOS.imgs) PHOTOS.imgs=[];
+      PHOTOS.imgs.push(e.target.result);
+      remaining--;
+      if(remaining===0){renderPhotoGrid();showToast('✅ '+files.length+' photo(s) added!');}
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function deletePhoto(i){PHOTOS.imgs.splice(i,1);renderPhotoGrid();showToast('Photo removed!');}
+function savePhotoSettings(){
+  PHOTOS.insta=document.getElementById('ph-insta').value.trim();
+  PHOTOS.fb=document.getElementById('ph-fb').value.trim();
+  PHOTOS.yt=document.getElementById('ph-yt').value.trim();
+  PHOTOS.tg=document.getElementById('ph-tg').value.trim();
+  PHOTOS.wa=document.getElementById('ph-wa').value.trim();
+  PHOTOS.interval=parseInt(document.getElementById('ph-interval').value)||30;
+  saveData(true);closePhotoModal();showToast('✅ Banner settings saved!');
+  renderSocialLinks();
+  /* Restart cycle with new interval */
+  if(pbAutoTimer){clearInterval(pbAutoTimer);pbAutoTimer=null;}
+  if(PHOTOS.imgs&&PHOTOS.imgs.length>0) startBannerCycle();
+}
 
 /* ─── NAVIGATION ─── */
 function navTo(sec,el){
   document.querySelectorAll('.sb-item').forEach(function(s){s.classList.remove('active');});
   if(el) el.classList.add('active');
   if(sec==='home'){goHome();return;}
+  if(sec==='videos'){showVideos();return;}
   openDept(sec);
 }
 function goHome(){
   activeDept=null;
   document.getElementById('viewHome').style.display='block';
   document.getElementById('viewProc').classList.remove('open');
+  document.getElementById('viewVideos').style.display='none';
   document.getElementById('bc-label').textContent='All Departments';
   document.querySelector('[data-sec="home"]').classList.add('active');
   document.querySelectorAll('.sb-item:not([data-sec="home"])').forEach(function(s){s.classList.remove('active');});
+}
+function showVideos(){
+  document.getElementById('viewHome').style.display='none';
+  document.getElementById('viewProc').classList.remove('open');
+  document.getElementById('viewVideos').style.display='block';
+  document.getElementById('bc-label').textContent='Training Videos';
+  renderVideos();
 }
 function openDept(dId){
   activeDept=dId;
   var d=DEPTS.find(function(x){return x.id===dId;});
   document.getElementById('viewHome').style.display='none';
   document.getElementById('viewProc').classList.add('open');
+  document.getElementById('viewVideos').style.display='none';
   document.getElementById('pvTitle').textContent=d?d.nm:dId;
   var tag=document.getElementById('pvTag');tag.textContent=d?d.nm:dId;tag.className='pv-dept-tag '+dId;
   document.getElementById('bc-label').textContent=d?d.nm:dId;
@@ -814,10 +1354,18 @@ function renderCards(){
     html+='<div class="dc-tags">'+d.tags.map(function(t){return'<span class="dc-tag">'+t+'</span>';}).join('')+'</div>';
     html+='<div class="dc-arrow">→</div></div>';
   });
+  /* Videos card */
+  html+='<div class="dept-card" onclick="navTo(\'videos\',document.querySelector(\'[data-sec=videos]\'))" style="animation-delay:0.32s;border-top:3px solid #c2410c;">';
+  html+='<div class="dc-top"><div class="dc-ico" style="background:#fff7ed;font-size:20px;">🎬</div>';
+  html+='<div><div class="dc-name" style="color:#c2410c;">Training Videos</div><div class="dc-sub">'+VIDEOS.length+' videos</div></div></div>';
+  html+='<div class="dc-count" style="color:#c2410c;">'+VIDEOS.length+'</div>';
+  html+='<div class="dc-count-l">Watch & Learn</div>';
+  html+='<div class="dc-tags"><span class="dc-tag">GST</span><span class="dc-tag">TDS</span><span class="dc-tag">ITR</span><span class="dc-tag">CRM</span></div>';
+  html+='<div class="dc-arrow" style="color:#c2410c;">→</div></div>';
   document.getElementById('deptCards').innerHTML=html;
 }
 
-/* ─── RENDER PROCESS TABLE ─── */
+/* ─── RENDER PROCESS CARDS (Horizontal) ─── */
 function lb(href,cls,ico,lbl){if(!href)return'';return'<a class="lbtn '+cls+'" href="'+href+'" target="_blank" rel="noopener">'+ico+' '+lbl+'</a>';}
 function renderLinks(p){
   var h='';
@@ -827,31 +1375,40 @@ function renderLinks(p){
   if(p.dash) h+=lb(p.dash,'lb-d','📊','Dashboard');
   if(p.vid)  h+=lb(p.vid, 'lb-v','🎬','Video');
   if(p.oth)  h+=lb(p.oth, 'lb-o','🔗',p.othl||'Link');
-  return h||'<span class="no-link">No links — admin can add</span>';
+  return h||'<span class="no-link">No links</span>';
 }
 function cntLinks(p){return[p.fms,p.chk,p.form,p.dash,p.vid,p.oth].filter(Boolean).length;}
 
 function renderProc(dId){
-  var rows=D[dId]||[],isAdmin=loggedRole==='admin',html='';
-  /* Admin col visibility */
-  document.querySelectorAll('.admin-col').forEach(function(el){el.style.display=isAdmin?'':'none';});
+  var rows=D[dId]||[],isAdmin=loggedRole==='admin';
+  var d=DEPTS.find(function(x){return x.id===dId;})||{color:'#185FA5',ibg:'#eff6ff'};
+  var html='';
   if(!rows.length){
-    html='<tr><td colspan="5"><div class="empty-row">No processes yet'+(isAdmin?' — click "+ Add Process" to begin':'')+'</div></td></tr>';
+    html='<div class="proc-empty">No processes yet'+(isAdmin?' — click "+ Add Process" to begin':'')+'</div>';
   }else{
-    rows.forEach(function(p){
-      html+='<tr data-id="'+p.id+'">';
-      html+='<td><span class="p-name">'+p.n+'</span></td>';
-      html+='<td><span class="chip">'+(p.pc||'—')+'</span></td>';
-      html+='<td><span class="chip">'+(p.ps||'—')+'</span></td>';
-      html+='<td><div class="links-wrap">'+renderLinks(p)+'</div></td>';
+    html='<div class="proc-cards-wrap">';
+    rows.forEach(function(p,i){
+      var lc=cntLinks(p);
+      html+='<div class="proc-card" style="animation-delay:'+(i*.05)+'s">';
+      html+='<div class="proc-card-top" style="border-left:4px solid '+d.color+'">';
+      html+='<div class="proc-card-left">';
+      html+='<div class="proc-card-name">'+p.n+'</div>';
+      html+='<div class="proc-card-meta">';
+      html+='<span class="proc-chip" style="background:'+d.ibg+';color:'+d.color+'">👤 '+( p.pc||'—')+'</span>';
+      html+='<span class="proc-chip">🛠 '+(p.ps||'—')+'</span>';
+      if(lc>0) html+='<span class="proc-chip">🔗 '+lc+' link'+(lc>1?'s':'')+'</span>';
+      html+='</div>';
+      html+='<div class="links-wrap proc-links">'+renderLinks(p)+'</div>';
+      html+='</div>';
       if(isAdmin){
-        html+='<td><div class="row-acts">';
-        html+='<button class="btn-e" onclick="openEdit(\''+dId+'\',\''+p.id+'\')">Edit</button>';
-        html+='<button class="btn-r" onclick="confirmDel(\''+dId+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >Del</button>';
-        html+='</div></td>';
+        html+='<div class="proc-card-acts">';
+        html+='<button class="btn-e" onclick="openEdit(\''+dId+'\',\''+p.id+'\')">✏️ Edit</button>';
+        html+='<button class="btn-r" onclick="confirmDel(\''+dId+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >🗑</button>';
+        html+='</div>';
       }
-      html+='</tr>';
+      html+='</div></div>';
     });
+    html+='</div>';
   }
   document.getElementById('procTbody').innerHTML=html;
 }
@@ -915,7 +1472,9 @@ function saveProc(){
   var p={id:eId||uid(),n:n,pc:document.getElementById('f-pc').value.trim()||'—',ps:document.getElementById('f-ps').value.trim()||'—',fms:document.getElementById('f-fms').value.trim(),chk:document.getElementById('f-chk').value.trim(),form:document.getElementById('f-form').value.trim(),dash:document.getElementById('f-dash').value.trim(),vid:document.getElementById('f-vid').value.trim(),oth:document.getElementById('f-oth').value.trim(),othl:document.getElementById('f-othl').value.trim()};
   if(eId){if(eDept!==dId){D[eDept]=(D[eDept]||[]).filter(function(x){return x.id!==eId;});if(!D[dId])D[dId]=[];D[dId].push(p);}else{var i=(D[dId]||[]).findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}showToast('Process updated ✅');}
   else{if(!D[dId])D[dId]=[];D[dId].push(p);showToast('Process added ✅');}
-  closeModal();saveData();
+  /* Send notification to users */
+  addNotif((eId?'Process Updated: ':'Process Added: ')+n+' ('+dId+')',loggedName,'green');
+  closeModal();saveData(true);
   renderCards();updateStats();
   if(activeDept)renderProc(activeDept);
 }
@@ -947,22 +1506,45 @@ function tick(){
 function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
 
 /* ─── INIT ─── */
+var appInitialized=false; /* load data only once */
+var tickInterval=null;
+
 function initApp(){
   var isAdmin=loggedRole==='admin';
   var rb=document.getElementById('tb-role');
   rb.textContent=isAdmin?'Admin':'User';rb.className='tb-role '+(isAdmin?'admin':'user');
-  var au=document.getElementById('adminUtil');if(au)au.style.display=isAdmin?'':'none';
+  var tbSet=document.getElementById('tbSettings');if(tbSet)tbSet.style.display=isAdmin?'':'none';
   var sba=document.getElementById('sb-add');if(sba)sba.style.display=isAdmin?'flex':'none';
   var g=getGreeting(loggedName);
   var gh=document.getElementById('gh-title');if(gh)gh.textContent=g;
   var tg=document.getElementById('tb-greeting');if(tg)tg.textContent=g;
-  buildTicker();tick();setInterval(tick,1000);
-  /* Load from cloud then render */
-  var content=document.getElementById('dept-content')||document.getElementById('home-view');
-  if(content) content.innerHTML='<div style="text-align:center;padding:60px;color:#185FA5;font-size:15px;font-weight:700;">☁️ Cloud se load ho raha hai...</div>';
-  loadData(function(){
-    renderCards();updateStats();goHome();
-  });
+  buildTicker();
+  /* Start tick only once */
+  if(!tickInterval){tickInterval=setInterval(tick,1000);}
+  tick();
+
+  if(!appInitialized){
+    /* First time — load from cloud */
+    appInitialized=true;
+    loadData(function(){
+      applyHeader();
+      renderCards();
+      updateStats();
+      renderNotifs();
+      renderSocialLinks();
+      startBannerCycle(); /* start banner cycle once */
+      goHome();
+      setTimeout(function(){ if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner(); },1500);
+    });
+  } else {
+    applyHeader();
+    renderCards();
+    updateStats();
+    renderNotifs();
+    renderSocialLinks();
+    goHome();
+    setTimeout(function(){ if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner(); },1500);
+  }
 }
 </script>
 </body>
