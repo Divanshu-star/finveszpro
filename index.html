@@ -336,6 +336,11 @@ tr:hover .row-acts{opacity:1;}
 .lf-lbl{font-size:11px;font-weight:600;color:#555;white-space:nowrap;min-width:105px;}
 .lf-row input{flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;color:#1a1a1a;background:#fff;outline:none;transition:border-color .2s;}
 .lf-row input:focus{border-color:#185FA5;}
+.cl-row{display:flex;align-items:center;gap:6px;margin-bottom:7px;}
+.cl-name{width:110px;flex-shrink:0;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;outline:none;background:#fff;color:#1a1a1a;}
+.cl-url{flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;outline:none;background:#fff;color:#1a1a1a;}
+.cl-name:focus,.cl-url:focus{border-color:#185FA5;}
+.cl-del{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:6px;padding:6px 9px;font-size:12px;cursor:pointer;flex-shrink:0;font-weight:700;}
 .m-btns{display:flex;gap:10px;padding:16px 22px;border-top:1px solid #f0ede6;justify-content:flex-end;}
 .m-cancel{background:#f7f6f3;color:#555;border:1px solid #e4e2db;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;transition:background .15s;}
 .m-cancel:hover{background:#e4e2db;}
@@ -681,8 +686,14 @@ tr:hover .row-acts{opacity:1;}
       <div class="lf-row"><span class="lf-lbl">📝 Google Form</span><input id="f-form" type="url" placeholder="https://..."/></div>
       <div class="lf-row"><span class="lf-lbl">📊 Dashboard</span><input id="f-dash" type="url" placeholder="https://..."/></div>
       <div class="lf-row"><span class="lf-lbl">🎬 Training Video</span><input id="f-vid" type="url" placeholder="https://..."/></div>
-      <div class="lf-row"><span class="lf-lbl">🔗 Other Link</span><input id="f-oth" type="url" placeholder="https://..."/></div>
-      <div class="fg" style="padding:10px 0 0;"><label>Other Link Label</label><input id="f-othl" type="text" placeholder="e.g. Client Master"/></div>
+      <!-- CUSTOM LINKS - Unlimited -->
+      <div style="margin-top:10px;border-top:1px dashed #e4e2db;padding-top:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;">🔗 Custom Links</span>
+          <button type="button" onclick="addCustomLink()" style="background:#eff6ff;color:#185FA5;border:1px solid #bfdbfe;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:Figtree,sans-serif;">+ Add Link</button>
+        </div>
+        <div id="customLinksWrap"></div>
+      </div>
     </div>
     <div class="m-btns"><button class="m-cancel" onclick="closeModal()">Cancel</button><button class="m-save" onclick="saveProc()">Save Process</button></div>
   </div>
@@ -1374,10 +1385,19 @@ function renderLinks(p){
   if(p.form) h+=lb(p.form,'lb-g','📝','Form');
   if(p.dash) h+=lb(p.dash,'lb-d','📊','Dashboard');
   if(p.vid)  h+=lb(p.vid, 'lb-v','🎬','Video');
-  if(p.oth)  h+=lb(p.oth, 'lb-o','🔗',p.othl||'Link');
+  /* Custom links array */
+  if(p.links&&p.links.length>0){
+    p.links.forEach(function(cl){
+      if(cl.url) h+=lb(cl.url,'lb-o','🔗',cl.name||'Link');
+    });
+  }
   return h||'<span class="no-link">No links</span>';
 }
-function cntLinks(p){return[p.fms,p.chk,p.form,p.dash,p.vid,p.oth].filter(Boolean).length;}
+function cntLinks(p){
+  var base=[p.fms,p.chk,p.form,p.dash,p.vid].filter(Boolean).length;
+  var custom=p.links?p.links.filter(function(cl){return cl.url;}).length:0;
+  return base+custom;
+}
 
 function renderProc(dId){
   var rows=D[dId]||[],isAdmin=loggedRole==='admin';
@@ -1440,12 +1460,37 @@ function animNum(id,target){
   var t=setInterval(function(){i++;el.textContent=Math.round(s+diff*(i/steps));if(i>=steps){el.textContent=target;clearInterval(t);}},20);
 }
 
+/* ─── CUSTOM LINKS ─── */
+function addCustomLink(data){
+  var wrap=document.getElementById('customLinksWrap');
+  var div=document.createElement('div');
+  div.className='cl-row';
+  div.innerHTML='<input class="cl-name" type="text" placeholder="Link naam (e.g. Client Master)" value="'+(data?data.name:'')+'" />'+
+    '<input class="cl-url" type="url" placeholder="https://..." value="'+(data?data.url:'')+'" />'+
+    '<button type="button" class="cl-del" onclick="this.parentElement.remove()">✕</button>';
+  wrap.appendChild(div);
+}
+function getCustomLinks(){
+  var rows=document.querySelectorAll('#customLinksWrap .cl-row');
+  var links=[];
+  rows.forEach(function(row){
+    var name=row.querySelector('.cl-name').value.trim();
+    var url=row.querySelector('.cl-url').value.trim();
+    if(name||url) links.push({name:name||'Link',url:url});
+  });
+  return links;
+}
+function clearCustomLinks(){
+  document.getElementById('customLinksWrap').innerHTML='';
+}
+
 /* ─── ADD/EDIT ─── */
 function openAdd(dId){
   eId=null;eDept=dId||activeDept||'office';
   document.getElementById('m-ttl').textContent='Add New Process';
   document.getElementById('f-dept').value=eDept;
-  ['f-name','f-pc','f-ps','f-fms','f-chk','f-form','f-dash','f-vid','f-oth','f-othl'].forEach(function(x){document.getElementById(x).value='';});
+  ['f-name','f-pc','f-ps','f-fms','f-chk','f-form','f-dash','f-vid'].forEach(function(x){document.getElementById(x).value='';});
+  clearCustomLinks();
   document.getElementById('m-ov').classList.add('open');
 }
 function openEdit(dId,pId){
@@ -1461,18 +1506,37 @@ function openEdit(dId,pId){
   document.getElementById('f-form').value=p.form||'';
   document.getElementById('f-dash').value=p.dash||'';
   document.getElementById('f-vid').value=p.vid||'';
-  document.getElementById('f-oth').value=p.oth||'';
-  document.getElementById('f-othl').value=p.othl||'';
+  /* Load existing custom links */
+  clearCustomLinks();
+  if(p.links&&p.links.length>0){
+    p.links.forEach(function(cl){addCustomLink(cl);});
+  }
   document.getElementById('m-ov').classList.add('open');
 }
 function saveProc(){
   var n=document.getElementById('f-name').value.trim();
   if(!n){showToast('Process name required!');return;}
   var dId=document.getElementById('f-dept').value;
-  var p={id:eId||uid(),n:n,pc:document.getElementById('f-pc').value.trim()||'—',ps:document.getElementById('f-ps').value.trim()||'—',fms:document.getElementById('f-fms').value.trim(),chk:document.getElementById('f-chk').value.trim(),form:document.getElementById('f-form').value.trim(),dash:document.getElementById('f-dash').value.trim(),vid:document.getElementById('f-vid').value.trim(),oth:document.getElementById('f-oth').value.trim(),othl:document.getElementById('f-othl').value.trim()};
-  if(eId){if(eDept!==dId){D[eDept]=(D[eDept]||[]).filter(function(x){return x.id!==eId;});if(!D[dId])D[dId]=[];D[dId].push(p);}else{var i=(D[dId]||[]).findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}showToast('Process updated ✅');}
-  else{if(!D[dId])D[dId]=[];D[dId].push(p);showToast('Process added ✅');}
-  /* Send notification to users */
+  var p={
+    id:eId||uid(),
+    n:n,
+    pc:document.getElementById('f-pc').value.trim()||'—',
+    ps:document.getElementById('f-ps').value.trim()||'—',
+    fms:document.getElementById('f-fms').value.trim(),
+    chk:document.getElementById('f-chk').value.trim(),
+    form:document.getElementById('f-form').value.trim(),
+    dash:document.getElementById('f-dash').value.trim(),
+    vid:document.getElementById('f-vid').value.trim(),
+    links:getCustomLinks()
+  };
+  if(eId){
+    if(eDept!==dId){D[eDept]=(D[eDept]||[]).filter(function(x){return x.id!==eId;});if(!D[dId])D[dId]=[];D[dId].push(p);}
+    else{var i=(D[dId]||[]).findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}
+    showToast('Process updated ✅');
+  } else {
+    if(!D[dId])D[dId]=[];D[dId].push(p);
+    showToast('Process added ✅');
+  }
   addNotif((eId?'Process Updated: ':'Process Added: ')+n+' ('+dId+')',loggedName,'green');
   closeModal();saveData(true);
   renderCards();updateStats();
