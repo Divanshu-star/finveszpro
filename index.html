@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <title>Finveszprosolutionz · System Master</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -123,17 +126,14 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .tb-settings:hover{opacity:.85;transform:rotate(45deg);}
 .tb-logout{background:transparent;border:1px solid #e4e2db;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;font-family:'Figtree',sans-serif;cursor:pointer;color:#888;transition:all .15s;}
 .tb-logout:hover{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
-/* Settings modal buttons */
 .set-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#f7f6f3;border:1px solid #e4e2db;border-radius:14px;padding:16px 10px;font-size:22px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .15s;text-align:center;}
 .set-btn span{font-size:11px;font-weight:700;color:#555;}
 .set-btn:hover{background:#eff6ff;border-color:#bfdbfe;transform:translateY(-2px);box-shadow:0 4px 12px rgba(24,95,165,.1);}
 .set-btn.danger:hover{background:#fef2f2;border-color:#fecaca;}
-/* Social links */
 .social-link{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;transition:background .15s;margin-bottom:4px;}
 .social-link:hover{background:#f5f9ff;}
 .social-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .social-name{font-size:12px;font-weight:700;color:#1a1a1a;}
-/* Notif delete */
 .notif-item{display:flex;gap:8px;padding:8px;border-bottom:1px solid #f7f6f3;cursor:pointer;transition:background .1s;border-radius:8px;align-items:flex-start;}
 .notif-item:hover{background:#fafaf8;}
 .notif-del{background:none;border:none;color:#ccc;cursor:pointer;font-size:13px;padding:0 2px;flex-shrink:0;transition:color .15s;}
@@ -149,12 +149,8 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .t-item{display:inline-flex;align-items:center;gap:6px;padding:0 24px;font-size:12px;font-weight:500;color:rgba(255,255,255,.92);white-space:nowrap;}
 .t-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4);}
 
-/* ── BODY LAYOUT: sidebar + main ── */
 .app-body{display:flex;flex:1;min-height:0;}
 
-/* ══════════════
-   LEFT SIDEBAR
-══════════════ */
 .sidebar{width:68px;background:#fff;border-right:1px solid #e4e2db;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:6px;flex-shrink:0;transition:width .25s ease;overflow:hidden;position:relative;}
 .sidebar:hover{width:200px;}
 .sidebar:hover .sb-label{opacity:1;width:auto;}
@@ -168,17 +164,11 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .sidebar:hover .sb-label{opacity:1;}
 .sb-divider{width:40px;height:1px;background:#e4e2db;margin:6px 0;transition:width .25s;}
 .sidebar:hover .sb-divider{width:170px;}
-
-/* Utility section label */
 .sb-section{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;padding:8px 18px 4px;white-space:nowrap;opacity:0;transition:opacity .2s;width:200px;}
 .sidebar:hover .sb-section{opacity:1;}
 
-/* ══════════════
-   MAIN CONTENT
-══════════════ */
 .main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
 
-/* GREETING HERO */
 .greeting-hero{background:#fff;border-bottom:1px solid #e4e2db;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
 .gh-left{}
 .gh-bc{font-size:11px;color:#aaa;margin-bottom:5px;}
@@ -191,10 +181,8 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .gh-stat-n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#1a1a1a;line-height:1;}
 .gh-stat-l{font-size:9px;color:#888;margin-top:3px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
 
-/* TAB CARDS AREA */
 .tab-area{flex:1;padding:24px 28px;overflow-y:auto;}
 
-/* BIG 4 DEPT CARDS */
 .dept-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:28px;}
 .dept-card{background:#fff;border:1.5px solid #e4e2db;border-radius:18px;padding:24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;animation:cardPop .4s ease both;}
 .dept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0;}
@@ -223,7 +211,6 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .dc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
 .dc-tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:#f7f6f3;border:1px solid #e4e2db;color:#888;}
 
-/* PROCESS VIEW (when dept is open) */
 .proc-view{display:none;}
 .proc-view.open{display:block;animation:fadeUp .3s ease;}
 .pv-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
@@ -236,7 +223,6 @@ body{font-family:'Figtree',sans-serif;background:#042C53;min-height:100vh;overfl
 .pv-dept-tag.wealth{background:#fefce8;color:#a16207;}
 .pv-dept-tag.trials{background:#f5f3ff;color:#6d28d9;}
 
-/* PROCESS TABLE */
 .tbl-wrap{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);}
 table{width:100%;border-collapse:collapse;}
 thead tr{background:#f7f6f3;border-bottom:1px solid #e4e2db;}
@@ -264,7 +250,6 @@ tr:hover .row-acts{opacity:1;}
 .btn-e:hover,.btn-r:hover{transform:translateY(-1px);}
 .empty-row{text-align:center;padding:32px;color:#ccc;font-size:13px;font-style:italic;}
 
-/* SEARCH BAR */
 .pv-search{margin-bottom:16px;}
 .search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #e4e2db;border-radius:30px;padding:0 14px;max-width:400px;transition:border-color .2s,box-shadow .2s;}
 .search-box:focus-within{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.08);}
@@ -272,15 +257,11 @@ tr:hover .row-acts{opacity:1;}
 .s-input{flex:1;background:transparent;border:none;outline:none;font-family:'Figtree',sans-serif;font-size:13px;color:#1a1a1a;padding:10px 0;}
 .s-input::placeholder{color:#ccc;}
 
-/* ══════════════
-   RIGHT PANEL
-══════════════ */
 .right-panel{width:270px;background:#fff;border-left:1px solid #e4e2db;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
 .rp-section{padding:16px 16px 12px;border-bottom:1px solid #f0ede6;}
 .rp-section:last-child{border-bottom:none;}
 .rp-title{font-size:10px;font-weight:700;color:#aaa;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
 
-/* Notifications */
 .notif-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #f7f6f3;cursor:pointer;transition:background .1s;border-radius:8px;padding:8px;}
 .notif-item:hover{background:#fafaf8;}
 .notif-item:last-child{border-bottom:none;}
@@ -292,32 +273,27 @@ tr:hover .row-acts{opacity:1;}
 .notif-title{font-size:12px;font-weight:600;color:#1a1a1a;line-height:1.4;}
 .notif-time{font-size:10px;color:#aaa;margin-top:2px;}
 
-/* Quick links */
 .ql-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;text-decoration:none;}
 .ql-item:hover{background:#f5f9ff;}
 .ql-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
 .ql-name{font-size:12px;font-weight:600;color:#1a1a1a;}
 .ql-sub{font-size:10px;color:#aaa;}
 
-/* Admin utility */
 .util-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:1px solid #e4e2db;border-radius:10px;background:#fff;cursor:pointer;font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;color:#555;transition:all .15s;margin-bottom:7px;text-align:left;}
 .util-btn:last-child{margin-bottom:0;}
 .util-btn:hover{background:#f5f9ff;border-color:#bfdbfe;color:#185FA5;}
 .util-btn.danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626;}
 .util-ico{font-size:15px;flex-shrink:0;}
 
-/* Stats */
 .stat-mini{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0ede6;}
 .stat-mini:last-child{border-bottom:none;}
 .stat-mini-l{font-size:12px;color:#555;font-weight:500;}
 .stat-mini-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#185FA5;}
 
-/* Clock widget */
 .clock-widget{text-align:center;padding:8px 0;}
 .cw-time{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;color:#1a1a1a;letter-spacing:2px;}
 .cw-date{font-size:11px;color:#888;margin-top:3px;}
 
-/* ── MODAL ── */
 .ov{display:none;position:fixed;inset:0;background:rgba(4,44,83,.5);backdrop-filter:blur(4px);z-index:300;align-items:center;justify-content:center;padding:20px;}
 .ov.open{display:flex;}
 .modal{background:#fff;border-radius:18px;width:100%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:mIn .22s ease both;max-height:90vh;overflow-y:auto;}
@@ -353,11 +329,9 @@ tr:hover .row-acts{opacity:1;}
 .conf-btns{display:flex;gap:10px;justify-content:center;}
 .btn-del{background:#dc2626;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Figtree',sans-serif;}
 
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a202c;color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:600;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap;}
 .toast.show{opacity:1;}
 
-/* ── PROCESS CARDS (horizontal) ── */
 .proc-cards-wrap{display:flex;flex-direction:column;gap:12px;padding:4px 0 40px;}
 .proc-card{background:#fff;border:1px solid #e4e2db;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);animation:cardPop .3s ease both;transition:box-shadow .2s;}
 .proc-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);}
@@ -370,16 +344,13 @@ tr:hover .row-acts{opacity:1;}
 .proc-card-acts{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
 .proc-empty{text-align:center;padding:48px;color:#ccc;font-size:13px;font-style:italic;}
 
-/* ── PHOTO BANNER ── */
 #photoBanner{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
 #photoBanner.show{display:flex;}
 .pb-wrap{position:relative;max-width:580px;width:92%;}
 .pb-img{width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:pointer;display:block;max-height:78vh;object-fit:cover;}
 .pb-close{position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#fff;border:none;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3);font-weight:800;color:#333;z-index:1;}
 .pb-caption{font-size:13px;color:rgba(255,255,255,.8);text-align:center;max-width:380px;line-height:1.5;}
-.pb-insta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;text-decoration:none;}
 
-/* ── PHOTO MANAGE MODAL ── */
 .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 22px;}
 .photo-thumb{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#f7f6f3;border:1px solid #e4e2db;}
 .photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -395,7 +366,6 @@ tr:hover .row-acts{opacity:1;}
 .photo-link-row input{flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;font-family:'Figtree',sans-serif;outline:none;}
 .photo-link-row input:focus{border-color:#185FA5;}
 
-/* ── TRAINING VIDEOS ── */
 .vid-section{padding:20px 24px 40px;}
 .vid-section-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
 .vid-section-title{font-size:16px;font-weight:800;color:#1a1a1a;}
@@ -417,16 +387,13 @@ tr:hover .row-acts{opacity:1;}
 .vid-del-btn{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;display:none;}
 .vid-del-btn.show{display:block;}
 
-/* ── NOTIFICATIONS (live) ── */
 .notif-badge{background:#dc2626;color:#fff;font-size:9px;font-weight:800;border-radius:10px;padding:1px 5px;margin-left:4px;display:none;}
 .notif-badge.show{display:inline;}
 .notif-empty{text-align:center;padding:16px;color:#ccc;font-size:12px;font-style:italic;}
 
-/* ── HEADER EDIT ── */
 .hdr-edit-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:7px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;margin-left:8px;}
 .hdr-modal{background:#fff;border-radius:18px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:mIn .22s ease both;}
 
-/* RESPONSIVE */
 @media(max-width:900px){.right-panel{display:none;}}
 @media(max-width:640px){.sidebar{display:none;}.dept-cards{grid-template-columns:1fr;}.tab-area{padding:16px;}.greeting-hero{padding:14px 16px;}.vid-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}}
 </style>
@@ -468,21 +435,18 @@ tr:hover .row-acts{opacity:1;}
       <button class="rt-btn active" id="rtUser" onclick="setRole('user')">👤 User</button>
       <button class="rt-btn" id="rtAdmin" onclick="setRole('admin')">🛡️ Admin</button>
     </div>
-    <!-- User fields -->
     <div id="userFields">
       <div class="lc-field"><label>Your Name</label><input id="userName" type="text" placeholder="Enter your name" autocomplete="off"/></div>
       <div class="lc-field"><label>Password</label>
         <div class="pwd-wrap"><input id="password" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="togglePwd()">👁</button></div>
       </div>
     </div>
-    <!-- Admin fields -->
     <div id="adminFields" style="display:none">
       <div class="lc-field"><label>Admin Password</label>
         <div class="pwd-wrap"><input id="adminPassword" type="password" placeholder="••••••••"/><button class="eye-btn" onclick="toggleAdminPwd()">👁</button></div>
       </div>
     </div>
     <button class="lc-btn" onclick="handleLogin()">Sign In →</button>
-    <!-- Support link -->
     <a href="https://forms.gle/aDGAYHUC2kiwbmpq8" target="_blank" style="display:block;text-align:center;margin-top:12px;font-size:12px;color:#185FA5;text-decoration:none;font-weight:600;">❓ Need Help? Submit Support Ticket</a>
     <div class="lc-err" id="errMsg">❌ Invalid credentials. Please try again.</div>
   </div>
@@ -497,8 +461,6 @@ tr:hover .row-acts{opacity:1;}
 
 <!-- ══ APP ══ -->
 <div id="appPage">
-
-  <!-- Topbar -->
   <div class="topbar">
     <div class="tb-logo">FP</div>
     <div><div class="tb-name">Finveszprosolutionz</div><div class="tb-sub">System Master · Process Control Centre</div></div>
@@ -509,55 +471,27 @@ tr:hover .row-acts{opacity:1;}
     <button class="tb-settings admin-only" id="tbSettings" style="display:none" onclick="openSettings()" title="Admin Settings">⚙️</button>
     <button class="tb-logout" onclick="doLogout()">→ Logout</button>
   </div>
-
-  <!-- Ticker -->
   <div class="app-ticker"><div class="tick-track" id="appTick"></div></div>
-
-  <!-- Body -->
   <div class="app-body">
-
-    <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
-      <div class="sb-item active" data-sec="home" onclick="navTo('home',this)" title="Home">
-        <div class="sb-ico">🏠</div><span class="sb-label">Home</span>
-      </div>
-      <div class="sb-item" data-sec="office" onclick="navTo('office',this)" title="Office">
-        <div class="sb-ico">🏢</div><span class="sb-label">Office</span>
-      </div>
-      <div class="sb-item" data-sec="admin" onclick="navTo('admin',this)" title="Admin">
-        <div class="sb-ico">⚙️</div><span class="sb-label">Admin</span>
-      </div>
-      <div class="sb-item" data-sec="wealth" onclick="navTo('wealth',this)" title="Wealth Advisors">
-        <div class="sb-ico">💰</div><span class="sb-label">Wealth</span>
-      </div>
-      <div class="sb-item" data-sec="trials" onclick="navTo('trials',this)" title="Trials & MIS">
-        <div class="sb-ico">🔬</div><span class="sb-label">Trials</span>
-      </div>
-      <div class="sb-item" data-sec="videos" onclick="navTo('videos',this)" title="Training Videos">
-        <div class="sb-ico">🎬</div><span class="sb-label">Videos</span>
-      </div>
+      <div class="sb-item active" data-sec="home" onclick="navTo('home',this)" title="Home"><div class="sb-ico">🏠</div><span class="sb-label">Home</span></div>
+      <div class="sb-item" data-sec="office" onclick="navTo('office',this)" title="Office"><div class="sb-ico">🏢</div><span class="sb-label">Office</span></div>
+      <div class="sb-item" data-sec="admin" onclick="navTo('admin',this)" title="Admin"><div class="sb-ico">⚙️</div><span class="sb-label">Admin</span></div>
+      <div class="sb-item" data-sec="wealth" onclick="navTo('wealth',this)" title="Wealth Advisors"><div class="sb-ico">💰</div><span class="sb-label">Wealth</span></div>
+      <div class="sb-item" data-sec="trials" onclick="navTo('trials',this)" title="Trials & MIS"><div class="sb-ico">🔬</div><span class="sb-label">Trials</span></div>
+      <div class="sb-item" data-sec="videos" onclick="navTo('videos',this)" title="Training Videos"><div class="sb-ico">🎬</div><span class="sb-label">Videos</span></div>
       <div class="sb-divider"></div>
       <div class="sb-section">Quick</div>
-      <div class="sb-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')" title="System Sheet">
-        <div class="sb-ico">📊</div><span class="sb-label">System Sheet</span>
-      </div>
-      <div class="sb-item" onclick="window.open('https://forms.gle/aDGAYHUC2kiwbmpq8','_blank')" title="Support">
-        <div class="sb-ico">🎫</div><span class="sb-label">Support</span>
-      </div>
-      <div class="sb-item" id="sb-add" onclick="openAdd(null)" title="Add Process" style="display:none">
-        <div class="sb-ico">➕</div><span class="sb-label">Add Process</span>
-      </div>
+      <div class="sb-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit','_blank')" title="System Sheet"><div class="sb-ico">📊</div><span class="sb-label">System Sheet</span></div>
+      <div class="sb-item" onclick="window.open('https://forms.gle/aDGAYHUC2kiwbmpq8','_blank')" title="Support"><div class="sb-ico">🎫</div><span class="sb-label">Support</span></div>
+      <div class="sb-item" id="sb-add" onclick="openAdd(null)" title="Add Process" style="display:none"><div class="sb-ico">➕</div><span class="sb-label">Add Process</span></div>
     </div>
-
-    <!-- MAIN -->
     <div class="main">
-
-      <!-- Greeting hero -->
       <div class="greeting-hero">
         <div class="gh-left">
           <div class="gh-bc">Finveszprosolutionz › <strong id="bc-label">All Departments</strong></div>
           <div class="gh-title" id="gh-title">Good Morning, Divanshu! ☀️</div>
-          <div class="gh-sub">Internal Operations Directory · System Master · Confidential</div>
+          <div class="gh-sub" id="gh-sub-txt">Internal Operations Directory · System Master · Confidential</div>
         </div>
         <div class="gh-stats">
           <div class="gh-stat"><div class="gh-stat-n" id="st-proc">0</div><div class="gh-stat-l">Processes</div></div>
@@ -565,16 +499,8 @@ tr:hover .row-acts{opacity:1;}
           <div class="gh-stat"><div class="gh-stat-n" id="st-links">0</div><div class="gh-stat-l">Links</div></div>
         </div>
       </div>
-
-      <!-- TAB AREA -->
       <div class="tab-area" id="tabArea">
-
-        <!-- HOME: 4 dept cards -->
-        <div id="viewHome">
-          <div class="dept-cards" id="deptCards"></div>
-        </div>
-
-        <!-- PROCESS VIEW -->
+        <div id="viewHome"><div class="dept-cards" id="deptCards"></div></div>
         <div class="proc-view" id="viewProc">
           <div class="pv-header">
             <button class="pv-back" onclick="goHome()">← Back</button>
@@ -583,16 +509,9 @@ tr:hover .row-acts{opacity:1;}
             <div style="flex:1"></div>
             <button class="pv-add hide" id="pvAdd" onclick="openAdd(null)">＋ Add Process</button>
           </div>
-          <div class="pv-search">
-            <div class="search-box">
-              <span class="s-ico">🔍</span>
-              <input class="s-input" id="s-in" placeholder="Search process..." oninput="doSearch(this.value)"/>
-            </div>
-          </div>
+          <div class="pv-search"><div class="search-box"><span class="s-ico">🔍</span><input class="s-input" id="s-in" placeholder="Search process..." oninput="doSearch(this.value)"/></div></div>
           <div id="procTbody"></div>
         </div>
-
-        <!-- TRAINING VIDEOS VIEW -->
         <div class="proc-view" id="viewVideos" style="display:none">
           <div class="pv-header">
             <button class="pv-back" onclick="goHome()">← Back</button>
@@ -600,26 +519,12 @@ tr:hover .row-acts{opacity:1;}
             <div style="flex:1"></div>
             <button class="vid-add-btn" id="vidAddBtn" onclick="openVidModal()">＋ Add Video</button>
           </div>
-          <div class="vid-section">
-            <div class="vid-grid" id="vidGrid"></div>
-          </div>
-        </div>
-
-      </div><!-- /tab-area -->
-    </div><!-- /main -->
-
-    <!-- RIGHT PANEL -->
-    <div class="right-panel">
-
-      <!-- Clock -->
-      <div class="rp-section">
-        <div class="clock-widget">
-          <div class="cw-time" id="rp-clock">00:00:00</div>
-          <div class="cw-date" id="rp-date">Monday, 20 Apr 2026</div>
+          <div class="vid-section"><div class="vid-grid" id="vidGrid"></div></div>
         </div>
       </div>
-
-      <!-- Notifications -->
+    </div>
+    <div class="right-panel">
+      <div class="rp-section"><div class="clock-widget"><div class="cw-time" id="rp-clock">00:00:00</div><div class="cw-date" id="rp-date">Monday, 20 Apr 2026</div></div></div>
       <div class="rp-section">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
           <div class="rp-title" style="margin-bottom:0">🔔 Notifications <span class="notif-badge" id="notifBadge">0</span></div>
@@ -627,35 +532,14 @@ tr:hover .row-acts{opacity:1;}
         </div>
         <div id="notifList"><div class="notif-empty">No notifications yet</div></div>
       </div>
-
-      <!-- Social Links (always visible) -->
-      <div class="rp-section" id="socialLinksPanel">
-        <div class="rp-title">🌐 Follow Us</div>
-        <div id="socialLinksList"></div>
-      </div>
-
-      <!-- Quick Links -->
+      <div class="rp-section" id="socialLinksPanel"><div class="rp-title">🌐 Follow Us</div><div id="socialLinksList"></div></div>
       <div class="rp-section">
         <div class="rp-title">⚡ Quick Links</div>
-        <a class="ql-item" href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit" target="_blank">
-          <div class="ql-ico" style="background:#f0fdf4">📊</div>
-          <div><div class="ql-name">System Master Sheet</div><div class="ql-sub">Google Sheets · Live</div></div>
-        </a>
-        <a class="ql-item" onclick="navTo('office',document.querySelector('[data-sec=office]'))">
-          <div class="ql-ico" style="background:#eff6ff">🏢</div>
-          <div><div class="ql-name">Office Processes</div><div class="ql-sub" id="ql-off-cnt">— processes</div></div>
-        </a>
-        <a class="ql-item" onclick="navTo('videos',document.querySelector('[data-sec=videos]'))">
-          <div class="ql-ico" style="background:#fff7ed">🎬</div>
-          <div><div class="ql-name">Training Videos</div><div class="ql-sub">Watch & Learn</div></div>
-        </a>
-        <a class="ql-item" href="https://forms.gle/aDGAYHUC2kiwbmpq8" target="_blank">
-          <div class="ql-ico" style="background:#fef2f2">🎫</div>
-          <div><div class="ql-name">Support Ticket</div><div class="ql-sub">Submit a query or issue</div></div>
-        </a>
+        <a class="ql-item" href="https://docs.google.com/spreadsheets/d/1Fem-R2DqqvDPWwA07wpFLJRlHjb5P8URSOMefw-ejMA/edit" target="_blank"><div class="ql-ico" style="background:#f0fdf4">📊</div><div><div class="ql-name">System Master Sheet</div><div class="ql-sub">Google Sheets · Live</div></div></a>
+        <a class="ql-item" onclick="navTo('office',document.querySelector('[data-sec=office]'))"><div class="ql-ico" style="background:#eff6ff">🏢</div><div><div class="ql-name">Office Processes</div><div class="ql-sub" id="ql-off-cnt">— processes</div></div></a>
+        <a class="ql-item" onclick="navTo('videos',document.querySelector('[data-sec=videos]'))"><div class="ql-ico" style="background:#fff7ed">🎬</div><div><div class="ql-name">Training Videos</div><div class="ql-sub">Watch & Learn</div></div></a>
+        <a class="ql-item" href="https://forms.gle/aDGAYHUC2kiwbmpq8" target="_blank"><div class="ql-ico" style="background:#fef2f2">🎫</div><div><div class="ql-name">Support Ticket</div><div class="ql-sub">Submit a query or issue</div></div></a>
       </div>
-
-      <!-- Stats -->
       <div class="rp-section">
         <div class="rp-title">📈 Overview</div>
         <div class="stat-mini"><span class="stat-mini-l">🏢 Office</span><span class="stat-mini-v" id="rp-office">—</span></div>
@@ -663,19 +547,15 @@ tr:hover .row-acts{opacity:1;}
         <div class="stat-mini"><span class="stat-mini-l">💰 Wealth</span><span class="stat-mini-v" id="rp-wealth">—</span></div>
         <div class="stat-mini"><span class="stat-mini-l">🔬 Trials</span><span class="stat-mini-v" id="rp-trials">—</span></div>
       </div>
+    </div>
+  </div>
+</div>
 
-    </div><!-- /right-panel -->
-
-  </div><!-- /app-body -->
-</div><!-- /appPage -->
-
-<!-- ADD/EDIT MODAL -->
+<!-- MODALS -->
 <div class="ov" id="m-ov" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="m-hd"><h3 id="m-ttl">Add New Process</h3><button class="m-x" onclick="closeModal()">✕</button></div>
-    <div class="fg"><label>Department</label>
-      <select id="f-dept"><option value="office">🏢 Office</option><option value="admin">⚙️ Admin</option><option value="wealth">💰 Wealth Advisors</option><option value="trials">🔬 Trials & MIS</option></select>
-    </div>
+    <div class="fg"><label>Department</label><select id="f-dept"><option value="office">🏢 Office</option><option value="admin">⚙️ Admin</option><option value="wealth">💰 Wealth Advisors</option><option value="trials">🔬 Trials & MIS</option></select></div>
     <div class="fg"><label>Process Name *</label><input id="f-name" type="text" placeholder="e.g. GSTR-1, Delegation Sheet"/></div>
     <div class="fg"><label>Person in Charge (P.C.)</label><input id="f-pc" type="text" placeholder="e.g. Vani, Divanshu"/></div>
     <div class="fg"><label>Problem Solver</label><input id="f-ps" type="text" placeholder="e.g. Yash Dani · Vinita"/></div>
@@ -686,7 +566,6 @@ tr:hover .row-acts{opacity:1;}
       <div class="lf-row"><span class="lf-lbl">📝 Google Form</span><input id="f-form" type="url" placeholder="https://..."/></div>
       <div class="lf-row"><span class="lf-lbl">📊 Dashboard</span><input id="f-dash" type="url" placeholder="https://..."/></div>
       <div class="lf-row"><span class="lf-lbl">🎬 Training Video</span><input id="f-vid" type="url" placeholder="https://..."/></div>
-      <!-- CUSTOM LINKS - Unlimited -->
       <div style="margin-top:10px;border-top:1px dashed #e4e2db;padding-top:10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
           <span style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;">🔗 Custom Links</span>
@@ -698,115 +577,72 @@ tr:hover .row-acts{opacity:1;}
     <div class="m-btns"><button class="m-cancel" onclick="closeModal()">Cancel</button><button class="m-save" onclick="saveProc()">Save Process</button></div>
   </div>
 </div>
-
-<!-- CONFIRM -->
 <div class="ov" id="c-ov" onclick="if(event.target===this)document.getElementById('c-ov').classList.remove('open')">
   <div class="conf"><div class="conf-ico">🗑️</div><h3>Remove Process?</h3><p id="c-msg"></p><div class="conf-btns"><button class="m-cancel" onclick="document.getElementById('c-ov').classList.remove('open')">Cancel</button><button class="btn-del" id="c-yes">Remove</button></div></div>
 </div>
-
-<!-- VIDEO MODAL -->
 <div class="ov" id="v-ov" onclick="if(event.target===this)closeVidModal()">
   <div class="modal">
     <div class="m-hd"><h3 id="v-ttl">Add Training Video</h3><button class="m-x" onclick="closeVidModal()">✕</button></div>
     <div class="fg"><label>Video Title *</label><input id="v-title" type="text" placeholder="e.g. GST Complete Training"/></div>
-    <div class="fg"><label>Category</label>
-      <select id="v-cat">
-        <option value="GST">GST</option><option value="ITR">ITR</option><option value="TDS">TDS</option>
-        <option value="CRM">CRM</option><option value="Admin">Admin</option><option value="Wealth">Wealth Advisory</option><option value="Other">Other</option>
-      </select>
-    </div>
+    <div class="fg"><label>Category</label><select id="v-cat"><option value="GST">GST</option><option value="ITR">ITR</option><option value="TDS">TDS</option><option value="CRM">CRM</option><option value="Admin">Admin</option><option value="Wealth">Wealth Advisory</option><option value="Other">Other</option></select></div>
     <div class="fg"><label>Video URL (YouTube / Drive / Google Site) *</label><input id="v-url" type="url" placeholder="https://..."/></div>
     <div class="fg"><label>Short Description</label><input id="v-desc" type="text" placeholder="e.g. GSTR-1, GST-3B complete process"/></div>
     <div class="m-btns"><button class="m-cancel" onclick="closeVidModal()">Cancel</button><button class="m-save" onclick="saveVid()">Save Video</button></div>
   </div>
 </div>
-
-<!-- VIDEO DELETE CONFIRM -->
 <div class="ov" id="vd-ov" onclick="if(event.target===this)document.getElementById('vd-ov').classList.remove('open')">
   <div class="conf"><div class="conf-ico">🗑️</div><h3>Remove Video?</h3><p>Yeh video hat jayega.</p><div class="conf-btns"><button class="m-cancel" onclick="document.getElementById('vd-ov').classList.remove('open')">Cancel</button><button class="btn-del" id="vd-yes">Remove</button></div></div>
 </div>
-
-<!-- HEADER EDIT MODAL -->
 <div class="ov" id="h-ov" onclick="if(event.target===this)closeHeaderModal()">
   <div class="modal hdr-modal">
     <div class="m-hd"><h3>✏️ Edit Header & Ticker</h3><button class="m-x" onclick="closeHeaderModal()">✕</button></div>
     <div class="fg"><label>Company Name (Topbar)</label><input id="h-name" type="text" placeholder="Finveszprosolutionz"/></div>
     <div class="fg"><label>Topbar Subtitle</label><input id="h-sub" type="text" placeholder="System Master · Process Control Centre"/></div>
-    <div class="fg"><label>Hero Subtitle (small text under greeting)</label><input id="h-hero" type="text" placeholder="Internal Operations Directory · System Master · Confidential"/></div>
-    <div class="fg" style="padding-bottom:16px"><label>Ticker Messages (comma separated)</label><textarea id="h-ticker" rows="4" style="width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:Figtree,sans-serif;outline:none;resize:vertical;" placeholder="Daily Checklist — Stay on track, GST Returns — Filed on time, ..."></textarea></div>
+    <div class="fg"><label>Hero Subtitle</label><input id="h-hero" type="text" placeholder="Internal Operations Directory · System Master · Confidential"/></div>
+    <div class="fg" style="padding-bottom:16px"><label>Ticker Messages (comma separated)</label><textarea id="h-ticker" rows="4" style="width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:Figtree,sans-serif;outline:none;resize:vertical;"></textarea></div>
     <div class="m-btns"><button class="m-cancel" onclick="closeHeaderModal()">Cancel</button><button class="m-save" onclick="saveHeaderEdit()">Save Changes</button></div>
   </div>
 </div>
-
-<!-- NOTIFICATION SEND MODAL -->
 <div class="ov" id="n-ov" onclick="if(event.target===this)closeNotifModal()">
   <div class="modal hdr-modal">
     <div class="m-hd"><h3>🔔 Send Notification to Users</h3><button class="m-x" onclick="closeNotifModal()">✕</button></div>
     <div class="fg"><label>Notification Title *</label><input id="n-title" type="text" placeholder="e.g. GSTR-1 process updated"/></div>
     <div class="fg"><label>Sent By</label><input id="n-by" type="text" placeholder="e.g. Divanshu"/></div>
-    <div class="fg"><label>Type</label>
-      <select id="n-type"><option value="blue">🔵 Info</option><option value="green">🟢 Success</option><option value="gold">🟡 Warning</option><option value="red">🔴 Alert</option></select>
-    </div>
+    <div class="fg"><label>Type</label><select id="n-type"><option value="blue">🔵 Info</option><option value="green">🟢 Success</option><option value="gold">🟡 Warning</option><option value="red">🔴 Alert</option></select></div>
     <div class="m-btns" style="padding-bottom:18px"><button class="m-cancel" onclick="closeNotifModal()">Cancel</button><button class="m-save" onclick="sendNotif()">Send Now</button></div>
   </div>
 </div>
-
-<!-- PHOTO BANNER OVERLAY -->
 <div id="photoBanner">
-  <div class="pb-wrap">
-    <button class="pb-close" onclick="closeBanner()">✕</button>
-    <img class="pb-img" id="pbImg" src="" alt="" onclick="bannerClick()"/>
-  </div>
+  <div class="pb-wrap"><button class="pb-close" onclick="closeBanner()">✕</button><img class="pb-img" id="pbImg" src="" alt="" onclick="bannerClick()"/></div>
   <div id="pbSocialBtns" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:380px;"></div>
 </div>
-
-<!-- PHOTO MANAGE MODAL (Admin) -->
 <div class="ov" id="ph-ov" onclick="if(event.target===this)closePhotoModal()">
   <div class="modal" style="max-width:520px;max-height:90vh;overflow-y:auto;">
     <div class="m-hd"><h3>📸 Manage Banners & Social Links</h3><button class="m-x" onclick="closePhotoModal()">✕</button></div>
     <div class="photo-grid" id="photoGrid"></div>
     <div style="padding:0 22px 10px;border-top:1px solid #f0ede6;padding-top:14px;">
-      <div style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Social Links (click karne par kahan jaye)</div>
+      <div style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Social Links</div>
       <div class="photo-link-row"><span style="font-size:18px">📸</span><label>Instagram</label><input id="ph-insta" type="url" placeholder="https://instagram.com/..."/></div>
       <div class="photo-link-row"><span style="font-size:18px">📘</span><label>Facebook</label><input id="ph-fb" type="url" placeholder="https://facebook.com/..."/></div>
       <div class="photo-link-row"><span style="font-size:18px">▶️</span><label>YouTube</label><input id="ph-yt" type="url" placeholder="https://youtube.com/..."/></div>
       <div class="photo-link-row"><span style="font-size:18px">✈️</span><label>Telegram</label><input id="ph-tg" type="url" placeholder="https://t.me/..."/></div>
       <div class="photo-link-row"><span style="font-size:18px">💬</span><label>WhatsApp</label><input id="ph-wa" type="url" placeholder="https://wa.me/..."/></div>
     </div>
-    <div class="photo-settings" style="border-top:1px solid #f0ede6;">
-      <label>Auto-show every</label>
-      <input id="ph-interval" type="number" value="30" min="1" max="120"/>
-      <label>minutes</label>
-    </div>
+    <div class="photo-settings" style="border-top:1px solid #f0ede6;"><label>Auto-show every</label><input id="ph-interval" type="number" value="30" min="1" max="120"/><label>minutes</label></div>
     <div class="m-btns"><button class="m-cancel" onclick="closePhotoModal()">Cancel</button><button class="m-save" onclick="savePhotoSettings()">Save Settings</button></div>
   </div>
 </div>
-
-<!-- PASSWORD CHANGE MODAL -->
 <div class="ov" id="pwd-ov" onclick="if(event.target===this)closePwdModal()">
   <div class="modal" style="max-width:440px;">
     <div class="m-hd"><h3>🔑 Change Passwords</h3><button class="m-x" onclick="closePwdModal()">✕</button></div>
-    <div style="padding:14px 22px 0;">
-      <div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">👤 User Password</div>
-      <div class="fg" style="padding:0 0 12px;"><label>New User Password</label><input id="pwd-user" type="password" placeholder="New password for users"/></div>
-    </div>
-    <div style="padding:0 22px 0;border-top:1px solid #f0ede6;padding-top:14px;">
-      <div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">🛡️ Admin Password</div>
-      <div class="fg" style="padding:0 0 12px;"><label>New Admin Password</label><input id="pwd-admin" type="password" placeholder="New password for admin"/></div>
-      <div class="fg" style="padding:0 0 16px;"><label>Confirm Admin Password</label><input id="pwd-admin2" type="password" placeholder="Confirm new admin password"/></div>
-    </div>
+    <div style="padding:14px 22px 0;"><div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">👤 User Password</div><div class="fg" style="padding:0 0 12px;"><label>New User Password</label><input id="pwd-user" type="password" placeholder="New password for users"/></div></div>
+    <div style="padding:0 22px 0;border-top:1px solid #f0ede6;padding-top:14px;"><div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">🛡️ Admin Password</div><div class="fg" style="padding:0 0 12px;"><label>New Admin Password</label><input id="pwd-admin" type="password" placeholder="New password for admin"/></div><div class="fg" style="padding:0 0 16px;"><label>Confirm Admin Password</label><input id="pwd-admin2" type="password" placeholder="Confirm new admin password"/></div></div>
     <div class="m-btns"><button class="m-cancel" onclick="closePwdModal()">Cancel</button><button class="m-save" onclick="savePwds()">Update Passwords</button></div>
   </div>
 </div>
-
-<!-- SETTINGS MODAL (Admin) -->
 <div class="ov" id="settings-ov" onclick="if(event.target===this)closeSettings()">
   <div class="modal" style="max-width:520px;max-height:92vh;overflow-y:auto;">
-    <div class="m-hd" style="background:linear-gradient(135deg,#042C53,#185FA5);border-radius:18px 18px 0 0;">
-      <h3 style="color:#fff;font-size:17px;">⚙️ Admin Settings</h3>
-      <button class="m-x" onclick="closeSettings()" style="color:#fff;background:rgba(255,255,255,.15);">✕</button>
-    </div>
-    <!-- Settings grid -->
+    <div class="m-hd" style="background:linear-gradient(135deg,#042C53,#185FA5);border-radius:18px 18px 0 0;"><h3 style="color:#fff;font-size:17px;">⚙️ Admin Settings</h3><button class="m-x" onclick="closeSettings()" style="color:#fff;background:rgba(255,255,255,.15);">✕</button></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 18px 8px;">
       <button class="set-btn" onclick="closeSettings();openAdd(null)">➕<span>Add Process</span></button>
       <button class="set-btn" onclick="closeSettings();openVidModal()">🎬<span>Add Video</span></button>
@@ -819,9 +655,7 @@ tr:hover .row-acts{opacity:1;}
       <button class="set-btn" onclick="exportData();closeSettings()">📤<span>Export Data</span></button>
       <button class="set-btn danger" onclick="closeSettings();resetToDefault()">↺<span>Reset Data</span></button>
     </div>
-    <div style="padding:8px 18px 18px;text-align:center;">
-      <button class="m-cancel" onclick="closeSettings()" style="width:100%;">Close</button>
-    </div>
+    <div style="padding:8px 18px 18px;text-align:center;"><button class="m-cancel" onclick="closeSettings()" style="width:100%;">Close</button></div>
   </div>
 </div>
 
@@ -847,12 +681,10 @@ function getGreeting(name){
     p.style.cssText='left:'+(5+Math.random()*90)+'%;top:'+(20+Math.random()*60)+'%;background:'+cols[i%cols.length]+';--dx:'+dx+'px;--dy:'+dy+'px;animation-delay:'+(Math.random()*3)+'s;animation-duration:'+(2.5+Math.random()*2)+'s;';
     pc.appendChild(p);
   }
-  /* Splash stocks ticker */
   var stocks=['SENSEX 75,432 ▲+312','NIFTY 22,908 ▲+89','RELIANCE ₹2,912 ▲+38','TCS ₹3,541 ▼-12','HDFC BANK ₹1,622 ▲+22','INFOSYS ₹1,398 ▲+15','BAJAJ FIN ₹6,748 ▼-95','SBI ₹824 ▲+11','ICICI ₹1,142 ▲+8','WIPRO ₹456 ▲+6'];
   var st=document.getElementById('splashTick');
   var html=stocks.concat(stocks).map(function(s){return'<span class="sti">'+s+'</span>';}).join('<span style="color:rgba(181,212,244,.2);padding:0 8px">·</span>');
   st.innerHTML=html;
-  /* Load bar */
   var lbar=document.getElementById('lbar'),ll=document.getElementById('llabel');
   var pct=0,labels=['Initializing...','Loading modules...','Connecting...','Almost ready...','Welcome!'],li=0;
   var iv=setInterval(function(){
@@ -904,10 +736,7 @@ function handleLogin(){
   document.getElementById('loginPage').style.display='none';
   var ov=document.getElementById('successOverlay');ov.style.display='flex';
   document.getElementById('suc-sub').textContent=getGreeting(loggedName);
-  /* Notify admin that user logged in */
-  if(loggedRole==='user'){
-    addNotif(loggedName+' logged into System Master',loggedName,'blue');
-  }
+  if(loggedRole==='user'){addNotif(loggedName+' logged into System Master',loggedName,'blue');}
   setTimeout(function(){
     ov.style.display='none';
     document.getElementById('appPage').classList.add('show');
@@ -920,7 +749,6 @@ function showErr(msg){
 }
 function doLogout(){
   document.getElementById('appPage').classList.remove('show');
-  /* Do NOT clear pbAutoTimer — banner keeps running across sessions */
   var lp=document.getElementById('loginPage');lp.style.display='flex';
   document.getElementById('userName')&&(document.getElementById('userName').value='');
   document.getElementById('password').value='';
@@ -939,12 +767,7 @@ document.addEventListener('keydown',function(e){
 });
 
 /* ─── PASSWORD CHANGE ─── */
-function openPwdChange(){
-  document.getElementById('pwd-user').value='';
-  document.getElementById('pwd-admin').value='';
-  document.getElementById('pwd-admin2').value='';
-  document.getElementById('pwd-ov').classList.add('open');
-}
+function openPwdChange(){document.getElementById('pwd-user').value='';document.getElementById('pwd-admin').value='';document.getElementById('pwd-admin2').value='';document.getElementById('pwd-ov').classList.add('open');}
 function closePwdModal(){document.getElementById('pwd-ov').classList.remove('open');}
 function savePwds(){
   var pu=document.getElementById('pwd-user').value.trim();
@@ -954,10 +777,7 @@ function savePwds(){
   if(pa&&pa!==pa2){showToast('❌ Admin passwords match nahi karte!');return;}
   if(pu) PASSWORDS.user=pu;
   if(pa) PASSWORDS.admin=pa;
-  /* Use saveData silently so password toast shows properly */
-  saveData(true);
-  closePwdModal();
-  showToast('✅ Password update ho gaya!');
+  saveData(true);closePwdModal();showToast('✅ Password update ho gaya!');
 }
 
 /* ─── TICKER ─── */
@@ -977,7 +797,8 @@ var DEPTS=[
 var eId=null,eDept=null,activeDept=null;
 function uid(){return'_'+Math.random().toString(36).slice(2,9);}
 var LS_KEY='finveszpro_v3';
-/* ─── JSONBIN CLOUD SYNC ─── */
+
+/* ─── JSONBIN CLOUD SYNC ── FIXED: cache bypass ─── */
 var BIN_ID='69e22b9caaba8821970c8fb3';
 var JKEY='$2a$10$JPGIIjtZKmCFrDEi1bChcenfJ5wmsOrkQivFdeHVxHSTykY111ZhW';
 var BIN_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
@@ -989,8 +810,13 @@ function saveData(silent){
   .catch(function(){try{localStorage.setItem(LS_KEY,JSON.stringify(payload));}catch(e){}if(!silent)showToast('⚠️ Cloud save failed!');});
 }
 
+/* ── KEY FIX: cache:'no-store' + timestamp prevents phone from loading stale data ── */
 function loadData(cb){
-  fetch(BIN_URL+'/latest',{headers:{'X-Master-Key':JKEY}})
+  var ts='?t='+Date.now();
+  fetch(BIN_URL+'/latest'+ts,{
+    headers:{'X-Master-Key':JKEY,'Cache-Control':'no-cache','Pragma':'no-cache'},
+    cache:'no-store'
+  })
   .then(function(r){return r.json();})
   .then(function(data){
     var rec=data.record;
@@ -1018,45 +844,44 @@ function exportData(){var blob=new Blob([JSON.stringify(D,null,2)],{type:'applic
 
 var D={
   office:[
-    {id:uid(),n:'Client Database',     pc:'—',      ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'GSTR-1',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'GST-3B',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'GSTR-9',              pc:'Vani',   ps:'Yash Dani · Chandan', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'TDS Return',          pc:'Vani',   ps:'Yash Dani · Snigdha', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'ITR Filing',          pc:'Vani',   ps:'Yash Dani · Snigdha', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Order to Billing',    pc:'Vani',   ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Accounting Tracker',  pc:'—',      ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Database',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GSTR-1',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GST-3B',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'GSTR-9',pc:'Vani',ps:'Yash Dani · Chandan',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'TDS Return',pc:'Vani',ps:'Yash Dani · Snigdha',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'ITR Filing',pc:'Vani',ps:'Yash Dani · Snigdha',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Order to Billing',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Accounting Tracker',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   admin:[
-    {id:uid(),n:'Fixed Asset Purchase',     pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Checklist',                pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Checklist (PC Sheet)',     pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Staff Recruitment',        pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Staff Onboarding / KYC',   pc:'Vani',     ps:'Staff Onboarding',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Delegation Sheet',         pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Full Kitting Sheet',       pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Final CRM FMS',            pc:'Vani',     ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Utility Bills (Elec.)',    pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Rental Invoice Mgmt',      pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Budget & Cost Control',    pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Fixed Asset Purchase',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Checklist',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Checklist (PC Sheet)',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Staff Recruitment',pc:'Vani',ps:'Yash Dani · Vani',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Staff Onboarding / KYC',pc:'Vani',ps:'Staff Onboarding',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Delegation Sheet',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Full Kitting Sheet',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Final CRM FMS',pc:'Vani',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Utility Bills (Elec.)',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Rental Invoice Mgmt',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Budget & Cost Control',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   wealth:[
-    {id:uid(),n:'Client Registrations',     pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Client Investments',        pc:'—',        ps:'—',                   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Tele-Calling',              pc:'Priya',    ps:'Yash Dani · Priya',   fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Risk Profiling Sheet',      pc:'Vani',     ps:'Yash Dani · Vani',    fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Incentive Calculator',      pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Client Onboarding MGMT',    pc:'Divanshu', ps:'Yash Dani · Vinita',  fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Registrations',pc:'Vani',ps:'Yash Dani · Vani',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Investments',pc:'—',ps:'—',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Tele-Calling',pc:'Priya',ps:'Yash Dani · Priya',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Risk Profiling Sheet',pc:'Vani',ps:'Yash Dani · Vani',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Incentive Calculator',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Onboarding MGMT',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
   trials:[
-    {id:uid(),n:'Executive MIS Summary',         pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Client Onboarding Mgmt System', pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Training Videos',               pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
-    {id:uid(),n:'Office Reports',                 pc:'Divanshu', ps:'Yash Dani · Vinita', fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Executive MIS Summary',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Client Onboarding Mgmt System',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',othl:''},
+    {id:uid(),n:'Training Videos',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
+    {id:uid(),n:'Office Reports',pc:'Divanshu',ps:'Yash Dani · Vinita',fms:'',chk:'',form:'',dash:'',vid:'',oth:'',othl:''},
   ],
 };
 
-/* ─── VIDEOS DATA ─── */
 var VIDEOS=[
   {id:uid(),title:'GST - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/gst-complete-training-module',cat:'GST',desc:'GSTR-1, GST-3B, GSTR-9 complete process'},
   {id:uid(),title:'TDS - Complete Training Module',url:'https://sites.google.com/finveszprosolutionz.com/finvez-training-system-portal/tds-complete-training-module',cat:'TDS',desc:'TDS returns, filing & compliance'},
@@ -1122,7 +947,7 @@ function confirmDelVid(id){
   };
 }
 
-/* ─── NOTIFICATION FUNCTIONS ─── */
+/* ─── NOTIFICATIONS ─── */
 function addNotif(title,by,type){
   NOTIFS.unshift({id:uid(),title:title,by:by||'Admin',type:type||'blue',time:new Date().toISOString()});
   if(NOTIFS.length>20) NOTIFS=NOTIFS.slice(0,20);
@@ -1143,14 +968,9 @@ function renderNotifs(){
     '</div>';
   }).join('');
 }
-function deleteNotif(id){
-  NOTIFS=NOTIFS.filter(function(n){return n.id!==id;});
-  renderNotifs();saveData(true);
-}
-function clearAllNotifs(){
-  if(NOTIFS.length===0) return;
-  NOTIFS=[];renderNotifs();saveData();showToast('Notifications cleared!');
-}
+function deleteNotif(id){NOTIFS=NOTIFS.filter(function(n){return n.id!==id;});renderNotifs();saveData(true);}
+function clearAllNotifs(){if(NOTIFS.length===0)return;NOTIFS=[];renderNotifs();saveData();showToast('Notifications cleared!');}
+
 function renderSocialLinks(){
   var panel=document.getElementById('socialLinksPanel');
   var list=document.getElementById('socialLinksList');
@@ -1164,21 +984,14 @@ function renderSocialLinks(){
   ];
   var html='';
   socials.forEach(function(s){
-    if(PHOTOS[s.key]){
-      html+='<a class="social-link" href="'+PHOTOS[s.key]+'" target="_blank">'+
-        '<div class="social-ico" style="background:'+s.bg+'">'+s.ico+'</div>'+
-        '<div class="social-name" style="color:'+s.color+'">'+s.label+'</div>'+
-      '</a>';
-    }
+    if(PHOTOS[s.key]){html+='<a class="social-link" href="'+PHOTOS[s.key]+'" target="_blank"><div class="social-ico" style="background:'+s.bg+'">'+s.ico+'</div><div class="social-name" style="color:'+s.color+'">'+s.label+'</div></a>';}
   });
   if(html){list.innerHTML=html;panel.style.display='';}
   else panel.style.display='none';
 }
 
-/* ─── SETTINGS MODAL ─── */
 function openSettings(){document.getElementById('settings-ov').classList.add('open');}
 function closeSettings(){document.getElementById('settings-ov').classList.remove('open');}
-
 function openNotifSend(){document.getElementById('n-title').value='';document.getElementById('n-by').value=loggedName;document.getElementById('n-ov').classList.add('open');}
 function closeNotifModal(){document.getElementById('n-ov').classList.remove('open');}
 function sendNotif(){
@@ -1188,7 +1001,6 @@ function sendNotif(){
   closeNotifModal();showToast('✅ Notification sent!');
 }
 
-/* ─── HEADER EDIT FUNCTIONS ─── */
 function openHeaderEdit(){
   document.getElementById('h-name').value=HEADER.name;
   document.getElementById('h-sub').value=HEADER.sub;
@@ -1207,27 +1019,18 @@ function saveHeaderEdit(){
 function applyHeader(){
   var nm=document.querySelector('.tb-name');if(nm)nm.textContent=HEADER.name;
   var sb=document.querySelector('.tb-sub');if(sb)sb.textContent=HEADER.sub;
-  var hs=document.querySelector('.gh-sub');if(hs)hs.textContent=HEADER.hero;
+  var hs=document.getElementById('gh-sub-txt');if(hs)hs.textContent=HEADER.hero;
   if(HEADER.ticker){TICKS=HEADER.ticker.split(',').map(function(t){return t.trim();}).filter(Boolean);buildTicker();}
 }
 
-/* ─── PHOTO BANNER SYSTEM ─── */
+/* ─── PHOTO BANNER ─── */
 var PHOTOS={imgs:[],insta:'',fb:'',yt:'',tg:'',wa:'',interval:30};
 var pbAutoTimer=null;
-
-function loadPhotos(){
-  /* called externally if needed — now handled by startBannerCycle */
-  if(PHOTOS.imgs&&PHOTOS.imgs.length>0) startBannerCycle();
-}
 function startBannerCycle(){
-  /* Only start if not already running */
   if(pbAutoTimer) return;
   var ms=(parseInt(PHOTOS.interval)||30)*60*1000;
-  pbAutoTimer=setInterval(function(){
-    if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner();
-  },ms);
+  pbAutoTimer=setInterval(function(){if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner();},ms);
 }
-
 function showBanner(){
   if(!PHOTOS.imgs||PHOTOS.imgs.length===0) return;
   var idx=parseInt(localStorage.getItem('fpb_idx')||'0');
@@ -1235,30 +1038,15 @@ function showBanner(){
   var img=PHOTOS.imgs[idx];
   localStorage.setItem('fpb_idx',String(idx+1>=PHOTOS.imgs.length?0:idx+1));
   document.getElementById('pbImg').src=img;
-  /* Build social buttons */
   var btns='';
-  var socials=[
-    {key:'insta',ico:'📸',label:'Instagram',bg:'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)'},
-    {key:'fb',ico:'📘',label:'Facebook',bg:'#1877f2'},
-    {key:'yt',ico:'▶️',label:'YouTube',bg:'#ff0000'},
-    {key:'tg',ico:'✈️',label:'Telegram',bg:'#0088cc'},
-    {key:'wa',ico:'💬',label:'WhatsApp',bg:'#25d366'},
-  ];
-  socials.forEach(function(s){
-    var url=PHOTOS[s.key];
-    if(url) btns+='<a href="'+url+'" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:'+s.bg+';color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:Figtree,sans-serif;text-decoration:none;">'+s.ico+' '+s.label+'</a>';
-  });
+  var socials=[{key:'insta',ico:'📸',label:'Instagram',bg:'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)'},{key:'fb',ico:'📘',label:'Facebook',bg:'#1877f2'},{key:'yt',ico:'▶️',label:'YouTube',bg:'#ff0000'},{key:'tg',ico:'✈️',label:'Telegram',bg:'#0088cc'},{key:'wa',ico:'💬',label:'WhatsApp',bg:'#25d366'}];
+  socials.forEach(function(s){var url=PHOTOS[s.key];if(url)btns+='<a href="'+url+'" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:'+s.bg+';color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:Figtree,sans-serif;text-decoration:none;">'+s.ico+' '+s.label+'</a>';});
   document.getElementById('pbSocialBtns').innerHTML=btns;
   document.getElementById('photoBanner').classList.add('show');
 }
 function closeBanner(){document.getElementById('photoBanner').classList.remove('show');}
-function bannerClick(){
-  var firstLink=PHOTOS.insta||PHOTOS.fb||PHOTOS.yt||PHOTOS.tg||PHOTOS.wa;
-  if(firstLink) window.open(firstLink,'_blank');
-  closeBanner();
-}
+function bannerClick(){var firstLink=PHOTOS.insta||PHOTOS.fb||PHOTOS.yt||PHOTOS.tg||PHOTOS.wa;if(firstLink)window.open(firstLink,'_blank');closeBanner();}
 
-/* Admin Photo Modal */
 function openPhotoModal(){
   document.getElementById('ph-insta').value=PHOTOS.insta||'';
   document.getElementById('ph-fb').value=PHOTOS.fb||'';
@@ -1273,9 +1061,7 @@ function closePhotoModal(){document.getElementById('ph-ov').classList.remove('op
 function renderPhotoGrid(){
   var grid=document.getElementById('photoGrid');
   var html='';
-  (PHOTOS.imgs||[]).forEach(function(img,i){
-    html+='<div class="photo-thumb"><img src="'+img+'"/><button class="photo-del" onclick="deletePhoto('+i+')">✕</button></div>';
-  });
+  (PHOTOS.imgs||[]).forEach(function(img,i){html+='<div class="photo-thumb"><img src="'+img+'"/><button class="photo-del" onclick="deletePhoto('+i+')">✕</button></div>';});
   html+='<label class="photo-add-box" for="photoUpload"><div>📷</div><div style="font-size:10px;margin-top:4px">Add Photo</div></label>';
   html+='<input type="file" id="photoUpload" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(this)"/>';
   grid.innerHTML=html;
@@ -1284,12 +1070,7 @@ function handlePhotoUpload(input){
   var files=Array.from(input.files),remaining=files.length;
   files.forEach(function(file){
     var reader=new FileReader();
-    reader.onload=function(e){
-      if(!PHOTOS.imgs) PHOTOS.imgs=[];
-      PHOTOS.imgs.push(e.target.result);
-      remaining--;
-      if(remaining===0){renderPhotoGrid();showToast('✅ '+files.length+' photo(s) added!');}
-    };
+    reader.onload=function(e){if(!PHOTOS.imgs)PHOTOS.imgs=[];PHOTOS.imgs.push(e.target.result);remaining--;if(remaining===0){renderPhotoGrid();showToast('✅ '+files.length+' photo(s) added!');}};
     reader.readAsDataURL(file);
   });
 }
@@ -1303,7 +1084,6 @@ function savePhotoSettings(){
   PHOTOS.interval=parseInt(document.getElementById('ph-interval').value)||30;
   saveData(true);closePhotoModal();showToast('✅ Banner settings saved!');
   renderSocialLinks();
-  /* Restart cycle with new interval */
   if(pbAutoTimer){clearInterval(pbAutoTimer);pbAutoTimer=null;}
   if(PHOTOS.imgs&&PHOTOS.imgs.length>0) startBannerCycle();
 }
@@ -1342,7 +1122,6 @@ function openDept(dId){
   var tag=document.getElementById('pvTag');tag.textContent=d?d.nm:dId;tag.className='pv-dept-tag '+dId;
   document.getElementById('bc-label').textContent=d?d.nm:dId;
   var pvAdd=document.getElementById('pvAdd');
-  pvAdd.className='pv-back'+(loggedRole==='admin'?' ':'  hide')+' ';
   if(loggedRole==='admin'){pvAdd.style.display='';pvAdd.className='pv-add';pvAdd.onclick=function(){openAdd(dId);};}
   else pvAdd.style.display='none';
   renderProc(dId);
@@ -1365,7 +1144,6 @@ function renderCards(){
     html+='<div class="dc-tags">'+d.tags.map(function(t){return'<span class="dc-tag">'+t+'</span>';}).join('')+'</div>';
     html+='<div class="dc-arrow">→</div></div>';
   });
-  /* Videos card */
   html+='<div class="dept-card" onclick="navTo(\'videos\',document.querySelector(\'[data-sec=videos]\'))" style="animation-delay:0.32s;border-top:3px solid #c2410c;">';
   html+='<div class="dc-top"><div class="dc-ico" style="background:#fff7ed;font-size:20px;">🎬</div>';
   html+='<div><div class="dc-name" style="color:#c2410c;">Training Videos</div><div class="dc-sub">'+VIDEOS.length+' videos</div></div></div>';
@@ -1376,21 +1154,15 @@ function renderCards(){
   document.getElementById('deptCards').innerHTML=html;
 }
 
-/* ─── RENDER PROCESS CARDS (Horizontal) ─── */
 function lb(href,cls,ico,lbl){if(!href)return'';return'<a class="lbtn '+cls+'" href="'+href+'" target="_blank" rel="noopener">'+ico+' '+lbl+'</a>';}
 function renderLinks(p){
   var h='';
-  if(p.fms)  h+=lb(p.fms, 'lb-f','📂','FMS');
-  if(p.chk)  h+=lb(p.chk, 'lb-c','✅','Checklist');
+  if(p.fms)  h+=lb(p.fms,'lb-f','📂','FMS');
+  if(p.chk)  h+=lb(p.chk,'lb-c','✅','Checklist');
   if(p.form) h+=lb(p.form,'lb-g','📝','Form');
   if(p.dash) h+=lb(p.dash,'lb-d','📊','Dashboard');
-  if(p.vid)  h+=lb(p.vid, 'lb-v','🎬','Video');
-  /* Custom links array */
-  if(p.links&&p.links.length>0){
-    p.links.forEach(function(cl){
-      if(cl.url) h+=lb(cl.url,'lb-o','🔗',cl.name||'Link');
-    });
-  }
+  if(p.vid)  h+=lb(p.vid,'lb-v','🎬','Video');
+  if(p.links&&p.links.length>0){p.links.forEach(function(cl){if(cl.url)h+=lb(cl.url,'lb-o','🔗',cl.name||'Link');});}
   return h||'<span class="no-link">No links</span>';
 }
 function cntLinks(p){
@@ -1398,14 +1170,12 @@ function cntLinks(p){
   var custom=p.links?p.links.filter(function(cl){return cl.url;}).length:0;
   return base+custom;
 }
-
 function renderProc(dId){
   var rows=D[dId]||[],isAdmin=loggedRole==='admin';
   var d=DEPTS.find(function(x){return x.id===dId;})||{color:'#185FA5',ibg:'#eff6ff'};
   var html='';
-  if(!rows.length){
-    html='<div class="proc-empty">No processes yet'+(isAdmin?' — click "+ Add Process" to begin':'')+'</div>';
-  }else{
+  if(!rows.length){html='<div class="proc-empty">No processes yet'+(isAdmin?' — click "+ Add Process" to begin':'')+'</div>';}
+  else{
     html='<div class="proc-cards-wrap">';
     rows.forEach(function(p,i){
       var lc=cntLinks(p);
@@ -1414,18 +1184,13 @@ function renderProc(dId){
       html+='<div class="proc-card-left">';
       html+='<div class="proc-card-name">'+p.n+'</div>';
       html+='<div class="proc-card-meta">';
-      html+='<span class="proc-chip" style="background:'+d.ibg+';color:'+d.color+'">👤 '+( p.pc||'—')+'</span>';
+      html+='<span class="proc-chip" style="background:'+d.ibg+';color:'+d.color+'">👤 '+(p.pc||'—')+'</span>';
       html+='<span class="proc-chip">🛠 '+(p.ps||'—')+'</span>';
       if(lc>0) html+='<span class="proc-chip">🔗 '+lc+' link'+(lc>1?'s':'')+'</span>';
       html+='</div>';
       html+='<div class="links-wrap proc-links">'+renderLinks(p)+'</div>';
       html+='</div>';
-      if(isAdmin){
-        html+='<div class="proc-card-acts">';
-        html+='<button class="btn-e" onclick="openEdit(\''+dId+'\',\''+p.id+'\')">✏️ Edit</button>';
-        html+='<button class="btn-r" onclick="confirmDel(\''+dId+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >🗑</button>';
-        html+='</div>';
-      }
+      if(isAdmin){html+='<div class="proc-card-acts"><button class="btn-e" onclick="openEdit(\''+dId+'\',\''+p.id+'\')">✏️ Edit</button><button class="btn-r" onclick="confirmDel(\''+dId+'\',\''+p.id+'\',\''+p.n.replace(/'/g,"\\'")+'\')" >🗑</button></div>';}
       html+='</div></div>';
     });
     html+='</div>';
@@ -1433,15 +1198,13 @@ function renderProc(dId){
   document.getElementById('procTbody').innerHTML=html;
 }
 
-/* ─── SEARCH ─── */
 function doSearch(q){
   var qr=q.toLowerCase();
-  document.querySelectorAll('#procTbody tr[data-id]').forEach(function(r){
+  document.querySelectorAll('.proc-card').forEach(function(r){
     r.style.display=!qr||r.textContent.toLowerCase().includes(qr)?'':'none';
   });
 }
 
-/* ─── STATS ─── */
 function updateStats(){
   var total=0,totalLinks=0;
   DEPTS.forEach(function(d){
@@ -1452,7 +1215,6 @@ function updateStats(){
   });
   animNum('st-proc',total);animNum('st-links',totalLinks);
   var oc=document.getElementById('ql-off-cnt');if(oc)oc.textContent=(D.office||[]).length+' processes';
-  var wc=document.getElementById('ql-wlt-cnt');if(wc)wc.textContent=(D.wealth||[]).length+' processes';
 }
 function animNum(id,target){
   var el=document.getElementById(id);if(!el)return;
@@ -1460,31 +1222,19 @@ function animNum(id,target){
   var t=setInterval(function(){i++;el.textContent=Math.round(s+diff*(i/steps));if(i>=steps){el.textContent=target;clearInterval(t);}},20);
 }
 
-/* ─── CUSTOM LINKS ─── */
 function addCustomLink(data){
   var wrap=document.getElementById('customLinksWrap');
-  var div=document.createElement('div');
-  div.className='cl-row';
-  div.innerHTML='<input class="cl-name" type="text" placeholder="Link naam (e.g. Client Master)" value="'+(data?data.name:'')+'" />'+
-    '<input class="cl-url" type="url" placeholder="https://..." value="'+(data?data.url:'')+'" />'+
-    '<button type="button" class="cl-del" onclick="this.parentElement.remove()">✕</button>';
+  var div=document.createElement('div');div.className='cl-row';
+  div.innerHTML='<input class="cl-name" type="text" placeholder="Link naam" value="'+(data?data.name:'')+'" /><input class="cl-url" type="url" placeholder="https://..." value="'+(data?data.url:'')+'" /><button type="button" class="cl-del" onclick="this.parentElement.remove()">✕</button>';
   wrap.appendChild(div);
 }
 function getCustomLinks(){
-  var rows=document.querySelectorAll('#customLinksWrap .cl-row');
-  var links=[];
-  rows.forEach(function(row){
-    var name=row.querySelector('.cl-name').value.trim();
-    var url=row.querySelector('.cl-url').value.trim();
-    if(name||url) links.push({name:name||'Link',url:url});
-  });
+  var rows=document.querySelectorAll('#customLinksWrap .cl-row'),links=[];
+  rows.forEach(function(row){var name=row.querySelector('.cl-name').value.trim();var url=row.querySelector('.cl-url').value.trim();if(name||url)links.push({name:name||'Link',url:url});});
   return links;
 }
-function clearCustomLinks(){
-  document.getElementById('customLinksWrap').innerHTML='';
-}
+function clearCustomLinks(){document.getElementById('customLinksWrap').innerHTML='';}
 
-/* ─── ADD/EDIT ─── */
 function openAdd(dId){
   eId=null;eDept=dId||activeDept||'office';
   document.getElementById('m-ttl').textContent='Add New Process';
@@ -1506,29 +1256,15 @@ function openEdit(dId,pId){
   document.getElementById('f-form').value=p.form||'';
   document.getElementById('f-dash').value=p.dash||'';
   document.getElementById('f-vid').value=p.vid||'';
-  /* Load existing custom links */
   clearCustomLinks();
-  if(p.links&&p.links.length>0){
-    p.links.forEach(function(cl){addCustomLink(cl);});
-  }
+  if(p.links&&p.links.length>0){p.links.forEach(function(cl){addCustomLink(cl);});}
   document.getElementById('m-ov').classList.add('open');
 }
 function saveProc(){
   var n=document.getElementById('f-name').value.trim();
   if(!n){showToast('Process name required!');return;}
   var dId=document.getElementById('f-dept').value;
-  var p={
-    id:eId||uid(),
-    n:n,
-    pc:document.getElementById('f-pc').value.trim()||'—',
-    ps:document.getElementById('f-ps').value.trim()||'—',
-    fms:document.getElementById('f-fms').value.trim(),
-    chk:document.getElementById('f-chk').value.trim(),
-    form:document.getElementById('f-form').value.trim(),
-    dash:document.getElementById('f-dash').value.trim(),
-    vid:document.getElementById('f-vid').value.trim(),
-    links:getCustomLinks()
-  };
+  var p={id:eId||uid(),n:n,pc:document.getElementById('f-pc').value.trim()||'—',ps:document.getElementById('f-ps').value.trim()||'—',fms:document.getElementById('f-fms').value.trim(),chk:document.getElementById('f-chk').value.trim(),form:document.getElementById('f-form').value.trim(),dash:document.getElementById('f-dash').value.trim(),vid:document.getElementById('f-vid').value.trim(),links:getCustomLinks()};
   if(eId){
     if(eDept!==dId){D[eDept]=(D[eDept]||[]).filter(function(x){return x.id!==eId;});if(!D[dId])D[dId]=[];D[dId].push(p);}
     else{var i=(D[dId]||[]).findIndex(function(x){return x.id===eId;});if(i>-1)D[dId][i]=p;}
@@ -1553,24 +1289,20 @@ function confirmDel(dId,pId,nm){
 }
 function closeModal(){document.getElementById('m-ov').classList.remove('open');}
 
-/* ─── CLOCK ─── */
 function tick(){
   var n=new Date();
   var h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0'),s=String(n.getSeconds()).padStart(2,'0');
   var rc=document.getElementById('rp-clock');if(rc)rc.textContent=h+':'+m+':'+s;
   var lt=document.getElementById('live-time');if(lt)lt.textContent=h+':'+m;
   var rd=document.getElementById('rp-date');if(rd)rd.textContent=n.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'short',year:'numeric'});
-  var ld=document.getElementById('live-time');
   var g=getGreeting(loggedName);
   var gh=document.getElementById('gh-title');if(gh)gh.textContent=g;
   var tg=document.getElementById('tb-greeting');if(tg)tg.textContent=g;
 }
 
-/* ─── TOAST ─── */
 function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
 
-/* ─── INIT ─── */
-var appInitialized=false; /* load data only once */
+var appInitialized=false;
 var tickInterval=null;
 
 function initApp(){
@@ -1583,12 +1315,9 @@ function initApp(){
   var gh=document.getElementById('gh-title');if(gh)gh.textContent=g;
   var tg=document.getElementById('tb-greeting');if(tg)tg.textContent=g;
   buildTicker();
-  /* Start tick only once */
   if(!tickInterval){tickInterval=setInterval(tick,1000);}
   tick();
-
   if(!appInitialized){
-    /* First time — load from cloud */
     appInitialized=true;
     loadData(function(){
       applyHeader();
@@ -1596,18 +1325,13 @@ function initApp(){
       updateStats();
       renderNotifs();
       renderSocialLinks();
-      startBannerCycle(); /* start banner cycle once */
+      startBannerCycle();
       goHome();
-      setTimeout(function(){ if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner(); },1500);
+      setTimeout(function(){if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner();},1500);
     });
   } else {
-    applyHeader();
-    renderCards();
-    updateStats();
-    renderNotifs();
-    renderSocialLinks();
-    goHome();
-    setTimeout(function(){ if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner(); },1500);
+    applyHeader();renderCards();updateStats();renderNotifs();renderSocialLinks();goHome();
+    setTimeout(function(){if(PHOTOS.imgs&&PHOTOS.imgs.length>0) showBanner();},1500);
   }
 }
 </script>
